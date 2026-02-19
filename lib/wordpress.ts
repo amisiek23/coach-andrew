@@ -5,7 +5,7 @@
  * Set NEXT_PUBLIC_WP_URL in .env.local to point at your WordPress install.
  */
 
-import type { WPPost, WPPage, WPMedia, WPCategory, WPSiteInfo, WPMenuItem, NavLink } from "./types";
+import type { WPPost, WPPage, WPMedia, WPCategory, WPSiteInfo, WPMenuItem, NavLink, WPRendered } from "./types";
 
 const WP_URL =
   process.env.NEXT_PUBLIC_WP_URL ||
