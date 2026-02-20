@@ -1,33 +1,16 @@
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
-import { getNavLinks } from "@/lib/wordpress";
 import type { NavLink } from "@/lib/types";
 
-// Static fallback — used only when WP_AUTH_TOKEN is not set
 const STATIC_NAV: NavLink[] = [
   { label: "Home",            href: "/" },
   { label: "About Me",        href: "/about" },
   { label: "Services",        href: "/services" },
-  { label: "Shop",            href: "/shop" },
   { label: "Thinking Corner", href: "/blog" },
   { label: "Contact",         href: "/contact" },
 ];
 
-const SERVICES_LINK: NavLink = { label: "Services", href: "/services" };
-
-export default async function Header() {
-  const dynamicNav = await getNavLinks();
-  let links = (dynamicNav.length > 0 ? dynamicNav : STATIC_NAV)
-    .filter((l) => l.href !== "/shop" && l.label !== "Shop");
-
-  // Always ensure Services is in the nav, whether using dynamic or static links
-  if (!links.some((l) => l.href === "/services")) {
-    // Insert after "About Me" if present, otherwise after the first item
-    const afterIndex = links.findIndex((l) => l.href === "/about" || l.label === "About Me");
-    const insertAt = afterIndex >= 0 ? afterIndex + 1 : 1;
-    links = [...links.slice(0, insertAt), SERVICES_LINK, ...links.slice(insertAt)];
-  }
-
+export default function Header() {
   return (
     <header style={{
       position: "sticky", top: 0, zIndex: 50,
@@ -50,7 +33,7 @@ export default async function Header() {
         </Link>
 
         <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }} className="hidden lg:flex">
-          {links.map((link) => (
+          {STATIC_NAV.map((link) => (
             <Link
               key={`${link.label}-${link.href}`}
               href={link.href}
@@ -62,7 +45,7 @@ export default async function Header() {
           ))}
         </nav>
 
-        <MobileMenu links={links} />
+        <MobileMenu links={STATIC_NAV} />
       </div>
 
       <style>{`.nav-link:hover { color: #2c6300 !important; }`}</style>

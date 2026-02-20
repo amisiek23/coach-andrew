@@ -1,15 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
-import { getPost, getPosts, getFeaturedImageUrl } from "@/lib/wordpress";
-import WpContent from "@/components/WpContent";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { getAllPosts, getPost } from "@/lib/content";
 
-export const revalidate = 60;
-
-export async function generateStaticParams() {
-  const posts = await getPosts(100);
-  return posts.map((post) => ({ slug: post.slug }));
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({
@@ -18,22 +14,18 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
   if (!post) return { title: "Post not found" };
 
-  const image = getFeaturedImageUrl(post, "large");
-  const description = post.excerpt.rendered.replace(/<[^>]*>/g, "").trim().slice(0, 160);
-
   return {
-    title: post.title.rendered,
-    description,
+    title: post.title,
+    description: post.excerpt,
     openGraph: {
-      title: post.title.rendered,
-      description,
+      title: post.title,
+      description: post.excerpt,
       type: "article",
       publishedTime: post.date,
-      modifiedTime: post.modified,
-      images: image ? [{ url: image }] : [],
+      images: post.coverImage ? [{ url: post.coverImage }] : [],
     },
   };
 }
@@ -44,33 +36,15 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getPost(slug);
+  const post = getPost(slug);
   if (!post) notFound();
 
-  const imageUrl = getFeaturedImageUrl(post, "full");
-  const imageAlt =
-    post._embedded?.["wp:featuredmedia"]?.[0]?.alt_text || post.title.rendered;
   const date = new Date(post.date).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
   });
 
   return (
     <div style={{ background: "#fff" }}>
-      {/* Featured image */}
-      {imageUrl && (
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "16/6" }}>
-          <Image
-            src={imageUrl}
-            alt={imageAlt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.25)" }} />
-        </div>
-      )}
-
       <div className="container" style={{ paddingTop: "3rem", paddingBottom: "4rem", maxWidth: "800px" }}>
         {/* Back link */}
         <Link
@@ -96,11 +70,14 @@ export default async function PostPage({
           <h1
             className="font-heading font-bold"
             style={{ color: "#151716", marginTop: "0.5rem" }}
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-          />
+          >
+            {post.title}
+          </h1>
         </header>
 
-        <WpContent html={post.content.rendered} />
+        <div className="prose prose-green max-w-none">
+          <MDXRemote source={post.content} />
+        </div>
       </div>
     </div>
   );

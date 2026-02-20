@@ -1,19 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { WPPost } from "@/lib/types";
-import { getFeaturedImageUrl } from "@/lib/wordpress";
+import type { BlogPostMeta } from "@/lib/types";
 
-interface Props { post: WPPost }
-
-function stripHtml(html: string) {
-  return html.replace(/<[^>]*>/g, "").trim();
-}
+interface Props { post: BlogPostMeta }
 
 export default function PostCard({ post }: Props) {
-  const imageUrl = getFeaturedImageUrl(post, "medium_large");
-  const imageAlt = post._embedded?.["wp:featuredmedia"]?.[0]?.alt_text || post.title.rendered;
-  const excerpt  = stripHtml(post.excerpt.rendered).slice(0, 140);
-  const date     = new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  const date = new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 
   return (
     <article style={{
@@ -29,8 +21,8 @@ export default function PostCard({ post }: Props) {
     >
       {/* Image */}
       <Link href={`/blog/${post.slug}`} tabIndex={-1} aria-hidden="true" style={{ display: "block", overflow: "hidden", aspectRatio: "16/9" }}>
-        {imageUrl
-          ? <Image src={imageUrl} alt={imageAlt} width={600} height={338}
+        {post.coverImage
+          ? <Image src={post.coverImage} alt={post.title} width={600} height={338}
               style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform .4s ease" }}
               className="card-img" />
           : <div style={{ width: "100%", height: "100%", background: "var(--green-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -46,12 +38,13 @@ export default function PostCard({ post }: Props) {
         </time>
 
         <h2 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.125rem", fontWeight: 700, lineHeight: 1.3, color: "var(--text)", flex: 1 }}>
-          <Link href={`/blog/${post.slug}`} style={{ color: "inherit" }}
-            dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+          <Link href={`/blog/${post.slug}`} style={{ color: "inherit" }}>
+            {post.title}
+          </Link>
         </h2>
 
-        {excerpt && (
-          <p style={{ fontSize: ".875rem", color: "var(--text-muted)", lineHeight: 1.6 }}>{excerpt}</p>
+        {post.excerpt && (
+          <p style={{ fontSize: ".875rem", color: "var(--text-muted)", lineHeight: 1.6 }}>{post.excerpt.slice(0, 140)}</p>
         )}
 
         <Link href={`/blog/${post.slug}`} style={{

@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getPageById, getPosts } from "@/lib/wordpress";
+import { getAllPosts } from "@/lib/content";
 import PostCard from "@/components/PostCard";
 
-const HOME_PAGE_ID = 9;
-// Actual image from the WP homepage content
 const HERO_IMAGE = "https://wpstrona.wpmudev.host/coachandrew/wp-content/uploads/sites/6/2026/01/istockphoto-178745492-1024x1024-5-edited.jpg";
 
-export const revalidate = 60;
 export const metadata: Metadata = { title: "Home", description: "Breath. Move. Grow." };
 
-export default async function HomePage() {
-  const [, recentPosts] = await Promise.all([
-    getPageById(HOME_PAGE_ID),
-    getPosts(3),
-  ]);
+export default function HomePage() {
+  const recentPosts = getAllPosts(3);
 
   return (
     <>
@@ -103,7 +97,7 @@ export default async function HomePage() {
 
             <div className="blog-grid">
               {recentPosts.map(post => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
 

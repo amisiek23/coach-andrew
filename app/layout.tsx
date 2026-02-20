@@ -3,9 +3,7 @@ import { Libre_Baskerville, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { getSiteInfo } from "@/lib/wordpress";
 
-// Load fonts via next/font so they are self-hosted and applied as CSS variables
 const libreBaskervilleFont = Libre_Baskerville({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -21,23 +19,20 @@ const openSansFont = Open_Sans({
   display: "swap",
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const site = await getSiteInfo();
-  return {
-    title: {
-      default: site.name,
-      template: `%s | ${site.name}`,
-    },
-    description: site.description,
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
-    ),
-    openGraph: {
-      siteName: site.name,
-      type: "website",
-    },
-  };
-}
+export const metadata: Metadata = {
+  title: {
+    default: "CoachAndrew",
+    template: "%s | CoachAndrew",
+  },
+  description: "Elevate Your Game — Breath. Move. Grow.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  openGraph: {
+    siteName: "CoachAndrew",
+    type: "website",
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
