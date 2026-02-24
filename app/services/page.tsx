@@ -8,7 +8,12 @@ export const metadata: Metadata = {
   description: "Explore CoachAndrew's unique coaching offerings — Self-Mastery Profile, Online Tennis Classes, and Books & Resources.",
 };
 
-const OFFERINGS = [
+const OFFERINGS: {
+  title: string; titleHtml: string; desc: string; image: string; alt: string;
+  cta: { label: string; href: string };
+  cta2?: { label: string; href: string };
+  reverse: boolean;
+}[] = [
   {
     title:   "Self-Mastery Profile",
     titleHtml: "<strong>Self-Mastery</strong> Profile",
@@ -16,6 +21,7 @@ const OFFERINGS = [
     image:   "https://wpstrona.wpmudev.host/coachandrew/wp-content/uploads/sites/6/2025/10/paraglider-sunset-paragliding-5358333.jpg",
     alt:     "Paraglider at sunset — freedom and potential",
     cta:     { label: "Begin the Journey", href: "/self-mastery-profile" },
+    cta2:    { label: "Responsibility Maturity Profile", href: "/responsibility-maturity-profile" },
     reverse: false,
   },
   {
@@ -102,13 +108,24 @@ export default function ServicesPage() {
                   {o.desc}
                 </p>
 
-                <Link
-                  href={o.cta.href}
-                  className="btn btn-green"
-                  style={{ fontSize: ".8125rem" }}
-                >
-                  {o.cta.label}
-                </Link>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+                  <Link
+                    href={o.cta.href}
+                    className="btn btn-green"
+                    style={{ fontSize: ".8125rem" }}
+                  >
+                    {o.cta.label}
+                  </Link>
+                  {o.cta2 && (
+                    <Link
+                      href={o.cta2.href}
+                      className="btn btn-outline-green"
+                      style={{ fontSize: ".8125rem" }}
+                    >
+                      {o.cta2.label}
+                    </Link>
+                  )}
+                </div>
               </div>
             </article>
           ))}

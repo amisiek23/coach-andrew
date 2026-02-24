@@ -227,26 +227,6 @@ interface SectionResult {
   questionScores: number[];
 }
 
-/* ────────────────────────────────────────────────────────────────────
-   CUSTOM SLIDER
-   ──────────────────────────────────────────────────────────────────── */
-
-const ScoreSlider = ({ value, onChange, color }: { value: number; onChange: (v: number) => void; color: string }) => {
-  const level = getLevel(value);
-  return (
-    <div style={{ position: "relative", width: "100%", height: 36, userSelect: "none" }}>
-      <div style={{ position: "absolute", top: 14, left: 0, right: 0, height: 8, borderRadius: 4, background: "#E5E7EB" }} />
-      <div style={{ position: "absolute", top: 14, left: 0, width: `${value}%`, height: 8, borderRadius: 4, background: `linear-gradient(90deg, ${color}88, ${color})`, transition: "width 0.08s" }} />
-      <input
-        type="range" min={0} max={100} step={1} value={value}
-        onChange={(e) => onChange(Number(e.target.value))}
-        style={{ position: "absolute", top: 4, left: 0, width: "100%", height: 28, opacity: 0, cursor: "pointer", zIndex: 2, margin: 0 }}
-      />
-      <div style={{ position: "absolute", top: 8, left: `calc(${value}% - 10px)`, width: 20, height: 20, borderRadius: "50%", background: "#fff", border: `3px solid ${color}`, boxShadow: "0 1px 4px rgba(0,0,0,0.15)", transition: "left 0.08s", pointerEvents: "none" }} />
-      <span style={{ display: "none" }}>{level.label}</span>
-    </div>
-  );
-};
 
 /* ────────────────────────────────────────────────────────────────────
    CIRCULAR PROGRESS
@@ -342,11 +322,18 @@ const QuizScreen = ({
                 <div key={idx} style={{ background: "#fff", borderRadius: 16, padding: "20px 24px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)", border: "1px solid #F1F5F9" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
                     <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 12 }}>{qi + 1}. {q}</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexShrink: 0 }}>
-                      <span style={{ fontSize: 22, fontWeight: 700, color: section.color, minWidth: 48, textAlign: "right" }}>{val}%</span>
+                    <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+                      <input
+                        type="number" min={0} max={100} step={1} value={val}
+                        onChange={(e) => {
+                          const n = Math.min(100, Math.max(0, Number(e.target.value)));
+                          onAnswer(idx, isNaN(n) ? 0 : n);
+                        }}
+                        style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
+                      />
+                      <span style={{ fontSize: 18, fontWeight: 600, color: section.color }}>%</span>
                     </div>
                   </div>
-                  <ScoreSlider value={val} onChange={(v) => onAnswer(idx, v)} color={section.color} />
                 </div>
               );
             })}

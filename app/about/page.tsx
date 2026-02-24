@@ -70,7 +70,7 @@ export default function AboutPage() {
                 fontSize: ".75rem", fontWeight: 600, letterSpacing: ".16em",
                 textTransform: "uppercase", color: "var(--green)", marginBottom: ".6rem",
               }}>
-                Performance Coach · Educator · Mindfulness Practitioner
+                Coach · Educator · Mindfulness Practitioner
               </p>
 
               <h1 style={{
@@ -89,23 +89,20 @@ export default function AboutPage() {
                 color: "var(--green-dark)", marginBottom: "1rem",
                 lineHeight: 1.4,
               }}>
-                Where High-Performance Training Meets Inner Growth
+                Where the Inner Growth makes High-Performance Training
               </p>
 
               <div style={{ width: "36px", height: "2px", background: "var(--green)", borderRadius: "2px", marginBottom: "1rem" }} />
 
               <p style={{ fontSize: ".9375rem", color: "#444", lineHeight: 1.75, marginBottom: "1rem" }}>
-                Andrzej Misiek is a performance coach, educator, and lifelong student of human potential.
-                A former Top-10 junior and national coach in Poland, he spent the past 20 years developing
-                players across Europe and Australia.
+                Andrzej Misiek is a lifelong student of human potential. A former Top-10 junior and national coach in Poland. He spent the past 20 years developing players across Europe, United States and Australia.
               </p>
               <p style={{ fontSize: ".9375rem", color: "#444", lineHeight: 1.75, marginBottom: "1rem" }}>
-                His approach blends high-performance methodology with psychology, mindfulness, and authentic
-                leadership — helping athletes unlock the deeper potential of both mind and body.
+                His approach blends high-performance methodology with psychology, mindfulness, and authentic leadership, helping athletes unlock the deeper potential.
               </p>
               <p style={{ fontSize: ".9375rem", color: "#444", lineHeight: 1.75, marginBottom: "1.75rem" }}>
-                <strong>Elevate Your Game Through Mind, Body &amp; Self-Awareness.</strong>{" "}
-                Unlocking human potential requires more than training the body — it begins with mastering the self.
+               
+                Unlocking human potential requires more than training the body, it begins with mastering the self.
               </p>
 
               <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
@@ -175,15 +172,10 @@ export default function AboutPage() {
             fontSize: "clamp(1.6rem, 3.5vw, 2.25rem)",
             fontWeight: 700, color: "var(--text)", marginBottom: "1.5rem",
           }}>
-            Synergy of Nature, Mindfulness &amp; Tennis Excellence
+            First principles, Mindfulness &amp; Tennis Excellence
           </h2>
           <p style={{ fontSize: "1.0625rem", color: "#555", lineHeight: 1.8, marginBottom: "1rem" }}>
-            We prioritise nature and animal welfare in all coaching practices, believing that a harmonious
-            relationship with our environment enhances learning and fosters respect.
-          </p>
-          <p style={{ fontSize: "1.0625rem", color: "#555", lineHeight: 1.8 }}>
-            Our guiding principles emphasise empathy, respect, and integrity — ensuring coaching methods
-            uplift individuals while promoting personal and athletic growth ethically.
+            We prioritise oneness with Nature and animal welfare in our coaching approach, believing that a harmonious relationship with the environment builds strong and respectful individuals.
           </p>
         </div>
       </section>
