@@ -314,25 +314,23 @@ const QuizScreen = ({
             <p style={{ fontSize: 15, color: "#64748B", fontStyle: "italic" }}>{section.subtitle}</p>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.05)", border: "1px solid #F1F5F9", overflow: "hidden" }}>
             {section.questions.map((q, qi) => {
               const idx = baseIdx + qi;
               const val = answers[idx];
               return (
-                <div key={idx} style={{ background: "#fff", borderRadius: 16, padding: "20px 24px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)", border: "1px solid #F1F5F9" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-                    <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 12 }}>{qi + 1}. {q}</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-                      <input
-                        type="number" min={0} max={100} step={1} value={val}
-                        onChange={(e) => {
-                          const n = Math.min(100, Math.max(0, Number(e.target.value)));
-                          onAnswer(idx, isNaN(n) ? 0 : n);
-                        }}
-                        style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
-                      />
-                      <span style={{ fontSize: 18, fontWeight: 600, color: section.color }}>%</span>
-                    </div>
+                <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: qi < section.questions.length - 1 ? "1px solid #F1F5F9" : "none" }}>
+                  <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 16, lineHeight: 1.6, margin: 0 }}>{qi + 1}. {q}</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+                    <input
+                      type="number" min={0} max={100} step={1} value={val}
+                      onChange={(e) => {
+                        const n = Math.min(100, Math.max(0, Number(e.target.value)));
+                        onAnswer(idx, isNaN(n) ? 0 : n);
+                      }}
+                      style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
+                    />
+                    <span style={{ fontSize: 18, fontWeight: 600, color: section.color }}>%</span>
                   </div>
                 </div>
               );
@@ -362,7 +360,7 @@ const QuizScreen = ({
   );
 };
 
-const ResultsScreen = ({ sectionResults, overall, onRetake }: { sectionResults: SectionResult[]; overall: number; onRetake: () => void }) => {
+const ResultsScreen = ({ sectionResults, overall }: { sectionResults: SectionResult[]; overall: number }) => {
   const archetype = getArchetype(overall);
   const overallLevel = getLevel(overall);
   const chartData = sectionResults.map((r) => ({ subject: r.shortName, value: Math.round(r.avg), fullMark: 100 }));
@@ -457,15 +455,6 @@ const ResultsScreen = ({ sectionResults, overall, onRetake }: { sectionResults: 
           })}
         </div>
 
-        <div style={{ textAlign: "center" }}>
-          <button onClick={onRetake}
-            style={{ padding: "14px 40px", fontSize: 15, fontWeight: 600, color: "#6366F1", background: "#fff", border: "2px solid #6366F1", borderRadius: 50, cursor: "pointer", transition: "all 0.15s" }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "#6366F1"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#6366F1"; }}
-          >
-            Retake Assessment
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -479,7 +468,7 @@ export default function SelfMasteryProfile() {
   const [phase, setPhase] = useState<"intro" | "quiz" | "results">("intro");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>(() =>
-    Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 50]))
+    Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 0]))
   );
   const [fade, setFade] = useState(true);
 
@@ -506,7 +495,6 @@ export default function SelfMasteryProfile() {
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
   const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
-  const handleRetake = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => { setPhase("intro"); setSectionIdx(0); setAnswers(Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 50]))); }); };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
   return (
@@ -518,7 +506,7 @@ export default function SelfMasteryProfile() {
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
         />
       )}
-      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} onRetake={handleRetake} />}
+      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} />}
     </div>
   );
 }

@@ -82,6 +82,98 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── ABOUT / PHILOSOPHY ───────────────────────────────────────────── */}
+      <section style={{ background: "#fff", padding: "5.5rem 0" }}>
+        <div className="container" style={{ maxWidth: "900px" }}>
+
+          {/* accent line */}
+          <div style={{ width: 56, height: 4, background: "#377A00", borderRadius: 2, margin: "0 auto 1.5rem" }} />
+
+          <h2 style={{
+            fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
+            fontSize: "clamp(1.75rem, 4vw, 2.4rem)",
+            fontWeight: 700, lineHeight: 1.2,
+            color: "var(--text)", marginBottom: "2.5rem", textAlign: "center",
+          }}>
+            The Idea Behind the Project
+          </h2>
+
+          <div style={{
+            fontFamily: "var(--font-body), system-ui, sans-serif",
+            color: "#3a4a3a", lineHeight: 1.8,
+            display: "flex", flexDirection: "column", gap: "1.25rem",
+          }}>
+            {/* lead paragraph — slightly larger */}
+            <p style={{ fontSize: "1.0rem", fontWeight: 500, color: "#1e2e1e" }}>
+              Many people go through life with the feeling that something is missing. We are taught to believe that life is a constant struggle, that there is always something to be fighting for.
+            </p>
+
+            <p style={{ fontSize: "1.0rem" }}>
+              But when we look deeper, we discover that life does not have to be built on friction. That beyond fear, comparison, and pressure, there can be a state of peace, clarity, balance, and harmony. While this may seem unrealistic for the world as a whole, what may not exist everywhere can always be found somewhere, within each of us.
+            </p>
+
+            {/* pull quote */}
+            <blockquote style={{
+              margin: "1rem 0",
+              padding: "1.5rem 2rem",
+              background: "#EAF7EB",
+              borderLeft: "4px solid #377A00",
+              borderRadius: "0 12px 12px 0",
+              fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
+              fontSize: "clamp(1.1rem, 2.5vw, 1.35rem)",
+              fontStyle: "italic",
+              color: "#2f6a00",
+              lineHeight: 1.6,
+            }}>
+              There is a point inside every human being where things are simple, calm, and right,  a state where body, mind, and spirit work together without resistance.
+            </blockquote>
+
+            <p style={{ fontSize: "1.0rem" }}>
+              My coaching and this entire project are built around showing people that place. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of life.
+            </p>
+          </div>
+
+          {/* section intro */}
+          <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: "1.0rem", color: "#3a4a3a", lineHeight: 1.8, margin: "1.5rem 0 0.5rem", fontWeight: 600 }}>
+            You will find here:
+          </p>
+
+          {/* 3-card row */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
+            {[
+              { icon: "🎾", title: "Coaching Methods", body: "Developed through years of competitive and professional experience, connecting performance with awareness." },
+              { icon: "📋", title: "Self-Discovery Tools", body: "Questionnaires designed to help you realise things about yourself you never thought possible to change." },
+              { icon: "🌱", title: "Programmes & Materials", body: "Resources applicable both in sport and everyday life, from beginner to advanced level." },
+            ].map(({ icon, title, body }) => (
+              <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <span style={{ fontSize: 32 }}>{icon}</span>
+                <h3 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.05rem", fontWeight: 700, color: "#1e2e1e", margin: 0 }}>{title}</h3>
+                <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9rem", color: "#4a5a4a", lineHeight: 1.7, margin: 0 }}>{body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* closing statement */}
+          <div style={{
+            background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
+            borderRadius: 16, padding: "2rem 2.5rem", marginTop: "0.5rem",
+          }}>
+            <p style={{
+              fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
+              fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+              fontStyle: "italic", textAlign: "center",
+              color: "#fff", lineHeight: 1.8, margin: 0,
+            }}>
+              The goal is not only to make better tennis players, it is to help people become more conscious, more balanced, and more connected with their own potential. Because when that connection appears, improvement is no longer chased. It takes place naturally and joyfully. And from that place, both sport and life take on a different quality.
+            </p>
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
+            <a href="/services" className="btn btn-outline-green">Explore Our Products</a>
+          </div>
+        </div>
+      </section>
+
       {/* ── LATEST ARTICLES ──────────────────────────────────────────────── */}
       {recentPosts.length > 0 && (
         <section style={{ background: "var(--green-pale)", padding: "5rem 0" }}>

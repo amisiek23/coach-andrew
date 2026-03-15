@@ -46,10 +46,10 @@ const SECTIONS = [
     color: "#EAB308",
     shortName: "Professional",
     questions: [
-      "I focus on what I can control rather than complaining about the system.",
+      "I focus on what I can control rather than complaining about what is happening.",
       "I proactively improve my skills instead of waiting for opportunities.",
       "When results are poor, I first examine my contribution.",
-      "I hold myself accountable without needing external pressure.",
+      "I hold myself accountable without needing external obbligation.",
       "I manage my time and energy intentionally.",
     ],
     feedback: {
@@ -90,7 +90,7 @@ const SECTIONS = [
     color: "#6366F1",
     shortName: "Direction",
     questions: [
-      "I make conscious choices instead of drifting by default.",
+      "I know what I want and I make conscious choices instead of drifting by default.",
       "I accept consequences of my decisions without resentment.",
       "I take initiative rather than waiting for ideal conditions.",
       "I do not blame luck or timing for long-term stagnation.",
@@ -114,7 +114,7 @@ const SECTIONS = [
     questions: [
       "I take ownership of my physical condition.",
       "I maintain habits aligned with long-term well-being.",
-      "I do not blame age, genetics, or workload without taking action.",
+      "I do not blame age, genetics, or workload.",
       "I regulate sleep, nutrition, and movement consciously.",
       "I see health as a responsibility, not a convenience.",
     ],
@@ -134,11 +134,12 @@ const SECTIONS = [
     color: "#3B82F6",
     shortName: "Financial",
     questions: [
-      "I manage money consciously rather than impulsively.",
+      "I manage money consciously rather than reactively.",
       "I do not blame external economy alone for my financial state.",
       "I educate myself about financial decisions.",
       "I take responsibility for spending patterns.",
       "I plan rather than react financially.",
+      "I have established long-term financial strategies independent of the state pension scheme",
     ],
     feedback: {
       selfAuthoring: "Financial decisions are conscious, deliberate, and aligned with your values. You neither impulsively spend nor anxiously hoard — you plan. The economic environment doesn't control you; your choices do. This is financial self-authorship.",
@@ -156,8 +157,8 @@ const SECTIONS = [
     color: "#7C3AED",
     shortName: "Meaning",
     questions: [
-      "I do not wait for meaning to appear — I cultivate it.",
-      "I align daily actions with long-term values.",
+      "I do not wait for meaning to appear; I seek and cultivate it.",
+      "I align daily actions with long-term goals and values.",
       "I do not blame circumstances for lack of fulfilment.",
       "I consciously define what a 'good life' means for me.",
       "I accept that happiness requires intentional participation.",
@@ -314,25 +315,23 @@ const QuizScreen = ({
             <p style={{ fontSize: 15, color: "#64748B", fontStyle: "italic" }}>{section.subtitle}</p>
           </div>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          <div style={{ background: "#fff", borderRadius: 16, boxShadow: "0 1px 3px rgba(0,0,0,0.05)", border: "1px solid #F1F5F9", overflow: "hidden" }}>
             {section.questions.map((q, qi) => {
               const idx = baseIdx + qi;
               const val = answers[idx];
               return (
-                <div key={idx} style={{ background: "#fff", borderRadius: 16, padding: "20px 24px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)", border: "1px solid #F1F5F9" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                    <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 16, lineHeight: 1.6 }}>{qi + 1}. {q}</p>
-                    <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
-                      <input
-                        type="number" min={0} max={100} step={1} value={val}
-                        onChange={(e) => {
-                          const n = Math.min(100, Math.max(0, Number(e.target.value)));
-                          onAnswer(idx, isNaN(n) ? 0 : n);
-                        }}
-                        style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
-                      />
-                      <span style={{ fontSize: 18, fontWeight: 600, color: section.color }}>%</span>
-                    </div>
+                <div key={idx} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 24px", borderBottom: qi < section.questions.length - 1 ? "1px solid #F1F5F9" : "none" }}>
+                  <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 16, lineHeight: 1.6, margin: 0 }}>{qi + 1}. {q}</p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+                    <input
+                      type="number" min={0} max={100} step={1} value={val}
+                      onChange={(e) => {
+                        const n = Math.min(100, Math.max(0, Number(e.target.value)));
+                        onAnswer(idx, isNaN(n) ? 0 : n);
+                      }}
+                      style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
+                    />
+                    <span style={{ fontSize: 18, fontWeight: 600, color: section.color }}>%</span>
                   </div>
                 </div>
               );
@@ -362,7 +361,7 @@ const QuizScreen = ({
   );
 };
 
-const ResultsScreen = ({ sectionResults, overall, onRetake }: { sectionResults: SectionResult[]; overall: number; onRetake: () => void }) => {
+const ResultsScreen = ({ sectionResults, overall }: { sectionResults: SectionResult[]; overall: number }) => {
   const archetype = getArchetype(overall);
   const overallLevel = getLevel(overall);
   const chartData = sectionResults.map((r) => ({ subject: r.shortName, value: Math.round(r.avg), fullMark: 100 }));
@@ -454,15 +453,6 @@ const ResultsScreen = ({ sectionResults, overall, onRetake }: { sectionResults: 
           })}
         </div>
 
-        <div style={{ textAlign: "center" }}>
-          <button onClick={onRetake}
-            style={{ padding: "14px 40px", fontSize: 15, fontWeight: 600, color: "#F97316", background: "#fff", border: "2px solid #F97316", borderRadius: 50, cursor: "pointer", transition: "all 0.15s" }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "#F97316"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.color = "#F97316"; }}
-          >
-            Retake Assessment
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -476,7 +466,7 @@ export default function ResponsibilityMaturityProfile() {
   const [phase, setPhase] = useState<"intro" | "quiz" | "results">("intro");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>(() =>
-    Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 50]))
+    Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 0]))
   );
   const [fade, setFade] = useState(true);
 
@@ -503,7 +493,6 @@ export default function ResponsibilityMaturityProfile() {
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
   const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
-  const handleRetake = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => { setPhase("intro"); setSectionIdx(0); setAnswers(Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 50]))); }); };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
   return (
@@ -515,7 +504,7 @@ export default function ResponsibilityMaturityProfile() {
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
         />
       )}
-      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} onRetake={handleRetake} />}
+      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} />}
     </div>
   );
 }

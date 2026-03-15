@@ -4,9 +4,9 @@ import type { NavLink } from "@/lib/types";
 
 const STATIC_NAV: NavLink[] = [
   { label: "Home",            href: "/" },
-  { label: "About Me",        href: "/about" },
   { label: "Services",        href: "/services" },
   { label: "Thinking Corner", href: "/blog" },
+  { label: "About Me",        href: "/about" },
   { label: "Contact",         href: "/contact" },
 ];
 
