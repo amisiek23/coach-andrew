@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{ position: "relative", width: "100%", minHeight: "88vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
+      <section style={{ position: "relative", width: "100%", minHeight: "auto", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <Image
           src={HERO_IMAGE}
           alt="Tennis player at sunset"
@@ -29,7 +29,7 @@ export default function HomePage() {
           background: "linear-gradient(160deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.62) 100%)",
         }} />
 
-        <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "6rem", paddingBottom: "6rem" }}>
+        <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "6rem", paddingBottom: "5rem" }}>
           <div style={{ maxWidth: "640px" }}>
             <p style={{
               fontFamily: "var(--font-body), system-ui, sans-serif",
@@ -174,31 +174,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── LATEST ARTICLES ──────────────────────────────────────────────── */}
-      {recentPosts.length > 0 && (
-        <section style={{ background: "var(--green-pale)", padding: "5rem 0" }}>
-          <div className="container">
-            <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-              <p style={{ color: "var(--green)", fontWeight: 600, fontSize: ".8125rem", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: ".5rem" }}>
-                Thinking Corner
-              </p>
-              <h2 style={{ fontFamily: "var(--font-heading), serif", fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, color: "var(--text)" }}>
-                Latest Articles
-              </h2>
-            </div>
-
-            <div className="blog-grid">
-              {recentPosts.map(post => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-
-            <div style={{ textAlign: "center", marginTop: "3rem" }}>
-              <Link href="/blog" className="btn btn-outline-green">View all articles</Link>
-            </div>
-          </div>
-        </section>
-      )}
+     
 
       {/* ── CTA BANNER ───────────────────────────────────────────────────── */}
       <section style={{
