@@ -60,7 +60,7 @@ export default function HomePage() {
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
               <Link href="/blog" className="btn btn-outline-white">Thinking Corner</Link>
-              <Link href="/about-me" className="btn btn-green">About Me</Link>
+              <Link href="/about" className="btn btn-green">About Me</Link>
             </div>
           </div>
         </div>
@@ -68,14 +68,16 @@ export default function HomePage() {
 
       {/* ── STATS STRIP ──────────────────────────────────────────────────── */}
       <section style={{ background: "#377A00", color: "#fff", padding: "2rem 0" }}>
-        <div className="container" style={{ display: "flex", justifyContent: "center", gap: "clamp(2rem, 6vw, 5rem)", flexWrap: "wrap" }}>
+        <div className="container" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 4vw, 3rem)", flexWrap: "nowrap" }}>
           {[
-            { number: "10+", label: "Years coaching" },
-            { number: "500+", label: "Sessions delivered" },
-            { number: "3",   label: "Coaching programmes" },
+            { number: "25+",           label: "Years coaching" },
+            { number: "5000+",         label: "Sessions delivered" },
+            { number: "5🥇 3🥈 5🥉",   label: "National medals" },
+            { number: "10+ ATP · 3 WTA", label: "Professional career players" },
+            { number: "4",             label: "Generations of players coached" },
           ].map(stat => (
             <div key={stat.label} style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "2rem", fontWeight: 700 }}>{stat.number}</div>
+              <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "1.75rem", fontWeight: 700 }}>{stat.number}</div>
               <div style={{ fontFamily: "var(--font-body), system-ui", fontSize: ".8125rem", opacity: .85, letterSpacing: ".06em", textTransform: "uppercase" }}>{stat.label}</div>
             </div>
           ))}
@@ -83,7 +85,7 @@ export default function HomePage() {
       </section>
 
       {/* ── ABOUT / PHILOSOPHY ───────────────────────────────────────────── */}
-      <section style={{ background: "#fff", padding: "5.5rem 0" }}>
+      <section style={{ background: "#fff", padding: "5.5rem 0 2rem" }}>
         <div className="container" style={{ maxWidth: "900px" }}>
 
           {/* accent line */}
@@ -176,6 +178,71 @@ export default function HomePage() {
 
      
 
+      {/* ── TESTIMONIALS ─────────────────────────────────────────────────── */}
+      <section style={{ background: "#fff", padding: "0.5rem 0 5.5rem" }}>
+        <div className="container" style={{ maxWidth: "960px" }}>
+          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+            <div style={{ width: 56, height: 4, background: "#377A00", borderRadius: 2, margin: "0 auto 1.5rem" }} />
+            <h2 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "clamp(1.75rem, 4vw, 2.4rem)", fontWeight: 700, color: "var(--text)" }}>
+              What People Say
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {[
+              {
+                quote: "Andrzej is very ambitious coach with great theoretical knowledge and practical experience. As his professor, I will remember him being a diligent student with outstanding communication skills and very good manners.",
+                name: "Piotr Unierzyski",
+                role: "Lecturer, University School of Physical Education · Coach & Speaker, International Tennis Federation",
+                region: "🇵🇱 Poland",
+              },
+              {
+                quote: "His will to fight, discipline, willingness to improve and above all ability of coping various, complex group dynamics are remarkable.",
+                name: "Pawel Geldner",
+                role: "Davis Cup Captain 2003–2005 · Best Club Coach in Germany 1999",
+                region: "🇵🇱 Poland",
+              },
+              {
+                quote: "He continues to stress the importance of mental and social development of young players in his everyday work with top Polish juniors. In this field he is very creative in adopting ideas from top sport psychologists and successful managers.",
+                name: "Tomasz Schefke",
+                role: "Ph.D, Tennis Unit at the University School of Physical Education · U21 National Coach",
+                region: "🇵🇱 Poland",
+              },
+              {
+                quote: "When they started working together boys were 16th, 33rd and 45th U12 in the country. Today they are 6th, 7th and 9th respectively U18.",
+                name: "Jacek Muzolf",
+                role: "President, National Tennis Federation 2003–2017",
+                region: "🇵🇱 Poland",
+              },
+              {
+                quote: "Our experience with Andrzej was 'eye opening' in regards to instruction. He really teaches and closely observes every aspect of the student's game. My son (9 years old) commented that if you want to improve you need to go to Andrzej.",
+                name: "Susan Hambly M.D.",
+                role: "Parent · CA, 2006",
+                region: "🇺🇸 U.S.",
+              },
+              {
+                quote: "I fully recommend Andrzej to a future employer not only as an educated, experienced and skillful coach, but also as a great person who is open to help and learn every time stepping on the tennis court.",
+                name: "Slava Konikov",
+                role: "Belarus Federation Cup Captain 1995–1997 · Davis Cup Captain 1997–2002 · Head Coach, Sacramento State University",
+                region: "🇺🇸 U.S.",
+              },
+            ].map(({ quote, name, role, region }) => (
+              <div key={name} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <span style={{ fontSize: "2rem", lineHeight: 1, color: "#377A00", fontFamily: "Georgia, serif" }}>&ldquo;</span>
+                <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9375rem", color: "#3a4a3a", lineHeight: 1.75, margin: 0, flex: 1 }}>
+                  {quote}
+                </p>
+                <div style={{ borderTop: "1px solid #d4e8d4", paddingTop: "1rem" }}>
+                  <p style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontWeight: 700, fontSize: ".9375rem", color: "#1e2e1e", margin: "0 0 .25rem" }}>{name}</p>
+                  <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".8rem", color: "#5a7a5a", lineHeight: 1.5, margin: "0 0 .35rem" }}>{role}</p>
+                  <span style={{ fontSize: ".75rem", fontWeight: 600, color: "#377A00", letterSpacing: ".06em", textTransform: "uppercase" }}>{region}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA BANNER ───────────────────────────────────────────────────── */}
       <section style={{
         background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
@@ -189,8 +256,7 @@ export default function HomePage() {
             Explore the programmes, take the questionnaire, and find out which coaching path is right for you.
           </p>
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/questionnaire" className="btn btn-outline-white">Take the Questionnaire</Link>
-            <Link href="/shop" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>View Programmes</Link>
+            <Link href="/services" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>View Programmes</Link>
           </div>
         </div>
       </section>

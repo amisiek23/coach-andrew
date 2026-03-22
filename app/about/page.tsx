@@ -10,18 +10,24 @@ export const metadata: Metadata = {
 
 const PHOTO = "https://wpstrona.wpmudev.host/coachandrew/wp-content/uploads/sites/6/2025/11/IMG_3273-1-717x1024.jpg";
 
+const MEDALS = [
+  { medal: "🥇", count: 5, label: "Gold" },
+  { medal: "🥈", count: 3, label: "Silver" },
+  { medal: "🥉", count: 5, label: "Bronze" },
+];
+
 const MILESTONES = [
   {
     title: "High-Performance Coaching",
-    body:  "Developed national-level players, including guiding Karolina Filipiak from U16 #20 to Junior National Champion — with a win over future world No. 2 Agnieszka Radwańska.",
+    body:  "Developed national-level players, including guiding Karolina Filipiak from U16 #20 to Junior National Champion — with a win over future world No. 2 Agnieszka Radwańska. Led 5 players to ATP and 3 to WTA professional careers.",
   },
   {
-    title: "Leadership & Education",
-    body:  "Served as Head Coach and Training Coordinator at AZS Poznań, earning the Polish Tennis Federation's Silver Badge of Merit for long-standing contributions to national sport.",
+    title: "Leadership in Action",
+    body:  "Head Coach and Training Coordinator at AZS Poznań, awarded the Polish Tennis Federation's Silver Badge of Merit for his contributions to national sport. He founded and ran his own tennis school in Poland for nearly a decade before taking his methods international — serving as Tennis Director at Johnson Ranch Sports Club Tennis Academy (California), Head Coach at Paddington Recreation Ground (London), and currently Performance Manager at Highgate Cricket and Lawn Tennis Club (London).",
   },
   {
     title: "Psychological Foundations",
-    body:  "Built a coaching method anchored in self-awareness, 100% responsibility, and the Self 1 / Self 2 model — helping players grow both mentally and emotionally.",
+    body:  "Built a coaching philosophy anchored in self-awareness, personal responsibility, and the interplay between the conscious and instinctive mind. His approach integrates principles from Nathaniel Branden's Six Pillars of Self-Esteem and Stephen Covey's The 7 Habits of Highly Effective People — helping players develop not just technically, but mentally and emotionally.",
   },
   {
     title: "Mindfulness Practice",
@@ -89,7 +95,7 @@ export default function AboutPage() {
                 color: "var(--green-dark)", marginBottom: "1rem",
                 lineHeight: 1.4,
               }}>
-                Where the Inner Growth makes High-Performance Training
+                Where the Inner Growth meets High-Performance Training
               </p>
 
               <div style={{ width: "36px", height: "2px", background: "var(--green)", borderRadius: "2px", marginBottom: "1rem" }} />
@@ -98,7 +104,7 @@ export default function AboutPage() {
                 Andrzej Misiek is a lifelong student of human potential. A former Top-10 junior and national coach in Poland. He spent the past 20 years developing players across Europe, United States and Australia.
               </p>
               <p style={{ fontSize: ".9375rem", color: "#444", lineHeight: 1.75, marginBottom: "1rem" }}>
-                His approach blends high-performance methodology with psychology, mindfulness, and authentic leadership, helping athletes unlock the deeper potential.
+                His approach blends high-performance practices with psychology, mindfulness, and authentic leadership, helping athletes unlock the deeper potential.
               </p>
               <p style={{ fontSize: ".9375rem", color: "#444", lineHeight: 1.75, marginBottom: "1.75rem" }}>
                
@@ -152,9 +158,23 @@ export default function AboutPage() {
                 }}>
                   {m.title}
                 </h3>
-                <p style={{ fontSize: ".9375rem", color: "#555", lineHeight: 1.7 }}>
+                <p style={{ fontSize: ".9375rem", color: "#555", lineHeight: 1.7, marginBottom: m.title === "High-Performance Coaching" ? "1.25rem" : 0 }}>
                   {m.body}
                 </p>
+                {m.title === "High-Performance Coaching" && (
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: ".75rem", background: "#EAF7EB", borderRadius: 10, padding: ".5rem 1rem", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: ".8rem", fontWeight: 600, color: "#2f6a00", textTransform: "uppercase", letterSpacing: ".05em" }}>Captained National Teams to</span>
+                    {MEDALS.map((item, i) => (
+                      <span key={item.label} style={{ display: "flex", alignItems: "center", gap: ".25rem" }}>
+                        {i > 0 && <span style={{ display: "inline-block", width: ".5rem" }} />}
+                        <span style={{ fontSize: "1.1rem" }}>{item.medal}</span>
+                        <span style={{ fontFamily: "var(--font-heading), serif", fontWeight: 700, fontSize: ".95rem", color: "#1e2e1e" }}>{item.count}</span>
+                      </span>
+                    ))}
+                  </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
