@@ -34,7 +34,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }} className="hidden lg:flex">
+        <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }} className="desktop-nav">
           {STATIC_NAV.map((link) => (
             <Link
               key={link.href}
@@ -52,7 +52,7 @@ export default function Header() {
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="lg:hidden"
+          className="mobile-toggle"
           style={{
             background: "none", border: "none", cursor: "pointer",
             padding: "8px", color: "#377A00", display: "flex",
@@ -95,7 +95,19 @@ export default function Header() {
         </div>
       )}
 
-      <style>{`.nav-link:hover { color: #2c6300 !important; }`}</style>
+      <style>{`
+        .nav-link:hover { color: #2c6300 !important; }
+        /* Desktop: show top nav, hide hamburger */
+        @media (min-width: 1024px) {
+          .mobile-toggle { display: none !important; }
+          .desktop-nav   { display: flex !important; }
+        }
+        /* Mobile: hide top nav, show hamburger */
+        @media (max-width: 1023px) {
+          .desktop-nav   { display: none !important; }
+          .mobile-toggle { display: flex !important; }
+        }
+      `}</style>
     </header>
   );
 }
