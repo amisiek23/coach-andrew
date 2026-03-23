@@ -29,7 +29,7 @@ export default function HomePage() {
           background: "linear-gradient(160deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,.62) 100%)",
         }} />
 
-        <div className="container" style={{ position: "relative", zIndex: 2, paddingTop: "6rem", paddingBottom: "5rem" }}>
+        <div className="container hero-content" style={{ position: "relative", zIndex: 2, paddingTop: "6rem", paddingBottom: "5rem" }}>
           <div style={{ maxWidth: "640px" }}>
             <p style={{
               fontFamily: "var(--font-body), system-ui, sans-serif",
@@ -68,7 +68,7 @@ export default function HomePage() {
 
       {/* ── STATS STRIP ──────────────────────────────────────────────────── */}
       <section style={{ background: "#377A00", color: "#fff", padding: "2rem 0" }}>
-        <div className="container" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 4vw, 3rem)", flexWrap: "nowrap" }}>
+        <div className="container stats-strip" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 4vw, 3rem)", flexWrap: "nowrap" }}>
           {[
             { number: "25+",           label: "Years coaching" },
             { number: "5000+",         label: "Sessions delivered" },

@@ -64,7 +64,7 @@ export default function AboutPage() {
                   alt="Andrzej Misiek — CoachAndrew"
                   fill
                   priority
-                  sizes="300px"
+                  sizes="(max-width: 720px) 100vw, 300px"
                   style={{ objectFit: "cover", objectPosition: "81% 40%" }}
                 />
               </div>
@@ -222,9 +222,8 @@ export default function AboutPage() {
 
       {/* Responsive grid styles */}
       <style>{`
-        @media (max-width: 720px) {
-          .about-grid     { grid-template-columns: 1fr !important; }
-          .milestones-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 480px) {
+          .about-grid > div:first-child { max-width: 260px; margin: 0 auto; }
         }
       `}</style>
     </div>

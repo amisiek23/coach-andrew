@@ -65,9 +65,9 @@ export default function ContactPage() {
             <iframe
               src="https://calendly.com/a-misiek23/30min?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=377A00"
               width="100%"
-              height="700"
+              className="calendly-iframe"
               scrolling="no"
-              style={{ border: "none", display: "block" }}
+              style={{ border: "none", display: "block", height: "700px" }}
             />
           </div>
         </div>
@@ -181,6 +181,10 @@ export default function ContactPage() {
         @media (max-width: 720px) {
           .contact-grid { grid-template-columns: 1fr !important; }
           .form-row { grid-template-columns: 1fr !important; }
+          .calendly-iframe { height: 1000px !important; }
+        }
+        @media (max-width: 480px) {
+          .calendly-iframe { height: 1100px !important; }
         }
       `}</style>
     </div>

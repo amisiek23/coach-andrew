@@ -153,6 +153,68 @@ img { display: block; max-width: 100%; }
 .wp-content img    { border-radius: var(--radius-img); width: 100%; height: auto; margin: 1rem 0; }
 .wp-content iframe { width: 100%; min-height: 580px; border: none; border-radius: 12px; margin: 1rem 0; }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   MOBILE — global responsive rules
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Shared grid layouts */
+.about-grid,
+.milestones-grid,
+.offering-row,
+.contact-grid,
+.form-row {
+  transition: none;
+}
+
+@media (max-width: 720px) {
+  /* About page */
+  .about-grid      { grid-template-columns: 1fr !important; }
+  .milestones-grid { grid-template-columns: 1fr !important; }
+
+  /* Contact page */
+  .contact-grid    { grid-template-columns: 1fr !important; }
+  .form-row        { grid-template-columns: 1fr !important; }
+
+  /* Footer */
+  .footer-grid     { grid-template-columns: 1fr !important; gap: 2rem !important; }
+}
+
+@media (max-width: 680px) {
+  /* Services page */
+  .offering-row    { grid-template-columns: 1fr !important; direction: ltr !important; }
+}
+
+@media (max-width: 640px) {
+  /* Hero padding */
+  .hero-content    { padding-top: 3rem !important; padding-bottom: 2.5rem !important; }
+
+  /* Stats strip — wrap into 2 columns */
+  .stats-strip     { flex-wrap: wrap !important; gap: 1.25rem 2rem !important; justify-content: center !important; }
+  .stats-strip > div { min-width: calc(50% - 2rem); }
+
+  /* Reduce heavy section vertical padding site-wide */
+  .section-padded  { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+
+  /* Calendly */
+  .calendly-iframe { height: 1050px !important; }
+
+  /* Blockquote */
+  blockquote       { padding: 1.25rem 1.25rem !important; }
+
+  /* Green banner closing statement */
+  .closing-banner  { padding: 1.5rem 1.25rem !important; }
+
+  /* Philosophy / testimonial cards — ensure they don't shrink weirdly */
+  .card-grid       { grid-template-columns: 1fr !important; }
+
+  /* Buttons — full width on very small screens */
+  .btn-stack-mobile { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 400px) {
+  .stats-strip > div { min-width: 100%; }
+}
+
 /* Spectra / UAGB blocks */
 .uagb-ifb-title {
   font-family: var(--font-heading), "Libre Baskerville", Georgia, serif !important;

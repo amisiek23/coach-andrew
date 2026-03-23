@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer style={{ background: "#111", color: "#ccc" }}>
       <div className="container" style={{ padding: "4rem clamp(1.25rem,5vw,3rem) 2.5rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start", flexWrap: "wrap" }}>
+        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "start" }}>
 
           {/* Brand */}
           <div style={{ maxWidth: "320px" }}>
