@@ -50,24 +50,24 @@ export default function AboutPage() {
           }}
             className="about-grid"
           >
-            {/* Photo column — fixed 300px width, portrait crop */}
-            <div style={{ position: "relative" }}>
-              <div style={{
-                borderRadius: "16px",
-                overflow: "hidden",
-                boxShadow: "0 8px 28px rgba(0,0,0,0.12)",
-                aspectRatio: "3/4",
-                position: "relative",
-              }}>
-                <Image
-                  src={PHOTO}
-                  alt="Andrzej Misiek — CoachAndrew"
-                  fill
-                  priority
-                  sizes="(max-width: 720px) 100vw, 300px"
-                  style={{ objectFit: "cover", objectPosition: "81% 40%" }}
-                />
-              </div>
+            {/* Photo column */}
+            <div style={{ position: "relative", width: "100%", maxWidth: "300px", margin: "0 auto" }}>
+              <Image
+                src={PHOTO}
+                alt="Andrzej Misiek — CoachAndrew"
+                width={300}
+                height={400}
+                priority
+                sizes="(max-width: 720px) 100vw, 300px"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "81% 40%",
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "16px",
+                  boxShadow: "0 8px 28px rgba(0,0,0,0.12)",
+                }}
+              />
             </div>
 
             {/* Text column */}
