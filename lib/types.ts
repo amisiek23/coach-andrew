@@ -5,6 +5,7 @@ export interface BlogPostMeta {
   excerpt: string;
   coverImage?: string; // URL or /public path
   author?: string;
+  draft?: boolean;
 }
 
 export interface BlogPost extends BlogPostMeta {

@@ -82,7 +82,7 @@ export default function BlogPage() {
         <div className="container">
           {posts.length === 0
             ? <p style={{ textAlign: "center", color: "var(--text-muted)" }}>No posts yet.</p>
-            : <div className="blog-grid">
+            : <div className={`blog-grid${posts.length === 2 ? " blog-grid--two" : ""}`}>
                 {posts.map(post => <PostCard key={post.slug} post={post} />)}
               </div>
           }

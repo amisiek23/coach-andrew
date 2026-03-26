@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Talent, Passion & Principles — The Three Domains of a Meaningful Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet"/>
+<style>
+.tpp-article {
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.8;
+    font-size: 17px;
+    font-weight: 300;
+    color: #5a5a5a;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.tpp-article * { box-sizing: border-box; }
+.tpp-hero {
+    background: linear-gradient(165deg, #1a2f23 0%, #2d4a3e 60%, #3d5a4a 100%);
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+.tpp-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(201,169,98,.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(201,169,98,.1) 0%, transparent 40%);
+    pointer-events: none;
+}
+.tpp-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    background: rgba(201,169,98,.15);
+    border: 1px solid rgba(201,169,98,.3);
+    border-radius: 30px;
+    color: #e8d4a8;
+    font-size: .85rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+}
+.tpp-hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem,5vw,3rem);
+    font-weight: 400;
+    color: #faf8f3;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+}
+.tpp-hero h1 em { font-style: italic; color: #c9a962; }
+.tpp-hero-subtitle { font-size: 1.1rem; color: rgba(250,248,243,.75); position: relative; z-index: 2; margin: 0; }
+.tpp-intro {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: #2c2c2c;
+    margin-bottom: 40px;
+    padding-left: 24px;
+    border-left: 3px solid #c9a962;
+}
+.tpp-article h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #1a2f23;
+    margin: 50px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #c9a962;
+    display: inline-block;
+}
+.tpp-article p { margin-bottom: 18px; }
+.tpp-article strong { font-weight: 600; color: #1a2f23; }
+.tpp-article em { font-style: italic; color: #2d4a3e; }
+.tpp-pillars {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin: 45px 0;
+}
+@media (max-width:700px) { .tpp-pillars { grid-template-columns: 1fr; } }
+.tpp-pillar-card {
+    background: #f5f3ee;
+    padding: 28px 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.tpp-pillar-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(26,47,35,.1); }
+.tpp-pillar-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:#c9a962; }
+.tpp-pillar-card:nth-child(2)::before { background:#2d4a3e; }
+.tpp-pillar-card:nth-child(3)::before { background:#b86f52; }
+.tpp-pillar-number { font-family:'Playfair Display',Georgia,serif; font-size:2.5rem; color:rgba(201,169,98,.25); font-weight:600; line-height:1; margin-bottom:10px; }
+.tpp-pillar-card:nth-child(2) .tpp-pillar-number { color:rgba(45,74,62,.2); }
+.tpp-pillar-card:nth-child(3) .tpp-pillar-number { color:rgba(184,111,82,.25); }
+.tpp-pillar-title { font-family:'Playfair Display',Georgia,serif; font-size:1.3rem; color:#1a2f23; margin-bottom:10px; }
+.tpp-pillar-desc { font-size:.92rem; color:#5a5a5a; line-height:1.65; margin:0; }
+.tpp-pull-quote {
+    background: linear-gradient(135deg,#1a2f23,#2d4a3e);
+    color: #faf8f3;
+    padding: 40px 35px;
+    margin: 45px 0;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+.tpp-pull-quote::before {
+    content: '"';
+    position: absolute;
+    top: 10px; left: 25px;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 6rem;
+    color: rgba(201,169,98,.15);
+    line-height: 1;
+}
+.tpp-pull-quote p { font-family:'Playfair Display',Georgia,serif; font-size:1.4rem; font-style:italic; color:#faf8f3; line-height:1.55; position:relative; z-index:2; margin:0; }
+.tpp-highlight { background:#f5f3ee; border-left:4px solid #c9a962; padding:24px 28px; margin:35px 0; border-radius:0 8px 8px 0; }
+.tpp-highlight p { margin:0; color:#2c2c2c; font-weight:400; }
+.tpp-closing { text-align:center; margin-top:60px; padding-top:45px; border-top:1px solid rgba(201,169,98,.3); }
+.tpp-closing h3 { font-family:'Playfair Display',Georgia,serif; font-size:1.5rem; color:#1a2f23; margin-bottom:28px; font-weight:400; }
+.tpp-invitation-list { list-style:none; padding:0; margin:0 0 35px 0; display:flex; flex-direction:column; gap:14px; align-items:center; }
+.tpp-invitation-list li { font-family:'Playfair Display',Georgia,serif; font-size:1.25rem; color:#1a2f23; }
+.tpp-invitation-list li::before { content:'→ '; color:#c9a962; }
+.tpp-closing-note { font-size:1.1rem; font-style:italic; color:#5a5a5a; }
+</style>
+</head>
+<body>
+<article class="tpp-article">
+    <header class="tpp-hero">
+        <span class="tpp-badge">Philosophy</span>
+        <h1>Talent, Passion, <em>&</em> Principles</h1>
+        <p class="tpp-hero-subtitle">The Three Domains of a Meaningful Life</p>
+    </header>
+
+    <p class="tpp-intro">
+        Practically speaking, there are only three things that truly matter for every human being to realise in life. They are universal, timeless, and independent of the field in which we choose to express ourselves and experience success.
+    </p>
+
+    <p>
+        Whether one explores reality through sport, art, business, science, relationships, or activism leading even to correctly exercised politics, these three pillars remain the same: <strong>talent</strong>, <strong>passion</strong>, and <strong>principles</strong>.
+    </p>
+
+    <div class="tpp-pillars">
+        <div class="tpp-pillar-card">
+            <div class="tpp-pillar-number">01</div>
+            <h3 class="tpp-pillar-title">Talent</h3>
+            <p class="tpp-pillar-desc">The raw potential we are born with—possibility itself, waiting to be recognised and cultivated.</p>
+        </div>
+        <div class="tpp-pillar-card">
+            <div class="tpp-pillar-number">02</div>
+            <h3 class="tpp-pillar-title">Passion</h3>
+            <p class="tpp-pillar-desc">The inner fire that breathes life into talent and sustains us through challenge and repetition.</p>
+        </div>
+        <div class="tpp-pillar-card">
+            <div class="tpp-pillar-number">03</div>
+            <h3 class="tpp-pillar-title">Principles</h3>
+            <p class="tpp-pillar-desc">The inner framework that guides how we grow, shaping character and determining meaning.</p>
+        </div>
+    </div>
+
+    <h2>On Talent</h2>
+    <p>Talent is the raw potential we are born with. It is not always obvious at first, and it does not announce itself loudly. Sometimes it appears as a natural ease, sometimes as an unusual curiosity, sometimes as a quiet pull toward certain activities or ways of thinking.</p>
+    <p>Talent is not yet mastery; it is <em>possibility</em>. And possibility alone is fragile. Without care, it fades. Without awareness, it remains unused or even unseen.</p>
+
+    <h2>On Passion</h2>
+    <p>This is where passion enters. Passion is what breathes life into talent. It is the inner fire that keeps us returning to the same craft, question, or pursuit—not because we must, but because something in us <em>feels alive there</em>.</p>
+    <p>Passion fuels effort when motivation disappears. It sustains learning through frustration, repetition, and failure. In my own journey as a tennis player and later as a coach, I have seen countless examples of talent without passion dissolve, and far more modest talent flourish when passion was present.</p>
+
+    <div class="tpp-pull-quote">
+        <p>Yet talent and passion alone are not enough. In fact, without the third pillar, they can become destructive.</p>
+    </div>
+
+    <h2>On Principles</h2>
+    <p>Principles are the inner framework within which talent and passion mature. They are the values, standards, and truths that guide <em>how</em> we grow, not just what we pursue.</p>
+    <p>Principles shape character. They determine whether passion becomes disciplined or chaotic, whether talent becomes service or ego, whether success leads to humility or emptiness.</p>
+    <p>In sport, principles show up as responsibility, honesty, emotional regulation, respect for process, and resilience under pressure. In life, they show up in the same way. The arena changes; the inner game does not.</p>
+
+    <h2>The Power of Self-Examination</h2>
+    <p>Over the years, both on the court and beyond it, I noticed something striking: those who progress most consistently are not necessarily the most gifted, nor even the most passionate—but those who are <strong>willing to examine themselves</strong>.</p>
+    <p>They reflect. They measure. They take ownership of their inner world.</p>
+
+    <div class="tpp-highlight">
+        <p>This observation is what led me to create practical self-development tools and questionnaires—not as abstract theory, but as <em>mirrors</em>. Tools that help individuals see where they stand in relation to calmness, awareness, responsibility, freedom from outcome, and alignment with their deeper values.</p>
+    </div>
+
+    <p>Because self-mastery is not mystical. It is practical. It is learnable. And it begins with clarity.</p>
+
+    <h2>When All Three Align</h2>
+    <p>When talent is recognised, passion is cultivated, and principles are consciously lived, something profound happens: effort becomes meaningful, challenges become formative, and results—whatever form they take—no longer define our worth.</p>
+    <p>We are no longer driven solely by fear, approval, or external validation. We begin to act from <em>alignment</em>.</p>
+    <p>And alignment, whether in tennis or in life, is where performance and fulfilment quietly meet.</p>
+    <p>These three pillars—talent, passion, and principles—are not goals to achieve once and forget. They are <strong>relationships to be renewed daily</strong>. When they are in balance, growth becomes natural. When one is missing, struggle follows.</p>
+
+    <div class="tpp-closing">
+        <h3>The invitation is simple, yet demanding:</h3>
+        <ul class="tpp-invitation-list">
+            <li>Know your talent.</li>
+            <li>Honour your passion.</li>
+            <li>Live by principles that allow both to mature.</li>
+        </ul>
+        <p class="tpp-closing-note">Everything else is secondary.</p>
+    </div>
+</article>
+</body>
+</html>

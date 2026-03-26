@@ -18,6 +18,7 @@ function readPostFile(filename: string): BlogPost | null {
       excerpt: data.excerpt ?? "",
       coverImage: data.coverImage,
       author: data.author,
+      draft: data.draft === true,
       content,
     };
   } catch {
@@ -35,7 +36,7 @@ export function getAllPosts(limit?: number): BlogPostMeta[] {
 
   const posts = files
     .map((f) => readPostFile(f))
-    .filter((p): p is BlogPost => p !== null)
+    .filter((p): p is BlogPost => p !== null && !p.draft)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

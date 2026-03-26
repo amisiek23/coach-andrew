@@ -21,7 +21,6 @@ const OFFERINGS: {
     image:   "https://wpstrona.wpmudev.host/coachandrew/wp-content/uploads/sites/6/2025/10/paraglider-sunset-paragliding-5358333.jpg",
     alt:     "Paraglider at sunset — freedom and potential",
     cta:     { label: "Begin the Journey", href: "/self-mastery-profile" },
-    cta2:    { label: "Responsibility Maturity Profile", href: "/responsibility-maturity-profile" },
     reverse: false,
   },
   {
