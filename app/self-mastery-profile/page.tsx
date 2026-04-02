@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import {
   RadarChart,
   PolarGrid,
@@ -249,6 +249,139 @@ const CircleScore = ({ value, color, size = 160 }: { value: number; color: strin
    SCREENS
    ──────────────────────────────────────────────────────────────────── */
 
+/* ────────────────────────────────────────────────────────────────────
+   GATE SCREEN
+   ──────────────────────────────────────────────────────────────────── */
+
+const GateScreen = ({ onAccess }: { onAccess: (type: "quiz" | "consultation") => void }) => {
+  const [codeOpen, setCodeOpen] = useState(false);
+  const [code, setCode]         = useState("");
+  const [codeError, setCodeError] = useState("");
+  const [loading, setLoading]   = useState<"consultation" | "quiz" | "code" | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handlePay = async (plan: "consultation" | "quiz") => {
+    setLoading(plan);
+    try {
+      const res  = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ plan }) });
+      const data = await res.json() as { url?: string; error?: string };
+      if (data.url) window.location.href = data.url;
+      else {
+        alert(data.error ?? "Something went wrong. Please try again.");
+        setLoading(null);
+      }
+    } catch {
+      alert("Could not connect to payment. Please try again.");
+      setLoading(null);
+    }
+  };
+
+  const handleCode = async () => {
+    if (!code.trim()) return;
+    setLoading("code");
+    setCodeError("");
+    const res  = await fetch("/api/validate-code", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }) });
+    const data = await res.json() as { valid: boolean };
+    if (data.valid) {
+      onAccess("quiz");
+    } else {
+      setCodeError("Invalid code. Please try again.");
+      setLoading(null);
+    }
+  };
+
+  const card = (
+    plan: "consultation" | "quiz",
+    price: string,
+    title: string,
+    subtitle: string,
+    perks: string[],
+    accent: string,
+  ) => (
+    <div style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: `2px solid ${accent}22`, display: "flex", flexDirection: "column", flex: 1 }}>
+      <div style={{ fontSize: 28, fontWeight: 800, color: accent, marginBottom: 4 }}>{price}</div>
+      <div style={{ fontSize: 18, fontWeight: 700, color: "#1E293B", marginBottom: 6 }}>{title}</div>
+      <div style={{ fontSize: 14, color: "#64748B", marginBottom: 20, lineHeight: 1.5 }}>{subtitle}</div>
+      <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 8 }}>
+        {perks.map((p) => (
+          <li key={p} style={{ fontSize: 14, color: "#475569", display: "flex", gap: 8, alignItems: "flex-start" }}>
+            <span style={{ color: accent, fontWeight: 700, flexShrink: 0 }}>✓</span> {p}
+          </li>
+        ))}
+      </ul>
+      <button
+        onClick={() => handlePay(plan)}
+        disabled={loading !== null}
+        style={{ marginTop: "auto", padding: "14px 0", fontSize: 15, fontWeight: 600, color: "#fff", background: loading === plan ? "#94A3B8" : `linear-gradient(135deg, ${accent}, ${accent}cc)`, border: "none", borderRadius: 50, cursor: loading !== null ? "not-allowed" : "pointer", transition: "opacity 0.15s" }}
+      >
+        {loading === plan ? "Redirecting…" : `Pay ${price}`}
+      </button>
+    </div>
+  );
+
+  return (
+    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 24px", background: "linear-gradient(135deg, #EAF7EB 0%, #e2ecdf 60%, #EAF7EB 100%)" }}>
+      <div style={{ textAlign: "center", maxWidth: 680, width: "100%" }}>
+        <div style={{ fontSize: 40, marginBottom: 12 }}>🌿</div>
+        <h1 style={{ fontSize: 28, fontWeight: 700, color: "#151716", marginBottom: 8, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
+          Choose Your Experience
+        </h1>
+        <p style={{ fontSize: 16, color: "#3a4a3a", marginBottom: 36, lineHeight: 1.6 }}>
+          Select the option that fits you best to unlock your Self Mastery Profile.
+        </p>
+
+        {/* Cards */}
+        <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
+          {card("consultation", "£75", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
+            "Complete Self Mastery Profile (35 questions)",
+            "Personal radar chart & archetype",
+            "30-min 1-on-1 consultation with Andrew",
+            "Personalised action plan",
+          ], "#377A00")}
+          {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised report", [
+            "Complete Self Mastery Profile (35 questions)",
+            "Personal radar chart & archetype",
+            "Detailed feedback per dimension",
+          ], "#6366F1")}
+        </div>
+
+        {/* Code option */}
+        <div style={{ background: "rgba(255,255,255,0.7)", borderRadius: 16, padding: "20px 24px", backdropFilter: "blur(4px)" }}>
+          {!codeOpen ? (
+            <button
+              onClick={() => { setCodeOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "#64748B", textDecoration: "underline" }}
+            >
+              I have an access code
+            </button>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+              <div style={{ display: "flex", gap: 8, width: "100%", maxWidth: 340 }}>
+                <input
+                  ref={inputRef}
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleCode()}
+                  placeholder="Enter your code"
+                  style={{ flex: 1, padding: "10px 16px", borderRadius: 10, border: "1.5px solid #CBD5E1", fontSize: 15, outline: "none" }}
+                />
+                <button
+                  onClick={handleCode}
+                  disabled={loading !== null}
+                  style={{ padding: "10px 20px", background: "#377A00", color: "#fff", border: "none", borderRadius: 10, fontWeight: 600, fontSize: 14, cursor: loading !== null ? "not-allowed" : "pointer" }}
+                >
+                  {loading === "code" ? "…" : "Apply"}
+                </button>
+              </div>
+              {codeError && <p style={{ fontSize: 13, color: "#EF4444", margin: 0 }}>{codeError}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const IntroScreen = ({ onStart }: { onStart: () => void }) => (
   <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 24px", background: "linear-gradient(135deg, #EAF7EB 0%, #e2ecdf 60%, #EAF7EB 100%)" }}>
     <div style={{ textAlign: "center", maxWidth: 560 }}>
@@ -360,7 +493,7 @@ const QuizScreen = ({
   );
 };
 
-const ResultsScreen = ({ sectionResults, overall }: { sectionResults: SectionResult[]; overall: number }) => {
+const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults: SectionResult[]; overall: number; accessType: "quiz" | "consultation" }) => {
   const archetype = getArchetype(overall);
   const overallLevel = getLevel(overall);
   const chartData = sectionResults.map((r) => ({ subject: r.shortName, value: Math.round(r.avg), fullMark: 100 }));
@@ -423,6 +556,24 @@ const ResultsScreen = ({ sectionResults, overall }: { sectionResults: SectionRes
           <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.8 }}>{narrative}</p>
         </div>
 
+        {accessType === "consultation" && (
+          <div style={{ background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)", borderRadius: 24, padding: "36px 32px", textAlign: "center", marginBottom: 32 }}>
+            <div style={{ fontSize: 32, marginBottom: 12 }}>📅</div>
+            <h3 style={{ fontSize: 22, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Book Your Consultation</h3>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", marginBottom: 24, maxWidth: 440, margin: "0 auto 24px" }}>
+              You&apos;ve unlocked a 30-minute 1-on-1 session with Andrew. Use your results to guide the conversation.
+            </p>
+            <a
+              href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/a-misiek23/30min"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: "inline-block", padding: "14px 40px", background: "#fff", color: "#377A00", fontWeight: 700, fontSize: 16, borderRadius: 50, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
+            >
+              Book on Calendly →
+            </a>
+          </div>
+        )}
+
         <div style={{ display: "flex", flexDirection: "column", gap: 20, marginBottom: 48 }}>
           {sectionResults.map((r) => {
             const lvl = getLevel(r.avg);
@@ -465,12 +616,31 @@ const ResultsScreen = ({ sectionResults, overall }: { sectionResults: SectionRes
    ──────────────────────────────────────────────────────────────────── */
 
 export default function SelfMasteryProfile() {
-  const [phase, setPhase] = useState<"intro" | "quiz" | "results">("intro");
+  const [phase, setPhase]           = useState<"intro" | "gate" | "quiz" | "results">("intro");
+  const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, number>>(() =>
+  const [answers, setAnswers]       = useState<Record<number, number>>(() =>
     Object.fromEntries(Array.from({ length: 35 }, (_, i) => [i, 0]))
   );
   const [fade, setFade] = useState(true);
+
+  // Handle return from Stripe — URL will contain ?access=...&session_id=...
+  useEffect(() => {
+    const params    = new URLSearchParams(window.location.search);
+    const access    = params.get("access") as "quiz" | "consultation" | null;
+    const sessionId = params.get("session_id");
+    if (!access || !sessionId) return;
+
+    fetch(`/api/verify-session?session_id=${sessionId}`)
+      .then((r) => r.json())
+      .then(({ valid }: { valid: boolean }) => {
+        if (valid) {
+          setAccessType(access);
+          setPhase("quiz");
+          window.history.replaceState({}, "", window.location.pathname);
+        }
+      });
+  }, []);
 
   const sectionResults = useMemo<SectionResult[]>(
     () => SECTIONS.map((sec, si) => {
@@ -491,7 +661,8 @@ export default function SelfMasteryProfile() {
     setTimeout(() => { cb(); setFade(true); }, 250);
   };
 
-  const handleStart  = () => transition(() => setPhase("quiz"));
+  const handleStart  = () => transition(() => setPhase("gate"));
+  const handleAccess = (type: "quiz" | "consultation") => { setAccessType(type); transition(() => setPhase("quiz")); };
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
   const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
@@ -500,13 +671,14 @@ export default function SelfMasteryProfile() {
   return (
     <div style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif', opacity: fade ? 1 : 0, transition: "opacity 0.25s ease", minHeight: "100vh" }}>
       {phase === "intro" && <IntroScreen onStart={handleStart} />}
-      {phase === "quiz" && (
+      {phase === "gate"  && <GateScreen onAccess={handleAccess} />}
+      {phase === "quiz"  && (
         <QuizScreen
           section={SECTIONS[sectionIdx]} sectionIndex={sectionIdx} totalSections={SECTIONS.length}
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
         />
       )}
-      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} />}
+      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
     </div>
   );
 }

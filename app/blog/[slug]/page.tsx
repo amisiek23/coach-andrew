@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPost } from "@/lib/content";
+import AutoIframe from "@/components/AutoIframe";
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -76,7 +77,7 @@ export default async function PostPage({
         </header>
 
         <div className="prose prose-green max-w-none">
-          <MDXRemote source={post.content} />
+          <MDXRemote source={post.content} components={{ iframe: AutoIframe }} />
         </div>
       </div>
     </div>

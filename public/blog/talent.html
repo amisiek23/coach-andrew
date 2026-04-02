@@ -214,5 +214,17 @@
         <p class="tpp-closing-note">Everything else is secondary.</p>
     </div>
 </article>
+<script>
+(function resize() {
+  var h = document.documentElement.scrollHeight;
+  if (window.frameElement) window.frameElement.style.height = h + 'px';
+  window.parent.postMessage({ iframeHeight: h, src: window.location.pathname }, '*');
+})();
+document.fonts.ready.then(function() {
+  var h = document.documentElement.scrollHeight;
+  if (window.frameElement) window.frameElement.style.height = h + 'px';
+  window.parent.postMessage({ iframeHeight: h, src: window.location.pathname }, '*');
+});
+</script>
 </body>
 </html>

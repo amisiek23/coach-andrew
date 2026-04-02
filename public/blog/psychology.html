@@ -568,5 +568,21 @@
         </p>
     </div>
 </article>
+<script>
+function getHeight() {
+  var article = document.querySelector('article');
+  return article ? Math.ceil(article.getBoundingClientRect().bottom) : document.documentElement.scrollHeight;
+}
+(function resize() {
+  var h = getHeight();
+  if (window.frameElement) window.frameElement.style.height = h + 'px';
+  window.parent.postMessage({ iframeHeight: h, src: window.location.pathname }, '*');
+})();
+document.fonts.ready.then(function() {
+  var h = getHeight();
+  if (window.frameElement) window.frameElement.style.height = h + 'px';
+  window.parent.postMessage({ iframeHeight: h, src: window.location.pathname }, '*');
+});
+</script>
 </body>
 </html>
