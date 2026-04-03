@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:wpstrona.wpmudev.host)"
+      "WebFetch(domain:wpstrona.wpmudev.host)",
+      "Bash(cd:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

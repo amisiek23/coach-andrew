@@ -132,7 +132,7 @@ X is potential,  something real, but often untrained, inconsistent, or simply mi
                  </blockquote>
 
             <p style={{ fontSize: "1.0rem" }}>
-              My coaching and this entire project are built around igniting this fire within. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of life.
+              My coaching and this entire project are built around igniting this fire within. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of our reality.
             </p>
           </div>
 

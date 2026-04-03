@@ -25,10 +25,10 @@ export default function Footer() {
               CoachAndrew
             </p>
             <p style={{ fontSize: ".8125rem", color: "#a8d878", letterSpacing: ".18em", textTransform: "uppercase", marginBottom: "1rem" }}>
-              Breath. Move. Grow.
+              Breath. Act. Grow.
             </p>
             <p style={{ fontSize: ".875rem", color: "#888", lineHeight: 1.65 }}>
-              Coaching for purpose, performance and lasting personal growth.
+              Coaching for meaning, performance and lasting personal growth.
             </p>
           </div>
 
