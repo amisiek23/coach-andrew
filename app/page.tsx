@@ -68,10 +68,10 @@ export default function HomePage() {
 
       {/* ── STATS STRIP ──────────────────────────────────────────────────── */}
       <section style={{ background: "#377A00", color: "#fff", padding: "2rem 0" }}>
-        <div className="container stats-strip" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 4vw, 3rem)", flexWrap: "nowrap" }}>
+        <div className="container stats-strip" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 2.5vw, 3rem)", flexWrap: "nowrap" }}>
           {[
             { number: "25+",           label: "Years coaching" },
-            { number: "5000+",         label: "Sessions delivered" },
+            { number: "3",         label: " years academic teaching " },
             { number: "5🥇 3🥈 5🥉",   label: "National medals" },
             { number: "10+ ATP · 3 WTA", label: "Professional career players" },
             { number: "4",             label: "Generations of players coached" },
@@ -107,12 +107,13 @@ export default function HomePage() {
           }}>
             {/* lead paragraph — slightly larger */}
             <p style={{ fontSize: "1.0rem", fontWeight: 500, color: "#1e2e1e" }}>
-              Many people go through life with the feeling that something is missing. We are taught to believe that life is a constant struggle, that there is always something to be fighting for.
-            </p>
-
+            We all start with an X, An unknown. A question mark waiting to be answered. 
+X is potential,  something real, but often untrained, inconsistent, or simply missed and unrecognised. `
+             </p>
+{ 
             <p style={{ fontSize: "1.0rem" }}>
-              But when we look deeper, we discover that life does not have to be built on friction. That beyond fear, comparison, and pressure, there can be a state of peace, clarity, balance, and harmony. While this may seem unrealistic for the world as a whole, what may not exist everywhere can always be found somewhere, within each of us.
-            </p>
+             But when you dare to step forward, that X transforms…it becomes the IT-Factor!
+             </p> }
 
             {/* pull quote */}
             <blockquote style={{
@@ -127,11 +128,11 @@ export default function HomePage() {
               color: "#2f6a00",
               lineHeight: 1.6,
             }}>
-              There is a point inside every human being where things are simple, calm, and right,  a state where body, mind, and spirit work together without resistance.
-            </blockquote>
+             What many people call the “IT factor” which seems to be bestowed only on a very few, in reality it is not a mystery. It is something we all have it inside.
+                 </blockquote>
 
             <p style={{ fontSize: "1.0rem" }}>
-              My coaching and this entire project are built around showing people that place. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of life.
+              My coaching and this entire project are built around igniting this fire within. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of life.
             </p>
           </div>
 
@@ -144,8 +145,8 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
               { icon: "🎾", title: "Coaching Methods", body: "Developed through years of competitive and professional experience, connecting performance with awareness." },
-              { icon: "📋", title: "Self-Discovery Tools", body: "Questionnaires designed to help you realise things about yourself you never thought possible to change." },
-              { icon: "🌱", title: "Programmes & Materials", body: "Resources applicable both in sport and everyday life, from beginner to advanced level." },
+              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible." },
+              { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective." },
             ].map(({ icon, title, body }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <span style={{ fontSize: 32 }}>{icon}</span>
@@ -166,7 +167,7 @@ export default function HomePage() {
               fontStyle: "italic", textAlign: "center",
               color: "#fff", lineHeight: 1.8, margin: 0,
             }}>
-              The goal is not only to make better tennis players, it is to help people become more conscious, more balanced, and more connected with their own potential. Because when that connection appears, improvement is no longer chased. It takes place naturally and joyfully. And from that place, both sport and life take on a different quality.
+              The goal is not only to make better tennis players, it is to help people become more conscious, more balanced, and more connected with their True Self. Because when that connection appears, improvement is no longer chased. It takes place naturally and joyfully. And from that place, both sport and life take on a different quality.
             </p>
           </div>
 
