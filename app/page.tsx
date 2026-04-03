@@ -71,10 +71,10 @@ export default function HomePage() {
         <div className="container stats-strip" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 2.5vw, 3rem)", flexWrap: "nowrap" }}>
           {[
             { number: "25+",           label: "Years coaching" },
-            { number: "3",         label: " years academic teaching " },
             { number: "5🥇 3🥈 5🥉",   label: "National medals" },
             { number: "10+ ATP · 3 WTA", label: "Professional career players" },
             { number: "4",             label: "Generations of players coached" },
+             { number: "3",         label: " years academic teaching " }
           ].map(stat => (
             <div key={stat.label} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "1.75rem", fontWeight: 700 }}>{stat.number}</div>
