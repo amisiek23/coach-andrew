@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
 import PostCard from "@/components/PostCard";
 
-const HERO_IMAGE = "https://wpstrona.wpmudev.host/coachandrew/wp-content/uploads/sites/6/2026/01/istockphoto-178745492-1024x1024-5-edited.jpg";
+const HERO_IMAGE = "/iStock-178745492XXL.jpg";
 
 export const metadata: Metadata = { title: "Home", description: "Breath. Move. Grow." };
 

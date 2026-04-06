@@ -633,6 +633,15 @@ export default function SelfMasteryProfile() {
   );
   const [fade, setFade] = useState(true);
 
+  // Skip to gate if ?checkout=1
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("checkout") === "1") {
+      setPhase("gate");
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
   // Handle return from Stripe — URL will contain ?access=...&session_id=...
   useEffect(() => {
     const params    = new URLSearchParams(window.location.search);
