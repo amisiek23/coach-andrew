@@ -13,7 +13,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Page header */}
-      <section style={{ background: "var(--green-pale)", padding: "2rem 0 1.5rem", borderBottom: "1px solid var(--border)" }}>
+      <section style={{ background: "var(--green-light)", padding: "2rem 0 1.5rem", borderBottom: "1px solid var(--border)" }}>
         <div className="container" style={{ textAlign: "center" }}>
           <p style={{ color: "var(--green)", fontWeight: 600, fontSize: ".8125rem", letterSpacing: ".16em", textTransform: "uppercase", marginBottom: ".5rem" }}>
             Articles
@@ -31,11 +31,11 @@ export default function BlogPage() {
       </section>
 
       {/* Intro */}
-      <section style={{ background: "var(--green-light)", borderBottom: "1px solid var(--border)", padding: "2rem 0" }}>
+      <section style={{ background: "#fff", borderBottom: "1px solid var(--border)", padding: "2rem 0" }}>
         <div className="container" style={{ maxWidth: "760px" }}>
 
           <p style={{ fontFamily: "var(--font-heading), serif", fontSize: "1.375rem", fontWeight: 700, color: "var(--green)", marginBottom: ".75rem", letterSpacing: ".03em" }}>
-            Breath. Move. Grow.
+            Breath. Act. Grow.
           </p>
 
           <p style={{ fontSize: "1.0625rem", color: "var(--text)", lineHeight: 1.75, marginBottom: ".75rem" }}>
@@ -79,6 +79,7 @@ export default function BlogPage() {
 
       {/* Grid */}
       <section style={{ background: "#fff", padding: "2.5rem 0 3.5rem" }}>
+        <div style={{ width: 480, height: 3, background: "var(--green)", borderRadius: 2, margin: "-1.5rem auto 2rem" }} />
         <div className="container">
           {posts.length === 0
             ? <p style={{ textAlign: "center", color: "var(--text-muted)" }}>No posts yet.</p>

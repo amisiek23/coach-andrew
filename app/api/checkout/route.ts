@@ -4,15 +4,15 @@ export async function POST(req: NextRequest) {
   try {
     const { plan } = await req.json() as { plan: "consultation" | "quiz" };
     const origin = req.nextUrl.origin;
-    const successUrl = `${origin}/self-mastery-profile?access=${plan}&session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl  = `${origin}/self-mastery-profile`;
+    const successUrl = `${origin}/self-mastery-profile/quiz?access=${plan}&session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl  = `${origin}/self-mastery-profile/checkout`;
 
     const stripeKey = process.env.STRIPE_SECRET_KEY ?? "";
 
     // Placeholder mode — no real Stripe key yet
     if (!stripeKey || stripeKey === "sk_test_placeholder") {
       return NextResponse.json({
-        url: `${origin}/self-mastery-profile?access=${plan}&session_id=dev_mock`,
+        url: `${origin}/self-mastery-profile/quiz?access=${plan}&session_id=dev_mock`,
       });
     }
 

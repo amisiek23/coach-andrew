@@ -194,7 +194,7 @@ export default function MeasuringElitePerformancePage() {
         </article>
 
         <div style={{ textAlign: "center", paddingBottom: "3rem", marginTop: "-5rem" }}>
-          <Link href="/self-mastery-profile?checkout=1" className="btn btn-green" style={{ fontSize: "1rem", padding: "1em 2.5em" }}>
+          <Link href="/self-mastery-profile/checkout" className="btn btn-green" style={{ fontSize: "1rem", padding: "1em 2.5em" }}>
             Take the Assessment →
           </Link>
         </div>
