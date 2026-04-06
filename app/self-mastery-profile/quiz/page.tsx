@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   RadarChart,
@@ -625,7 +625,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
    MAIN
    ──────────────────────────────────────────────────────────────────── */
 
-export default function SelfMasteryProfileQuiz() {
+function SelfMasteryProfileQuizInner() {
   const router      = useRouter();
   const searchParams = useSearchParams();
   const [phase, setPhase]           = useState<"loading" | "quiz" | "results">("loading");
@@ -706,5 +706,13 @@ export default function SelfMasteryProfileQuiz() {
       )}
       {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
     </div>
+  );
+}
+
+export default function SelfMasteryProfileQuiz() {
+  return (
+    <Suspense fallback={<div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EAF7EB" }}><span style={{ color: "#377A00", fontSize: 18 }}>Loading…</span></div>}>
+      <SelfMasteryProfileQuizInner />
+    </Suspense>
   );
 }
