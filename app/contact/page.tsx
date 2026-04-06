@@ -1,11 +1,36 @@
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch with CoachAndrew — start your journey to excellence today.",
-};
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("sending");
+
+    const form = e.currentTarget;
+    const data = {
+      name: (form.elements.namedItem("name") as HTMLInputElement).value,
+      email: (form.elements.namedItem("email") as HTMLInputElement).value,
+      subject: (form.elements.namedItem("subject") as HTMLInputElement).value,
+      message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
+    };
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (res.ok) {
+      setStatus("sent");
+      form.reset();
+    } else {
+      setStatus("error");
+    }
+  }
+
   return (
     <div style={{ background: "#fff" }}>
 
@@ -77,9 +102,7 @@ export default function ContactPage() {
 
           {/* Right — form */}
           <form
-            action="mailto:andrzej@mycoachandrew.com"
-            method="POST"
-            encType="text/plain"
+            onSubmit={handleSubmit}
             style={{
               background: "var(--green-pale)",
               borderRadius: "16px",
@@ -114,9 +137,22 @@ export default function ContactPage() {
                 style={{ padding: ".7rem 1rem", borderRadius: "8px", border: "1px solid var(--border)", fontSize: ".9375rem", color: "var(--text)", background: "#fff", outline: "none", resize: "vertical" }} />
             </div>
 
-            <button type="submit" className="btn btn-green" style={{ alignSelf: "flex-start" }}>
-              Send Message
-            </button>
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+              <button type="submit" className="btn btn-green" style={{ alignSelf: "flex-start" }} disabled={status === "sending"}>
+                {status === "sending" ? "Sending…" : "Send Message"}
+              </button>
+
+              {status === "sent" && (
+                <p style={{ color: "#2f6a00", fontWeight: 600, fontSize: ".9375rem", margin: 0 }}>
+                  Message sent! I&apos;ll be in touch soon.
+                </p>
+              )}
+              {status === "error" && (
+                <p style={{ color: "#c0392b", fontWeight: 600, fontSize: ".9375rem", margin: 0 }}>
+                  Something went wrong. Please try again.
+                </p>
+              )}
+            </div>
           </form>
 
         </div>
