@@ -71,8 +71,8 @@ export default function ContactPage() {
                     </svg>
                   ),
                   label: "Email",
-                  value: "andrzej@mycoachandrew.com",
-                  href: "mailto:andrzej@mycoachandrew.com",
+                  value: "a.misiek23@gmail.com",
+                  href: "mailto:a.misiek23@gmail.com",
                 },
                 {
                   icon: (
