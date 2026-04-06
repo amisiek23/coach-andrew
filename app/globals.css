@@ -195,6 +195,7 @@ img { display: block; max-width: 100%; }
   /* Stats strip — wrap into 2 columns */
   .stats-strip     { flex-wrap: wrap !important; gap: 1.25rem 2rem !important; justify-content: center !important; }
   .stats-strip > div { min-width: calc(50% - 2rem); }
+  .stats-strip > div > div:first-child { white-space: nowrap; font-size: 1.1rem !important; }
 
   /* Reduce heavy section vertical padding site-wide */
   .section-padded  { padding-top: 3rem !important; padding-bottom: 3rem !important; }

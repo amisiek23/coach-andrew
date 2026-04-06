@@ -55,7 +55,7 @@ export default function HomePage() {
               fontSize: "1.125rem", color: "rgba(255,255,255,.82)",
               lineHeight: 1.65, marginBottom: "2.25rem", maxWidth: "480px",
             }}>
-              Breath. Move. Grow. — a holistic approach to purpose, performance and lasting change.
+              Breath. Act. Grow. An unorthodox approach to tennis, performance, and life in general.
             </p>
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -76,8 +76,8 @@ export default function HomePage() {
             { number: "4",             label: "Generations of players coached" },
              { number: "3",         label: " years academic teaching " }
           ].map(stat => (
-            <div key={stat.label} style={{ textAlign: "center" }}>
-              <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "1.75rem", fontWeight: 700 }}>{stat.number}</div>
+            <div key={stat.label} style={{ textAlign: "center", flexShrink: 0 }}>
+              <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "clamp(1rem, 2vw, 1.75rem)", fontWeight: 700, whiteSpace: "nowrap" }}>{stat.number}</div>
               <div style={{ fontFamily: "var(--font-body), system-ui", fontSize: ".8125rem", opacity: .85, letterSpacing: ".06em", textTransform: "uppercase" }}>{stat.label}</div>
             </div>
           ))}
@@ -107,8 +107,8 @@ export default function HomePage() {
           }}>
             {/* lead paragraph — slightly larger */}
             <p style={{ fontSize: "1.0rem", fontWeight: 500, color: "#1e2e1e" }}>
-            We all start with an X, An unknown. A question mark waiting to be answered. 
-X is potential,  something real, but often untrained, inconsistent, or simply missed and unrecognised. `
+            We all start with an X, an unknown. A question mark waiting to be answered. 
+X is potential,  something real, but often untrained or simply missed and unrecognised. `
              </p>
 { 
             <p style={{ fontSize: "1.0rem" }}>
