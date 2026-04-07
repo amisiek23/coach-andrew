@@ -144,7 +144,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
           {/* 3-card row */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
-              { icon: "🎾", title: "Coaching Methods", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
+              { icon: "🎾", title: "Coaching Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
               { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
               { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
             ].map(({ icon, title, body, href }) => (

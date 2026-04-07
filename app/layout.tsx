@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: "CoachAndrew",
     template: "%s | CoachAndrew",
   },
-  description: "Elevate Your Game — Breath. Move. Grow.",
+  description: "Elevate Your Game — Breath. Act. Grow.",
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
   ),

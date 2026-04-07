@@ -112,7 +112,7 @@ export default function AboutPage() {
               </p>
 
               <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
-                <Link href="/contact" className="btn btn-green">Start Your Journey</Link>
+                <Link href="/self-mastery-profile" className="btn btn-green">Start Your Journey</Link>
                 <Link href="/blog"    className="btn btn-outline-green">Read the Blog</Link>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function AboutPage() {
         background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
         padding: "5rem 0", textAlign: "center",
       }}>
-        <div className="container" style={{ maxWidth: "560px" }}>
+        {/* <div className="container" style={{ maxWidth: "560px" }}>
           <h2 style={{
             fontFamily: "var(--font-heading), serif",
             fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)",
@@ -216,8 +216,8 @@ export default function AboutPage() {
           <p style={{ color: "rgba(255,255,255,.85)", fontSize: "1.0625rem", lineHeight: 1.7, marginBottom: "2rem" }}>
             Ready to unlock your full potential? Let&apos;s begin.
           </p>
-          <Link href="/contact" className="btn btn-outline-white">Get in Touch</Link>
-        </div>
+          <Link href="/self-mastery-profile" className="btn btn-outline-white">Get in Touch</Link>
+        </div> */}
       </section>
 
       {/* Responsive grid styles */}
