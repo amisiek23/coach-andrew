@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
       line_items: [{ price: priceId!, quantity: 1 }],
       success_url: successUrl,
       cancel_url:  cancelUrl,
+      allow_promotion_codes: true,
     });
 
     return NextResponse.json({ url: session.url });

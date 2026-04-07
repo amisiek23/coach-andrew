@@ -112,7 +112,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
              </p>
 { 
             <p style={{ fontSize: "1.0rem" }}>
-             But when you dare to step forward, that X transforms…it becomes the IT-Factor!
+             But when you dare to step forward and bet on yourself, that X transforms…it becomes the IT-Factor!
              </p> }
 
             {/* pull quote */}
@@ -128,11 +128,11 @@ X is potential,  something real, but often untrained or simply missed and unreco
               color: "#2f6a00",
               lineHeight: 1.6,
             }}>
-             What many people call the “IT factor” which seems to be bestowed only on a very few, in reality it is not a mystery. It is something we all have it inside.
+            What many people call the “IT factor”, which seems to be something only a very few are endowed with, in reality it is not a mystery. It is something we all have it inside.
                  </blockquote>
 
             <p style={{ fontSize: "1.0rem" }}>
-              My coaching and this entire project are built around igniting this fire within. Tennis became my laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of our reality.
+              Today my coaching and this entire project are built around igniting this fire within. Tennis has become a laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of our reality.
             </p>
           </div>
 
@@ -144,14 +144,15 @@ X is potential,  something real, but often untrained or simply missed and unreco
           {/* 3-card row */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
-              { icon: "🎾", title: "Coaching Methods", body: "Developed through years of competitive and professional experience, connecting performance with awareness." },
-              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible." },
-              { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective." },
-            ].map(({ icon, title, body }) => (
+              { icon: "🎾", title: "Coaching Methods", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
+              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
+              { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
+            ].map(({ icon, title, body, href }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <span style={{ fontSize: 32 }}>{icon}</span>
                 <h3 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.05rem", fontWeight: 700, color: "#1e2e1e", margin: 0 }}>{title}</h3>
                 <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9rem", color: "#4a5a4a", lineHeight: 1.7, margin: 0 }}>{body}</p>
+                {href && <Link href={href} style={{ fontSize: ".85rem", fontWeight: 600, color: "#377A00", textDecoration: "none", marginTop: ".25rem" }}>Learn more →</Link>}
               </div>
             ))}
           </div>
@@ -171,9 +172,6 @@ X is potential,  something real, but often untrained or simply missed and unreco
             </p>
           </div>
 
-          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <a href="/services" className="btn btn-outline-green">Explore Our Products</a>
-          </div>
         </div>
       </section>
 
@@ -253,11 +251,11 @@ X is potential,  something real, but often untrained or simply missed and unreco
           <h2 style={{ fontFamily: "var(--font-heading), serif", fontSize: "clamp(1.6rem, 4vw, 2.4rem)", fontWeight: 700, color: "#fff", marginBottom: "1rem" }}>
             Ready to start your journey?
           </h2>
-          <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,.85)", lineHeight: 1.65, marginBottom: "2rem" }}>
+          { <p style={{ fontSize: "1.0625rem", color: "rgba(255,255,255,.85)", lineHeight: 1.65, marginBottom: "2rem" }}>
             Explore the programmes, take the questionnaire, and find out which coaching path is right for you.
-          </p>
+          </p> }
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/services" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>View Programmes</Link>
+            <Link href="/self-mastery-profile" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>Take the questionnaire</Link>
           </div>
         </div>
       </section>

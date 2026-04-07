@@ -48,31 +48,37 @@ export default function CheckoutPage() {
     title: string,
     subtitle: string,
     perks: string[],
-  ) => (
-    <div style={{
-      background: "#fff", borderRadius: 20, padding: "32px 28px",
-      boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: "2px solid #E2E8F0",
-      display: "flex", flexDirection: "column", flex: 1,
-      opacity: 0.55, filter: "grayscale(0.3)",
-    }}>
-      <div style={{ fontSize: 28, fontWeight: 800, color: "#94A3B8", marginBottom: 4 }}>{price}</div>
-      <div style={{ fontSize: 18, fontWeight: 700, color: "#1E293B", marginBottom: 6 }}>{title}</div>
-      <div style={{ fontSize: 14, color: "#64748B", marginBottom: 20, lineHeight: 1.5 }}>{subtitle}</div>
-      <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 8 }}>
-        {perks.map((p) => (
-          <li key={p} style={{ fontSize: 14, color: "#94A3B8", display: "flex", gap: 8, alignItems: "flex-start" }}>
-            <span style={{ color: "#CBD5E1", fontWeight: 700, flexShrink: 0 }}>✓</span> {p}
-          </li>
-        ))}
-      </ul>
-      <button
-        disabled
-        style={{ marginTop: "auto", padding: "14px 0", fontSize: 15, fontWeight: 600, color: "#fff", background: "#CBD5E1", border: "none", borderRadius: 50, cursor: "not-allowed" }}
-      >
-        Coming Soon
-      </button>
-    </div>
-  );
+  ) => {
+    return (
+      <div style={{
+        background: "#fff", borderRadius: 20, padding: "32px 28px",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: "2px solid #E2E8F0",
+        display: "flex", flexDirection: "column", flex: 1,
+        opacity: 0.55, filter: "grayscale(0.3)",
+      }}>
+        <div style={{ fontSize: 28, fontWeight: 800, color: "#94A3B8", marginBottom: 4 }}>{price}</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: "#1E293B", marginBottom: 6 }}>{title}</div>
+        <div style={{ fontSize: 14, color: "#64748B", marginBottom: 20, lineHeight: 1.5 }}>{subtitle}</div>
+        <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 8 }}>
+          {perks.map((p) => (
+            <li key={p} style={{ fontSize: 14, color: "#94A3B8", display: "flex", gap: 8, alignItems: "flex-start" }}>
+              <span style={{ color: "#CBD5E1", fontWeight: 700, flexShrink: 0 }}>✓</span> {p}
+            </li>
+          ))}
+        </ul>
+        <button
+          disabled
+          style={{
+            marginTop: "auto", padding: "14px 0", fontSize: 15, fontWeight: 600,
+            color: "#fff", background: "#CBD5E1",
+            border: "none", borderRadius: 50, cursor: "not-allowed",
+          }}
+        >
+          Coming Soon
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div style={{
