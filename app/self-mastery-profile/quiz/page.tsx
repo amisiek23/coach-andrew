@@ -503,6 +503,199 @@ const QuizScreen = ({
   );
 };
 
+/* ────────────────────────────────────────────────────────────────────
+   PROFILE FORM
+   ──────────────────────────────────────────────────────────────────── */
+
+interface ProfileData {
+  // Identity
+  name: string; email: string;
+  // Demographic
+  age: string; genderIdentity: string; genderSelfDescribe: string;
+  nationality: string; educationLevel: string;
+  // Sport-specific
+  sport: string; sportType: string;
+  competitiveLevel: string; yearsExperience: string; weeklyTrainingHours: string;
+  // Psychological background
+  hasMentalCoaching: string; mentalCoachingDuration: string;
+  hasMindfulnessPractice: string; mindfulnessDuration: string;
+  // Performance context
+  competitiveStatus: string; recentResultOrRanking: string; seasonStatus: string;
+  // Optional
+  allowRecontact: string; promptedBy: string;
+  // Consent
+  consent: boolean;
+}
+
+const EMPTY_PROFILE: ProfileData = {
+  name: "", email: "",
+  age: "", genderIdentity: "", genderSelfDescribe: "",
+  nationality: "", educationLevel: "",
+  sport: "", sportType: "",
+  competitiveLevel: "", yearsExperience: "", weeklyTrainingHours: "",
+  hasMentalCoaching: "", mentalCoachingDuration: "",
+  hasMindfulnessPractice: "", mindfulnessDuration: "",
+  competitiveStatus: "", recentResultOrRanking: "", seasonStatus: "",
+  allowRecontact: "", promptedBy: "",
+  consent: false,
+};
+
+const sectionHeading = (label: string) => (
+  <div style={{ borderBottom: "2px solid #EAF7EB", paddingBottom: 8, marginTop: 8 }}>
+    <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#377A00", margin: 0 }}>{label}</p>
+  </div>
+);
+
+const ProfileFormScreen = ({
+  sectionResults, overall, accessType, onSubmit,
+}: {
+  sectionResults: SectionResult[]; overall: number; accessType: "quiz" | "consultation";
+  onSubmit: (profile: ProfileData) => void;
+}) => {
+  const [form, setForm] = useState<ProfileData>(EMPTY_PROFILE);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const set = (id: keyof ProfileData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
+    setForm((p) => ({ ...p, [id]: e.target.value }));
+
+  const inputStyle: React.CSSProperties = { padding: "9px 13px", borderRadius: 10, border: "1.5px solid #E2E8F0", fontSize: 14, outline: "none", background: "#F8FAFC", color: "#1E293B", width: "100%", boxSizing: "border-box" };
+  const labelStyle: React.CSSProperties = { fontSize: 12, fontWeight: 600, color: "#334155", marginBottom: 4, display: "block" };
+
+  const Field = ({ id, label, type = "text", placeholder = "", required = false }: { id: keyof ProfileData; label: string; type?: string; placeholder?: string; required?: boolean }) => (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label htmlFor={id} style={labelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
+      <input id={id} type={type} value={form[id] as string} placeholder={placeholder} required={required} onChange={set(id)} style={inputStyle} />
+    </div>
+  );
+
+  const Select = ({ id, label, options, required = false }: { id: keyof ProfileData; label: string; options: string[]; required?: boolean }) => (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <label htmlFor={id} style={labelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
+      <select id={id} value={form[id] as string} onChange={set(id)} required={required} style={inputStyle}>
+        <option value="">—</option>
+        {options.map((o) => <option key={o}>{o}</option>)}
+      </select>
+    </div>
+  );
+
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!form.consent) { setError("Please confirm informed consent to proceed."); return; }
+    setSubmitting(true);
+    setError("");
+    const participantId = `SMP-${Date.now().toString(36).toUpperCase()}`;
+    const payload = { profile: { ...form, participantId }, sectionResults, overall, accessType };
+    try {
+      await fetch("/api/save-results", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    } catch {
+      setError("Could not save to server, but your results are shown below.");
+    }
+    onSubmit(form);
+  };
+
+  const col2: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 };
+  const col3: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 14 };
+
+  return (
+    <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%)", padding: "40px 20px 80px" }}>
+      <div style={{ maxWidth: 640, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <div style={{ fontSize: 48, marginBottom: 12 }}>🌿</div>
+          <h1 style={{ fontSize: 26, fontWeight: 700, color: "#1E293B", marginBottom: 8, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
+            Complete Your Profile
+          </h1>
+          <p style={{ fontSize: 14, color: "#64748B", lineHeight: 1.7, maxWidth: 480, margin: "0 auto" }}>
+            This information helps contextualise your results and contributes to ongoing research. Fields marked <span style={{ color: "#EF4444" }}>*</span> are required.
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} style={{ background: "#fff", borderRadius: 20, padding: "32px 28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", gap: 16 }}>
+
+          {/* ── Identity ── */}
+          {sectionHeading("Identity")}
+          <div style={col2}>
+            <Field id="name" label="Full Name" required placeholder="Your name" />
+            <Field id="email" label="Email" type="email" required placeholder="you@example.com" />
+          </div>
+
+          {/* ── Demographic ── */}
+          {sectionHeading("Demographic")}
+          <div style={col3}>
+            <Field id="age" label="Age" type="number" placeholder="e.g. 28" />
+            <Select id="genderIdentity" label="Gender Identity" options={["Male", "Female", "Non-binary", "Self-describe", "Prefer not to say"]} />
+            <Field id="nationality" label="Nationality" placeholder="e.g. British" />
+          </div>
+          {form.genderIdentity === "Self-describe" && (
+            <Field id="genderSelfDescribe" label="Please describe" placeholder="Your gender identity" />
+          )}
+          <Select id="educationLevel" label="Education Level" options={["Secondary school", "Undergraduate", "Postgraduate / Master's", "Doctoral / PhD", "Vocational / Trade", "Other"]} />
+
+          {/* ── Sport-specific ── */}
+          {sectionHeading("Sport-Specific")}
+          <div style={col2}>
+            <Field id="sport" label="Primary Sport" placeholder="e.g. Tennis" />
+            <Select id="sportType" label="Sport Type" options={["Individual", "Team", "Both"]} />
+          </div>
+          <div style={col2}>
+            <Field id="yearsExperience" label="Years of Experience" type="number" placeholder="e.g. 10" />
+            <Field id="weeklyTrainingHours" label="Weekly Training Hours" type="number" placeholder="e.g. 12" />
+          </div>
+          <Select id="competitiveLevel" label="Competitive Level" options={["Recreational", "Club / Amateur", "Regional", "National", "International", "Professional / Elite"]} />
+
+          {/* ── Psychological Background ── */}
+          {sectionHeading("Psychological & Coaching Background")}
+          <div style={col2}>
+            <Select id="hasMentalCoaching" label="Mental coaching / sport psychology support?" options={["Yes", "No"]} />
+            {form.hasMentalCoaching === "Yes" && (
+              <Select id="mentalCoachingDuration" label="For how long?" options={["Less than 3 months", "3–6 months", "6–12 months", "1–3 years", "More than 3 years"]} />
+            )}
+          </div>
+          <div style={col2}>
+            <Select id="hasMindfulnessPractice" label="Regular mindfulness / meditation practice?" options={["Yes", "No"]} />
+            {form.hasMindfulnessPractice === "Yes" && (
+              <Select id="mindfulnessDuration" label="For how long?" options={["Less than 6 months", "6–12 months", "1–3 years", "3–5 years", "More than 5 years"]} />
+            )}
+          </div>
+
+          {/* ── Performance Context ── */}
+          {sectionHeading("Performance Context")}
+          <div style={col3}>
+            <Select id="competitiveStatus" label="Current Status" options={["Active competitor", "Transitioning", "Retired", "Taking a break"]} />
+            <Select id="seasonStatus" label="Season Status" options={["In-season", "Off-season", "Pre-season", "Non-applicable"]} />
+            <Field id="recentResultOrRanking" label="Recent Result / Ranking" placeholder="e.g. #45 national, finalist" />
+          </div>
+
+          {/* ── Optional ── */}
+          {sectionHeading("Optional")}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label htmlFor="promptedBy" style={labelStyle}>What prompted you to take this questionnaire?</label>
+            <textarea id="promptedBy" value={form.promptedBy} rows={2} placeholder="e.g. Referred by coach, found it online, personal curiosity…"
+              onChange={(e) => setForm((p) => ({ ...p, promptedBy: e.target.value }))}
+              style={{ ...inputStyle, resize: "vertical" }} />
+          </div>
+          <Select id="allowRecontact" label="May we contact you for follow-up research?" options={["Yes", "No"]} />
+
+          {/* ── Consent ── */}
+          {sectionHeading("Informed Consent")}
+          <label style={{ display: "flex", gap: 12, alignItems: "flex-start", cursor: "pointer", fontSize: 13, color: "#475569", lineHeight: 1.6 }}>
+            <input type="checkbox" checked={form.consent} onChange={(e) => setForm((p) => ({ ...p, consent: e.target.checked }))}
+              style={{ marginTop: 3, width: 16, height: 16, accentColor: "#377A00", flexShrink: 0 }} />
+            <span>I confirm that I am completing this questionnaire voluntarily, that my responses may be used anonymously for research purposes, and that I can withdraw at any time. <span style={{ color: "#EF4444" }}>*</span></span>
+          </label>
+
+          {error && <p style={{ fontSize: 13, color: "#EF4444", margin: 0 }}>{error}</p>}
+
+          <button type="submit" disabled={submitting}
+            style={{ padding: "14px 0", fontSize: 15, fontWeight: 700, color: "#fff", background: submitting ? "#94b87a" : "linear-gradient(135deg, #377A00, #2f6a00)", border: "none", borderRadius: 50, cursor: submitting ? "not-allowed" : "pointer", marginTop: 8 }}>
+            {submitting ? "Saving…" : "View My Results →"}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
 const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults: SectionResult[]; overall: number; accessType: "quiz" | "consultation" }) => {
   const archetype = getArchetype(overall);
   const overallLevel = getLevel(overall);
@@ -628,7 +821,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
 function SelfMasteryProfileQuizInner() {
   const router      = useRouter();
   const searchParams = useSearchParams();
-  const [phase, setPhase]           = useState<"loading" | "quiz" | "results">("loading");
+  const [phase, setPhase]           = useState<"loading" | "quiz" | "profile" | "results">("loading");
   const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers]       = useState<Record<number, number>>(() =>
@@ -689,7 +882,7 @@ function SelfMasteryProfileQuizInner() {
 
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
-  const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
+  const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("profile")); };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
   if (phase === "loading") {
@@ -702,6 +895,12 @@ function SelfMasteryProfileQuizInner() {
         <QuizScreen
           section={SECTIONS[sectionIdx]} sectionIndex={sectionIdx} totalSections={SECTIONS.length}
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
+        />
+      )}
+      {phase === "profile" && (
+        <ProfileFormScreen
+          sectionResults={sectionResults} overall={overall} accessType={accessType}
+          onSubmit={() => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); }}
         />
       )}
       {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}

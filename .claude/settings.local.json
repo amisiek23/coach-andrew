@@ -3,7 +3,8 @@
     "allow": [
       "WebFetch(domain:wpstrona.wpmudev.host)",
       "Bash(cd:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(brew install:*)"
     ]
   }
 }

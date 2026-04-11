@@ -225,9 +225,15 @@ X is potential,  something real, but often untrained or simply missed and unreco
                 role: "Belarus Federation Cup Captain 1995–1997 · Davis Cup Captain 1997–2002 · Head Coach, Sacramento State University",
                 region: "🇺🇸 U.S.",
               },
+              {
+                quote: "I met Andrzej shortly after recovering from significant injuries that had interrupted one of my strongest competitive phases. From our first sessions, I was introduced to a profoundly different approach—not only to tennis but to life. His philosophy was truly holistic, integrating mind, body, and spirit, and fostering a deeper connection with oneself. Through this, I experienced an unprecedented level of intention, focus, and clarity on court. For the first time, I fully sensed my potential across all dimensions. Six years later, the impact of those months remains deeply influential and continues to inspire me",
+                name: "Baez Nielsen",
+                role: "Competitive Tennis Player",
+                region: "🇦🇺 Australia",
+              },
             ].map(({ quote, name, role, region }) => (
-              <div key={name} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                <span style={{ fontSize: "2rem", lineHeight: 1, color: "#377A00", fontFamily: "Georgia, serif" }}>&ldquo;</span>
+              <div key={name} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                <span style={{ fontSize: "2rem", lineHeight: 1, color: "#377A00", fontFamily: "Georgia, serif", marginBottom: "-0.5rem" }}>&ldquo;</span>
                 <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9375rem", color: "#3a4a3a", lineHeight: 1.75, margin: 0, flex: 1 }}>
                   {quote}
                 </p>
