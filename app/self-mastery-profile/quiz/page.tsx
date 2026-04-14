@@ -466,9 +466,13 @@ const QuizScreen = ({
                   <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 16, lineHeight: 1.6, margin: 0 }}>{qi + 1}. {q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
                     <input
-                      type="number" min={0} max={100} step={1} value={val}
+                      type="number" min={0} max={100} step={1}
+                      value={val === 0 ? "" : val}
+                      placeholder="0"
                       onChange={(e) => {
-                        const n = Math.min(100, Math.max(0, Number(e.target.value)));
+                        const raw = e.target.value;
+                        if (raw === "") { onAnswer(idx, 0); return; }
+                        const n = Math.min(100, Math.max(0, Number(raw)));
                         onAnswer(idx, isNaN(n) ? 0 : n);
                       }}
                       style={{ width: 64, fontSize: 20, fontWeight: 700, color: section.color, border: `2px solid ${section.color}44`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#F8FAFC" }}
@@ -540,9 +544,35 @@ const EMPTY_PROFILE: ProfileData = {
   consent: false,
 };
 
+const profileInputStyle: React.CSSProperties = { padding: "9px 13px", borderRadius: 10, border: "1.5px solid #E2E8F0", fontSize: 14, outline: "none", background: "#F8FAFC", color: "#1E293B", width: "100%", boxSizing: "border-box" };
+const profileLabelStyle: React.CSSProperties = { fontSize: 12, fontWeight: 600, color: "#334155", marginBottom: 4, display: "block" };
+
 const sectionHeading = (label: string) => (
   <div style={{ borderBottom: "2px solid #EAF7EB", paddingBottom: 8, marginTop: 8 }}>
     <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".12em", textTransform: "uppercase", color: "#377A00", margin: 0 }}>{label}</p>
+  </div>
+);
+
+const ProfileField = ({ id, label, type = "text", placeholder = "", required = false, value, onChange }: {
+  id: keyof ProfileData; label: string; type?: string; placeholder?: string; required?: boolean;
+  value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => (
+  <div style={{ display: "flex", flexDirection: "column" }}>
+    <label htmlFor={id} style={profileLabelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
+    <input id={id} type={type} value={value} placeholder={placeholder} required={required} onChange={onChange} style={profileInputStyle} />
+  </div>
+);
+
+const ProfileSelect = ({ id, label, options, required = false, value, onChange }: {
+  id: keyof ProfileData; label: string; options: string[]; required?: boolean;
+  value: string; onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}) => (
+  <div style={{ display: "flex", flexDirection: "column" }}>
+    <label htmlFor={id} style={profileLabelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
+    <select id={id} value={value} onChange={onChange} required={required} style={profileInputStyle}>
+      <option value="">—</option>
+      {options.map((o) => <option key={o}>{o}</option>)}
+    </select>
   </div>
 );
 
@@ -558,26 +588,6 @@ const ProfileFormScreen = ({
 
   const set = (id: keyof ProfileData) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((p) => ({ ...p, [id]: e.target.value }));
-
-  const inputStyle: React.CSSProperties = { padding: "9px 13px", borderRadius: 10, border: "1.5px solid #E2E8F0", fontSize: 14, outline: "none", background: "#F8FAFC", color: "#1E293B", width: "100%", boxSizing: "border-box" };
-  const labelStyle: React.CSSProperties = { fontSize: 12, fontWeight: 600, color: "#334155", marginBottom: 4, display: "block" };
-
-  const Field = ({ id, label, type = "text", placeholder = "", required = false }: { id: keyof ProfileData; label: string; type?: string; placeholder?: string; required?: boolean }) => (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <label htmlFor={id} style={labelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
-      <input id={id} type={type} value={form[id] as string} placeholder={placeholder} required={required} onChange={set(id)} style={inputStyle} />
-    </div>
-  );
-
-  const Select = ({ id, label, options, required = false }: { id: keyof ProfileData; label: string; options: string[]; required?: boolean }) => (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <label htmlFor={id} style={labelStyle}>{label}{required && <span style={{ color: "#EF4444" }}> *</span>}</label>
-      <select id={id} value={form[id] as string} onChange={set(id)} required={required} style={inputStyle}>
-        <option value="">—</option>
-        {options.map((o) => <option key={o}>{o}</option>)}
-      </select>
-    </div>
-  );
 
   const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -600,6 +610,12 @@ const ProfileFormScreen = ({
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%)", padding: "40px 20px 80px" }}>
       <div style={{ maxWidth: 640, margin: "0 auto" }}>
+        <div style={{ textAlign: "right", marginBottom: 8 }}>
+          <button type="button" onClick={() => onSubmit(EMPTY_PROFILE)}
+            style={{ background: "none", border: "none", fontSize: 13, color: "#94A3B8", cursor: "pointer", padding: "4px 0", textDecoration: "underline" }}>
+            Skip this step →
+          </button>
+        </div>
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <div style={{ fontSize: 48, marginBottom: 12 }}>🌿</div>
           <h1 style={{ fontSize: 26, fontWeight: 700, color: "#1E293B", marginBottom: 8, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
@@ -615,66 +631,66 @@ const ProfileFormScreen = ({
           {/* ── Identity ── */}
           {sectionHeading("Identity")}
           <div style={col2}>
-            <Field id="name" label="Full Name" required placeholder="Your name" />
-            <Field id="email" label="Email" type="email" required placeholder="you@example.com" />
+            <ProfileField id="name" label="Full Name" required placeholder="Your name" value={form.name} onChange={set("name")} />
+            <ProfileField id="email" label="Email" type="email" required placeholder="you@example.com" value={form.email} onChange={set("email")} />
           </div>
 
           {/* ── Demographic ── */}
           {sectionHeading("Demographic")}
           <div style={col3}>
-            <Field id="age" label="Age" type="number" placeholder="e.g. 28" />
-            <Select id="genderIdentity" label="Gender Identity" options={["Male", "Female", "Non-binary", "Self-describe", "Prefer not to say"]} />
-            <Field id="nationality" label="Nationality" placeholder="e.g. British" />
+            <ProfileField id="age" label="Age" type="number" placeholder="e.g. 28" value={form.age} onChange={set("age")} />
+            <ProfileSelect id="genderIdentity" label="Gender Identity" options={["Male", "Female", "Non-binary", "Self-describe", "Prefer not to say"]} value={form.genderIdentity} onChange={set("genderIdentity")} />
+            <ProfileField id="nationality" label="Nationality" placeholder="e.g. British" value={form.nationality} onChange={set("nationality")} />
           </div>
           {form.genderIdentity === "Self-describe" && (
-            <Field id="genderSelfDescribe" label="Please describe" placeholder="Your gender identity" />
+            <ProfileField id="genderSelfDescribe" label="Please describe" placeholder="Your gender identity" value={form.genderSelfDescribe} onChange={set("genderSelfDescribe")} />
           )}
-          <Select id="educationLevel" label="Education Level" options={["Secondary school", "Undergraduate", "Postgraduate / Master's", "Doctoral / PhD", "Vocational / Trade", "Other"]} />
+          <ProfileSelect id="educationLevel" label="Education Level" options={["Secondary school", "Undergraduate", "Postgraduate / Master's", "Doctoral / PhD", "Vocational / Trade", "Other"]} value={form.educationLevel} onChange={set("educationLevel")} />
 
           {/* ── Sport-specific ── */}
           {sectionHeading("Sport-Specific")}
           <div style={col2}>
-            <Field id="sport" label="Primary Sport" placeholder="e.g. Tennis" />
-            <Select id="sportType" label="Sport Type" options={["Individual", "Team", "Both"]} />
+            <ProfileField id="sport" label="Primary Sport" placeholder="e.g. Tennis" value={form.sport} onChange={set("sport")} />
+            <ProfileSelect id="sportType" label="Sport Type" options={["Individual", "Team", "Both"]} value={form.sportType} onChange={set("sportType")} />
           </div>
           <div style={col2}>
-            <Field id="yearsExperience" label="Years of Experience" type="number" placeholder="e.g. 10" />
-            <Field id="weeklyTrainingHours" label="Weekly Training Hours" type="number" placeholder="e.g. 12" />
+            <ProfileField id="yearsExperience" label="Years of Experience" type="number" placeholder="e.g. 10" value={form.yearsExperience} onChange={set("yearsExperience")} />
+            <ProfileField id="weeklyTrainingHours" label="Weekly Training Hours" type="number" placeholder="e.g. 12" value={form.weeklyTrainingHours} onChange={set("weeklyTrainingHours")} />
           </div>
-          <Select id="competitiveLevel" label="Competitive Level" options={["Recreational", "Club / Amateur", "Regional", "National", "International", "Professional / Elite"]} />
+          <ProfileSelect id="competitiveLevel" label="Competitive Level" options={["Recreational", "Club / Amateur", "Regional", "National", "International", "Professional / Elite"]} value={form.competitiveLevel} onChange={set("competitiveLevel")} />
 
           {/* ── Psychological Background ── */}
           {sectionHeading("Psychological & Coaching Background")}
           <div style={col2}>
-            <Select id="hasMentalCoaching" label="Mental coaching / sport psychology support?" options={["Yes", "No"]} />
+            <ProfileSelect id="hasMentalCoaching" label="Mental coaching / sport psychology support?" options={["Yes", "No"]} value={form.hasMentalCoaching} onChange={set("hasMentalCoaching")} />
             {form.hasMentalCoaching === "Yes" && (
-              <Select id="mentalCoachingDuration" label="For how long?" options={["Less than 3 months", "3–6 months", "6–12 months", "1–3 years", "More than 3 years"]} />
+              <ProfileSelect id="mentalCoachingDuration" label="For how long?" options={["Less than 3 months", "3–6 months", "6–12 months", "1–3 years", "More than 3 years"]} value={form.mentalCoachingDuration} onChange={set("mentalCoachingDuration")} />
             )}
           </div>
           <div style={col2}>
-            <Select id="hasMindfulnessPractice" label="Regular mindfulness / meditation practice?" options={["Yes", "No"]} />
+            <ProfileSelect id="hasMindfulnessPractice" label="Regular mindfulness / meditation practice?" options={["Yes", "No"]} value={form.hasMindfulnessPractice} onChange={set("hasMindfulnessPractice")} />
             {form.hasMindfulnessPractice === "Yes" && (
-              <Select id="mindfulnessDuration" label="For how long?" options={["Less than 6 months", "6–12 months", "1–3 years", "3–5 years", "More than 5 years"]} />
+              <ProfileSelect id="mindfulnessDuration" label="For how long?" options={["Less than 6 months", "6–12 months", "1–3 years", "3–5 years", "More than 5 years"]} value={form.mindfulnessDuration} onChange={set("mindfulnessDuration")} />
             )}
           </div>
 
           {/* ── Performance Context ── */}
           {sectionHeading("Performance Context")}
           <div style={col3}>
-            <Select id="competitiveStatus" label="Current Status" options={["Active competitor", "Transitioning", "Retired", "Taking a break"]} />
-            <Select id="seasonStatus" label="Season Status" options={["In-season", "Off-season", "Pre-season", "Non-applicable"]} />
-            <Field id="recentResultOrRanking" label="Recent Result / Ranking" placeholder="e.g. #45 national, finalist" />
+            <ProfileSelect id="competitiveStatus" label="Current Status" options={["Active competitor", "Transitioning", "Retired", "Taking a break"]} value={form.competitiveStatus} onChange={set("competitiveStatus")} />
+            <ProfileSelect id="seasonStatus" label="Season Status" options={["In-season", "Off-season", "Pre-season", "Non-applicable"]} value={form.seasonStatus} onChange={set("seasonStatus")} />
+            <ProfileField id="recentResultOrRanking" label="Recent Result / Ranking" placeholder="e.g. #45 national, finalist" value={form.recentResultOrRanking} onChange={set("recentResultOrRanking")} />
           </div>
 
           {/* ── Optional ── */}
           {sectionHeading("Optional")}
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <label htmlFor="promptedBy" style={labelStyle}>What prompted you to take this questionnaire?</label>
+            <label htmlFor="promptedBy" style={profileLabelStyle}>What prompted you to take this questionnaire?</label>
             <textarea id="promptedBy" value={form.promptedBy} rows={2} placeholder="e.g. Referred by coach, found it online, personal curiosity…"
               onChange={(e) => setForm((p) => ({ ...p, promptedBy: e.target.value }))}
-              style={{ ...inputStyle, resize: "vertical" }} />
+              style={{ ...profileInputStyle, resize: "vertical" }} />
           </div>
-          <Select id="allowRecontact" label="May we contact you for follow-up research?" options={["Yes", "No"]} />
+          <ProfileSelect id="allowRecontact" label="May we contact you for follow-up research?" options={["Yes", "No"]} value={form.allowRecontact} onChange={set("allowRecontact")} />
 
           {/* ── Consent ── */}
           {sectionHeading("Informed Consent")}

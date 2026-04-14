@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
 import PostCard from "@/components/PostCard";
 
-const HERO_IMAGE = "/iStock-178745492XXL.jpg";
+const HERO_IMAGE = "/hero.jpg";
 
 export const metadata: Metadata = { title: "Home", description: "Breath. Move. Grow." };
 
