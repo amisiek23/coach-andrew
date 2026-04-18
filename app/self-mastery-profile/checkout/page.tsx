@@ -100,7 +100,7 @@ export default function CheckoutPage() {
         </h1>
 
         <p style={{ fontSize: 16, color: "#3a4a3a", marginBottom: 36, lineHeight: 1.6 }}>
-          Select the option that fits you best to unlock your Elite Performance Awareness Scale.
+          Select the option that fits you best to unlock your Elite Performance Awareness.
         </p>
 
         {/* Cards */}
