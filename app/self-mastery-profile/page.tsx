@@ -101,27 +101,18 @@ export default function SelfMasteryProfileIntroPage() {
       </section>
 
       {/* ── DIAGNOSTIC INTRO ────────────────────────────────────────── */}
-      <div style={{ textAlign: "center", maxWidth: 560 }}>
-        <p style={{ fontSize: 17, color: "#3a4a3a", lineHeight: 1.7, marginBottom: 12 }}>
-          Discover your mental performance profile across 7 core dimensions. Rate yourself
-          honestly on 35 qualities to reveal your strengths, growth areas, and unique
-          competitor archetype.
-        </p>
-
+      <div style={{ textAlign: "center", maxWidth: 760 }}>
         <div style={{
-          display: "inline-flex", flexDirection: "column", gap: 6,
-          background: "#fff", borderRadius: 12, padding: "16px 24px",
-          marginBottom: 36, boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-          textAlign: "left", fontSize: 14, color: "#555",
+          background: "#f0f7ee",
+          border: "1.5px solid #c8e0c4",
+          borderRadius: 16, padding: "1.5rem 2rem", marginBottom: 28,
         }}>
-          <span><strong style={{ color: "#EF4444" }}>0–20%</strong> Low</span>
-          <span><strong style={{ color: "#F59E0B" }}>21–50%</strong> Emerging</span>
-          <span><strong style={{ color: "#10B981" }}>51–70%</strong> Solid foundation</span>
-          <span><strong style={{ color: "#3B82F6" }}>71–85%</strong> Advanced</span>
-          <span><strong style={{ color: "#377A00" }}>86–100%</strong> Mastery</span>
+          <p style={{ fontSize: 17, color: "#2d3d2d", lineHeight: 1.75, margin: 0, fontWeight: 500 }}>
+            Discover your mental performance profile across <strong style={{ color: "#377A00" }}>7 core dimensions</strong>. Rate yourself
+            honestly on <strong style={{ color: "#377A00" }}>35 qualities</strong> to reveal your strengths, growth areas, and unique
+            competitor archetype.
+          </p>
         </div>
-
-        <br />
 
         <Link
           href="/self-mastery-profile/checkout"
