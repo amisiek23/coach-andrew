@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Measuring Elite Performance Consciousness | CoachAndrew",
   description:
-    "Why standard assessments fail advanced athletes — and how the Self Mastery Profile (SMP) provides a more precise instrument for a more precise mind.",
+    "Why standard assessments fail advanced athletes — and how the Elite Performance Awareness Scale (EPAS) provides a more precise instrument for a more precise mind.",
 };
 
 /* ── SVG Radar Chart ─────────────────────────────────────────────────── */
@@ -70,7 +70,7 @@ export default function MeasuringElitePerformancePage() {
             color: "#151716",
             margin: 0,
           }}>
-            Self Mastery Profile - SMP
+            Elite Performance Awareness Scale - EPAS
           </h1>
         </div>
       </section> */}
@@ -123,7 +123,7 @@ export default function MeasuringElitePerformancePage() {
                 <p style={{ ...styles.caption, color: "#9ca3af" }}>5 blunt categories. No nuance. No pressure-testing.</p>
               </div>
               <div style={{ borderLeft: "1px solid #e5e7eb", paddingLeft: "1.5rem" }}>
-                <p style={{ ...styles.label, color: "#377A00" }}>Mastery Spectrum (SMP)</p>
+                <p style={{ ...styles.label, color: "#377A00" }}>Mastery Spectrum (EPAS)</p>
                 <div style={{
                   position: "relative", height: 32,
                   background: "linear-gradient(to right, #e5e7eb, #9ca3af, #6b7280, #3b82f6, #1d4ed8)",
@@ -142,10 +142,10 @@ export default function MeasuringElitePerformancePage() {
 
           <hr style={styles.rule} />
 
-          {/* ── 3. What is the SMP ─────────────────────────────────────── */}
+          {/* ── 3. What is the EPAS ─────────────────────────────────────── */}
           <h2 style={styles.h2}>A More Precise Instrument for a More Precise Mind.</h2>
           <p style={styles.body}>
-            The <strong>Self Mastery Profile (SMP)</strong> is a percentage-based
+            The <strong>Elite Performance Awareness Scale (EPAS)</strong> is a percentage-based
             diagnostic tool designed specifically for advanced athletes. The SMP replaces blunt
             categories with a 0–100% scale, allowing for an honest, nuanced, and actionable
             assessment of your inner world. It is a tool that respects the complexity of your journey.
@@ -184,7 +184,7 @@ export default function MeasuringElitePerformancePage() {
             <strong style={{ display: "block", fontStyle: "normal", marginBottom: ".75rem", fontSize: "1.35em" }}>
               Your Profile Is Not a Label. It Is a Map.
             </strong>
-            The SMP is not designed to define you. It is a precise, dynamic
+            The EPAS is not designed to define you. It is a precise, dynamic
             map of your inner world, showing you exactly WHERE you are and illuminating the path
             forward. It is a tool for the continuous, lifelong journey of growth.
             <br /><br />

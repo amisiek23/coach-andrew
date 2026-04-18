@@ -327,19 +327,19 @@ const GateScreen = ({ onAccess }: { onAccess: (type: "quiz" | "consultation") =>
           Choose Your Experience
         </h1>
         <p style={{ fontSize: 16, color: "#3a4a3a", marginBottom: 36, lineHeight: 1.6 }}>
-          Select the option that fits you best to unlock your Self Mastery Profile.
+          Select the option that fits you best to unlock your Elite Performance Awareness Scale.
         </p>
 
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
           {card("consultation", "£75", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
-            "Complete Self Mastery Profile (35 questions)",
+            "Complete Elite Performance Awareness Scale (35 questions)",
             "Personal radar chart & archetype",
             "30-min 1-on-1 consultation with Andrew",
             "Personalised action plan",
           ], "#377A00")}
           {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised report", [
-            "Complete Self Mastery Profile (35 questions)",
+            "Complete Elite Performance Awareness Scale (35 questions)",
             "Personal radar chart & archetype",
             "Detailed feedback per dimension",
           ], "#6366F1")}
@@ -379,7 +379,7 @@ const GateScreen = ({ onAccess }: { onAccess: (type: "quiz" | "consultation") =>
         </div>
 
         <p style={{ marginTop: 24, fontSize: 14, color: "#6b7280" }}>
-          Want to know more about the SMP and how it was created?{" "}
+          Want to know more about the EPAS and how it was created?{" "}
           <a
             href="/measuring-elite-performance"
             style={{ color: "#377A00", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3 }}
@@ -397,7 +397,7 @@ const IntroScreen = ({ onStart }: { onStart: () => void }) => (
     <div style={{ textAlign: "center", maxWidth: 560 }}>
       <div style={{ fontSize: 56, marginBottom: 16 }}>🌿</div>
       <h1 style={{ fontSize: 36, fontWeight: 700, color: "#151716", lineHeight: 1.2, marginBottom: 8, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
-        Self Mastery Profile
+        Elite Performance Awareness Scale
       </h1>
       <p style={{ fontSize: 16, color: "#377A00", fontWeight: 600, marginBottom: 24, letterSpacing: 1.5, textTransform: "uppercase" }}>
         Advanced Athlete Diagnostic
@@ -594,7 +594,7 @@ const ProfileFormScreen = ({
     if (!form.consent) { setError("Please confirm informed consent to proceed."); return; }
     setSubmitting(true);
     setError("");
-    const participantId = `SMP-${Date.now().toString(36).toUpperCase()}`;
+    const participantId = `EPAS-${Date.now().toString(36).toUpperCase()}`;
     const payload = { profile: { ...form, participantId }, sectionResults, overall, accessType };
     try {
       await fetch("/api/save-results", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -741,7 +741,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <p style={{ fontSize: 14, color: "#7C3AED", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
-          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>Self Mastery Profile</h1>
+          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>Elite Performance Awareness Scale</h1>
         </div>
 
         <div style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginBottom: 32 }}>

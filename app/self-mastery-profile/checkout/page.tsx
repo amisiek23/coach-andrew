@@ -49,32 +49,34 @@ export default function CheckoutPage() {
     subtitle: string,
     perks: string[],
   ) => {
+    const busy = loading === plan;
     return (
       <div style={{
         background: "#fff", borderRadius: 20, padding: "32px 28px",
         boxShadow: "0 4px 24px rgba(0,0,0,0.08)", border: "2px solid #E2E8F0",
         display: "flex", flexDirection: "column", flex: 1,
-        opacity: 0.55, filter: "grayscale(0.3)",
       }}>
-        <div style={{ fontSize: 28, fontWeight: 800, color: "#94A3B8", marginBottom: 4 }}>{price}</div>
+        <div style={{ fontSize: 28, fontWeight: 800, color: "#377A00", marginBottom: 4 }}>{price}</div>
         <div style={{ fontSize: 18, fontWeight: 700, color: "#1E293B", marginBottom: 6 }}>{title}</div>
         <div style={{ fontSize: 14, color: "#64748B", marginBottom: 20, lineHeight: 1.5 }}>{subtitle}</div>
         <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", display: "flex", flexDirection: "column", gap: 8 }}>
           {perks.map((p) => (
-            <li key={p} style={{ fontSize: 14, color: "#94A3B8", display: "flex", gap: 8, alignItems: "flex-start" }}>
-              <span style={{ color: "#CBD5E1", fontWeight: 700, flexShrink: 0 }}>✓</span> {p}
+            <li key={p} style={{ fontSize: 14, color: "#3a4a3a", display: "flex", gap: 8, alignItems: "flex-start" }}>
+              <span style={{ color: "#377A00", fontWeight: 700, flexShrink: 0 }}>✓</span> {p}
             </li>
           ))}
         </ul>
         <button
-          disabled
+          onClick={() => handlePay(plan)}
+          disabled={loading !== null}
           style={{
             marginTop: "auto", padding: "14px 0", fontSize: 15, fontWeight: 600,
-            color: "#fff", background: "#CBD5E1",
-            border: "none", borderRadius: 50, cursor: "not-allowed",
+            color: "#fff", background: busy ? "#94b87a" : "linear-gradient(135deg, #377A00, #2f6a00)",
+            border: "none", borderRadius: 50, cursor: loading !== null ? "not-allowed" : "pointer",
+            boxShadow: busy ? "none" : "0 4px 14px rgba(55,122,0,0.3)",
           }}
         >
-          Coming Soon
+          {busy ? "Redirecting…" : "Get Started"}
         </button>
       </div>
     );
@@ -83,8 +85,8 @@ export default function CheckoutPage() {
   return (
     <div style={{
       minHeight: "100vh", display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center",
-      padding: "40px 24px",
+      alignItems: "center", justifyContent: "flex-start",
+      padding: "8px 24px 80px",
       background: "linear-gradient(135deg, #EAF7EB 0%, #e2ecdf 60%, #EAF7EB 100%)",
     }}>
       <div style={{ textAlign: "center", maxWidth: 680, width: "100%" }}>
@@ -98,19 +100,19 @@ export default function CheckoutPage() {
         </h1>
 
         <p style={{ fontSize: 16, color: "#3a4a3a", marginBottom: 36, lineHeight: 1.6 }}>
-          Select the option that fits you best to unlock your Self Mastery Profile.
+          Select the option that fits you best to unlock your Elite Performance Awareness Scale.
         </p>
 
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
           {card("consultation", "£75", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
-            "Complete Self Mastery Profile (35 questions)",
+            "Complete Elite Performance Awareness Scale (35 questions)",
             "Personal radar chart & archetype",
             "30-min 1-on-1 consultation with Andrew",
             "Personalised action plan",
           ])}
           {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised report", [
-            "Complete Self Mastery Profile (35 questions)",
+            "Complete Elite Performance Awareness Scale (35 questions)",
             "Personal radar chart & archetype",
             "Detailed feedback per dimension",
           ])}
@@ -121,7 +123,11 @@ export default function CheckoutPage() {
           {!codeOpen ? (
             <button
               onClick={() => { setCodeOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
-              style={{ background: "none", border: "none", cursor: "pointer", fontSize: 14, color: "#64748B", textDecoration: "underline" }}
+              style={{
+                background: "#fff", border: "2px solid #377A00", borderRadius: 50,
+                cursor: "pointer", fontSize: 14, fontWeight: 600,
+                color: "#377A00", padding: "10px 28px",
+              }}
             >
               I have an access code
             </button>
@@ -150,7 +156,7 @@ export default function CheckoutPage() {
         </div>
 
         <p style={{ marginTop: 24, fontSize: 14, color: "#6b7280" }}>
-          Want to know more about the SMP and how it was created?{" "}
+          Want to know more about the EPAS and how it was created?{" "}
           <a
             href="/measuring-elite-performance"
             style={{ color: "#377A00", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3 }}

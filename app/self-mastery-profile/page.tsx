@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Self Mastery Profile | CoachAndrew",
+  title: "Elite Performance Awareness Scale | CoachAndrew",
   description: "Discover your mental performance profile across 7 core dimensions.",
 };
 
@@ -23,7 +23,7 @@ export default function SelfMasteryProfileIntroPage() {
           lineHeight: 1.2, marginBottom: 4,
           fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
         }}>
-          Self Mastery Profile
+          Elite Performance Awareness Scale (EPAS)
         </h1>
         <p style={{
           fontSize: 14, color: "#377A00", fontWeight: 600,
