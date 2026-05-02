@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Baskerville, Open_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
 const libreBaskervilleFont = Libre_Baskerville({
   subsets: ["latin"],
@@ -37,10 +36,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${libreBaskervilleFont.variable} ${openSansFont.variable}`}>
-      <body className="flex flex-col min-h-screen" style={{ background: "#fff", color: "#151716" }}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="flex flex-col min-h-screen" style={{ background: "#fff", color: "#151716" }} suppressHydrationWarning>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
