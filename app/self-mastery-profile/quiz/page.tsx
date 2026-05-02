@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, Suspense } from "react";
+import { useState, useMemo, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   RadarChart,
@@ -267,6 +267,7 @@ const QuizScreen = ({
   const progress = (sectionIndex / totalSections) * 100;
   const isFirst = sectionIndex === 0;
   const isLast = sectionIndex === totalSections - 1;
+  const advanceRef = useRef<HTMLButtonElement>(null);
 
   const sectionAnswers = Array.from({ length: 5 }, (_, i) => answers[baseIdx + i]);
   const allAnswered = sectionAnswers.every((v) => v !== undefined && v !== 0);
@@ -326,6 +327,12 @@ const QuizScreen = ({
                         onAnswer(idx, isNaN(n) ? 0 : n);
                         setShowError(false);
                       }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Tab" && qi === 4) {
+                          e.preventDefault();
+                          advanceRef.current?.focus();
+                        }
+                      }}
                       style={{ width: 64, fontSize: 20, fontWeight: 700, color: "#2D5A8E", border: `2px solid ${showError && unanswered.includes(idx) ? "#FCA5A5" : "#BFDBFE"}`, borderRadius: 8, padding: "4px 6px", textAlign: "center", outline: "none", background: "#EEF2F7" }}
                     />
                     <span style={{ fontSize: 16, fontWeight: 600, color: "#2D5A8E" }}>%</span>
@@ -347,7 +354,7 @@ const QuizScreen = ({
                 ← Previous
               </button>
             )}
-            <button onClick={handleAdvance}
+            <button ref={advanceRef} onClick={handleAdvance}
               style={{ padding: "14px 36px", fontSize: 15, fontWeight: 600, color: "#fff", background: "linear-gradient(135deg, #1E3D6B, #2D5A8E)", border: "none", borderRadius: 50, cursor: "pointer", boxShadow: "0 4px 14px rgba(30,61,107,0.30)" }}
             >
               {isLast ? "See My Results →" : "Next Section →"}
@@ -428,6 +435,7 @@ const ProfileSelect = ({ id, label, options, required = false, value, onChange }
   </div>
 );
 
+// ProfileFormScreen hidden — data collection disabled
 const ProfileFormScreen = ({
   sectionResults, overall, accessType, onSubmit,
 }: {
@@ -750,7 +758,7 @@ function SelfMasteryProfileQuizInner() {
 
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
-  const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("profile")); };
+  const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
   if (phase === "loading") {
@@ -765,13 +773,7 @@ function SelfMasteryProfileQuizInner() {
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
         />
       )}
-      {phase === "profile" && (
-        <ProfileFormScreen
-          sectionResults={sectionResults} overall={overall} accessType={accessType}
-          onSubmit={() => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); }}
-        />
-      )}
-      {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
+{phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
     </div>
   );
 }
