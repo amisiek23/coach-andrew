@@ -106,13 +106,13 @@ export default function CheckoutPage() {
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
           {card("consultation", "£75", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
-            "Complete Elite Performance Awareness Scale (35 questions)",
+            "Complete High Performance Profile (35 questions)",
             "Personal radar chart & archetype",
             "30-min 1-on-1 consultation with Andrew",
             "Personalised action plan",
           ])}
           {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised report", [
-            "Complete Elite Performance Awareness Scale (35 questions)",
+            "Complete High Performance Profile (35 questions)",
             "Personal radar chart & archetype",
             "Detailed feedback per dimension",
           ])}
@@ -156,7 +156,7 @@ export default function CheckoutPage() {
         </div>
 
         <p style={{ marginTop: 24, fontSize: 14, color: "#6b7280" }}>
-          Want to know more about the EPAS and how it was created?{" "}
+          Want to know more about the HPP and how it was created?{" "}
           <a
             href="/measuring-elite-performance"
             style={{ color: "#377A00", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3 }}

@@ -77,7 +77,7 @@ export async function POST(req: Request) {
   const html = `
     <div style="font-family:sans-serif;max-width:700px;margin:0 auto;color:#1e2e1e;">
       <div style="background:linear-gradient(135deg,#2c6300,#4a9900);padding:24px 32px;border-radius:12px 12px 0 0;">
-        <h1 style="color:#fff;margin:0;font-size:22px;">New EPAS Submission</h1>
+        <h1 style="color:#fff;margin:0;font-size:22px;">New HPP Submission</h1>
         <p style="color:rgba(255,255,255,0.8);margin:4px 0 0;font-size:14px;">${p.participantId} · ${accessType === "consultation" ? "Full Experience" : "Assessment Only"}</p>
       </div>
       <div style="background:#f8faf8;padding:24px 32px;border:1px solid #d4e8d4;border-top:none;">
@@ -111,9 +111,9 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: "EPAS Results <onboarding@resend.dev>",
+      from: "HPP Results <onboarding@resend.dev>",
       to: "a.misiek23@gmail.com",
-      subject: `New EPAS: ${p.name} — ${Math.round(overall)}% [${p.participantId}]`,
+      subject: `New HPP: ${p.name} — ${Math.round(overall)}% [${p.participantId}]`,
       html,
     });
   } catch (err) {

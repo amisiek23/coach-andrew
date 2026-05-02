@@ -22,7 +22,7 @@ const SECTIONS = [
     title: "Inner Calm & Equanimity",
     subtitle: "How consistently do I embody emotional stability under pressure?",
     emoji: "🧘",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Calm",
     questions: [
       "I remain mentally calm under pressure",
@@ -44,7 +44,7 @@ const SECTIONS = [
     title: "Presence & Awareness",
     subtitle: "How deeply do I live in the present moment when competing?",
     emoji: "🎯",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Presence",
     questions: [
       "I stay present, point by point",
@@ -66,7 +66,7 @@ const SECTIONS = [
     title: "Freedom & Non-Attachment",
     subtitle: "How free am I from result-based identity and approval?",
     emoji: "🕊️",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Freedom",
     questions: [
       "Independence from needing to win",
@@ -88,7 +88,7 @@ const SECTIONS = [
     title: "Courage & Authentic Expression",
     subtitle: "How fully do I express my true game under pressure?",
     emoji: "🦁",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Courage",
     questions: [
      "I go for my shots rather than trying to avoid mistakes",
@@ -110,7 +110,7 @@ const SECTIONS = [
     title: "Responsibility & Inner Ownership",
     subtitle: "How much do I feel responsible for my choices and what happens in my life?",
     emoji: "⚡",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Ownership",
     questions: [
       "I take full responsibility for my performance",
@@ -133,7 +133,7 @@ const SECTIONS = [
     title: "Humility & Growth Mindset",
     subtitle: "How open and willing am I to learn and continuously improve?",
     emoji: "🌱",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Humility",
     questions: [
       "I learn from every match I play",
@@ -156,7 +156,7 @@ const SECTIONS = [
     title: "Inner Power & Alignment",
     subtitle: "How connected am I to my inner source of strength?",
     emoji: "💎",
-    color: "#377A00",
+    color: "#2D5A8E",
     shortName: "Power",
     questions: [
       "My actions are consistent with my words.",
@@ -268,6 +268,13 @@ const QuizScreen = ({
   const isFirst = sectionIndex === 0;
   const isLast = sectionIndex === totalSections - 1;
   const advanceRef = useRef<HTMLButtonElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Small delay so the fade-in transition completes before focusing
+    const t = setTimeout(() => firstInputRef.current?.focus(), 280);
+    return () => clearTimeout(t);
+  }, [sectionIndex]);
 
   const sectionAnswers = Array.from({ length: 5 }, (_, i) => answers[baseIdx + i]);
   const allAnswered = sectionAnswers.every((v) => v !== undefined && v !== 0);
@@ -317,6 +324,7 @@ const QuizScreen = ({
                   <p style={{ fontSize: 15, color: "#334155", fontWeight: 500, flex: 1, paddingRight: 16, lineHeight: 1.6, margin: 0 }}>{qi + 1}. {q}</p>
                   <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
                     <input
+                      ref={qi === 0 ? firstInputRef : undefined}
                       type="number" min={0} max={100} step={1}
                       value={val === 0 ? "" : val}
                       placeholder=""
@@ -454,7 +462,7 @@ const ProfileFormScreen = ({
     if (!form.consent) { setError("Please confirm informed consent to proceed."); return; }
     setSubmitting(true);
     setError("");
-    const participantId = `EPAS-${Date.now().toString(36).toUpperCase()}`;
+    const participantId = `HPP-${Date.now().toString(36).toUpperCase()}`;
     const payload = { profile: { ...form, participantId }, sectionResults, overall, accessType };
     try {
       await fetch("/api/save-results", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -597,14 +605,14 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%)", padding: "40px 20px 80px" }}>
+    <div className="results-root" style={{ minHeight: "100vh", background: "linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%)", padding: "40px 20px 80px" }}>
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <p style={{ fontSize: 14, color: "#377A00", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
-          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>Elite Performance Awareness Scale</h1>
+          <p style={{ fontSize: 14, color: "#2D5A8E", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
+          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>High Performance Profile</h1>
         </div>
 
-        <div style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginBottom: 32 }}>
+        <div className="print-card" style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginBottom: 32 }}>
           <div style={{ position: "relative", marginBottom: 20 }}>
             <CircleScore value={overall} color={overallLevel.fg} size={160} />
             <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
@@ -617,26 +625,26 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
           <p style={{ fontSize: 15, color: "#64748B", lineHeight: 1.7, maxWidth: 500 }}>{archetype.desc}</p>
         </div>
 
-        <div style={{ background: "#fff", borderRadius: 24, padding: "28px 16px 16px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 32 }}>
-          <h3 style={{ fontSize: 16, fontWeight: 600, color: "#475569", textAlign: "center", marginBottom: 8 }}>Mastery Dimensions</h3>
+        <div className="mastery-chart-card" style={{ background: "#fff", borderRadius: 24, padding: "28px 16px 16px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 32 }}>
+          <h3 style={{ fontSize: 16, fontWeight: 600, color: "#475569", textAlign: "center", marginBottom: 8 }}>Profile Dimensions</h3>
           <ResponsiveContainer width="100%" height={380}>
             <RadarChart data={chartData} outerRadius="75%">
               <PolarGrid stroke="#E2E8F0" />
               <PolarAngleAxis dataKey="subject" tick={<AxisLabel />} />
               <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10, fill: "#CBD5E1" }} axisLine={false} />
-              <Radar name="Score" dataKey="value" stroke="#6366F1" fill="#6366F1" fillOpacity={0.18} strokeWidth={2} animationDuration={1200} dot={{ r: 5, fill: "#6366F1", stroke: "#fff", strokeWidth: 2 }} />
+              <Radar name="Score" dataKey="value" stroke="#2D5A8E" fill="#2D5A8E" fillOpacity={0.18} strokeWidth={2} animationDuration={1200} dot={{ r: 5, fill: "#2D5A8E", stroke: "#fff", strokeWidth: 2 }} />
               <Tooltip content={<ChartTooltip />} />
             </RadarChart>
           </ResponsiveContainer>
         </div>
 
-        <div style={{ background: "#fff", borderRadius: 20, padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 32 }}>
+        <div className="profile-summary-card" style={{ background: "#fff", borderRadius: 20, padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 32 }}>
           <h3 style={{ fontSize: 16, fontWeight: 600, color: "#475569", marginBottom: 12 }}>📋 Profile Summary</h3>
           <p style={{ fontSize: 15, color: "#475569", lineHeight: 1.8 }}>{narrative}</p>
         </div>
 
         {accessType === "consultation" && (
-          <div style={{ background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)", borderRadius: 24, padding: "36px 32px", textAlign: "center", marginBottom: 32 }}>
+          <div className="print-card" style={{ background: "linear-gradient(135deg, #1E3D6B 0%, #2D5A8E 100%)", borderRadius: 24, padding: "36px 32px", textAlign: "center", marginBottom: 32 }}>
             <div style={{ fontSize: 32, marginBottom: 12 }}>📅</div>
             <h3 style={{ fontSize: 22, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Book Your Consultation</h3>
             <p style={{ fontSize: 15, color: "rgba(255,255,255,0.85)", marginBottom: 24, maxWidth: 440, margin: "0 auto 24px" }}>
@@ -646,7 +654,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
               href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/a-misiek23/30min"}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: "inline-block", padding: "14px 40px", background: "#fff", color: "#377A00", fontWeight: 700, fontSize: 16, borderRadius: 50, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
+              style={{ display: "inline-block", padding: "14px 40px", background: "#fff", color: "#2D5A8E", fontWeight: 700, fontSize: 16, borderRadius: 50, textDecoration: "none", boxShadow: "0 4px 14px rgba(0,0,0,0.15)" }}
             >
               Book on Calendly →
             </a>
@@ -658,7 +666,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
             const lvl = getLevel(r.avg);
             const sec = SECTIONS.find((s) => s.id === r.id)!;
             return (
-              <div key={r.id} style={{ background: "#fff", borderRadius: 20, padding: "24px 28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)", borderLeft: `4px solid ${sec.color}` }}>
+              <div key={r.id} className="print-card" style={{ background: "#fff", borderRadius: 20, padding: "24px 28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)", borderLeft: `4px solid ${sec.color}` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <span style={{ fontSize: 24 }}>{sec.emoji}</span>
@@ -683,6 +691,50 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
               </div>
             );
           })}
+        </div>
+
+        {/* PDF Download */}
+        <style>{`
+          @page { margin: 1.6cm; size: A4; }
+          @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .epas-no-print { display: none !important; }
+            .results-root { min-height: 0 !important; padding: 0 !important; background: none !important; }
+            .print-card { page-break-inside: avoid; }
+            .mastery-chart-card { page-break-inside: avoid; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+            .mastery-chart-card .recharts-responsive-container { height: 340px !important; width: 100% !important; }
+            .mastery-chart-card .recharts-wrapper { height: 340px !important; margin: 0 auto; }
+            .profile-summary-card { page-break-before: always; page-break-inside: avoid; }
+            .print-stripe { display: none !important; }
+          }
+        `}</style>
+        {/* White stripes — hidden on screen, fixed top/bottom on every printed page */}
+        <div className="print-stripe" style={{ display: "none", position: "fixed", top: 0, left: 0, right: 0, height: "1.5cm", background: "#fff", zIndex: 9999 }} />
+        <div className="print-stripe" style={{ display: "none", position: "fixed", bottom: 0, left: 0, right: 0, height: "1.5cm", background: "#fff", zIndex: 9999 }} />
+
+        <div className="epas-no-print" style={{ textAlign: "center", paddingBottom: 16 }}>
+          <button
+            onClick={() => {
+              const prev = document.title;
+              document.title = "High Performance Profile";
+              window.print();
+              document.title = prev;
+            }}
+            style={{
+              padding: "14px 44px",
+              background: "linear-gradient(135deg, #1E3D6B, #2D5A8E)",
+              color: "#fff",
+              border: "none",
+              borderRadius: 50,
+              fontSize: 16,
+              fontWeight: 600,
+              cursor: "pointer",
+              boxShadow: "0 4px 14px rgba(30,61,107,0.25)",
+              letterSpacing: 0.3,
+            }}
+          >
+            Download PDF
+          </button>
         </div>
 
       </div>
@@ -758,7 +810,29 @@ function SelfMasteryProfileQuizInner() {
 
   const handleNext   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i + 1)); };
   const handlePrev   = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setSectionIdx((i) => i - 1)); };
-  const handleFinish = () => { window.scrollTo({ top: 0, behavior: "smooth" }); transition(() => setPhase("results")); };
+  const handleFinish = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Send results via API (fire-and-forget — profile form is hidden so we pass an empty profile)
+    fetch("/api/save-results", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        profile: {
+          participantId: `HPP-${Date.now()}`,
+          name: "", email: "", age: "", genderIdentity: "", genderSelfDescribe: "",
+          nationality: "", educationLevel: "", sport: "", sportType: "",
+          competitiveLevel: "", yearsExperience: "", weeklyTrainingHours: "",
+          hasMentalCoaching: "", mentalCoachingDuration: "", hasMindfulnessPractice: "",
+          mindfulnessDuration: "", competitiveStatus: "", seasonStatus: "",
+          recentResultOrRanking: "", promptedBy: "", allowRecontact: "",
+        },
+        sectionResults,
+        overall,
+        accessType,
+      }),
+    }).catch(console.error);
+    transition(() => setPhase("results"));
+  };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
   if (phase === "loading") {
