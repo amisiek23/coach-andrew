@@ -183,6 +183,12 @@ export async function POST(req: Request) {
             </td>
           </tr>
         </table>
+        <!-- question scores -->
+        <div style="margin-bottom:12px;">
+          ${r.questionScores.map((s: number, i: number) =>
+            `<span style="display:inline-block;font-size:11px;color:#64748B;background:#F8FAFC;padding:3px 8px;border-radius:6px;border:1px solid #F1F5F9;margin:2px 3px 2px 0;">Q${i + 1}: ${s}%</span>`
+          ).join("")}
+        </div>
         <p style="font-size:13px;color:#64748B;line-height:1.7;margin:0;">${feedback}</p>
       </div>`;
   }).join("");
