@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Andrzej Misiek — performance coach, educator, and lifelong student of human potential.",
 };
 
-const PHOTO = "public/IMG_3273-1-717x1024.jpg";
+const PHOTO = "/IMG_3273-1-717x1024.jpg";
 
 const MEDALS = [
   { medal: "🥇", count: 5, label: "Gold" },
