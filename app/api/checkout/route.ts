@@ -2,26 +2,31 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { plan } = await req.json() as { plan: "consultation" | "quiz" };
+    const { plan, product = "hpp" } = await req.json() as {
+      plan: "consultation" | "quiz";
+      product?: "hpp" | "tsdp";
+    };
     const origin = req.nextUrl.origin;
-    const successUrl = `${origin}/self-mastery-profile/quiz?access=${plan}&session_id={CHECKOUT_SESSION_ID}`;
-    const cancelUrl  = `${origin}/self-mastery-profile/checkout`;
+    const quizPath   = product === "tsdp" ? "/true-self-discovery-profile/quiz" : "/self-mastery-profile/quiz";
+    const cancelPath = product === "tsdp" ? "/true-self-discovery-profile/checkout" : "/self-mastery-profile/checkout";
+    const successUrl = `${origin}${quizPath}?access=${plan}&session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl  = `${origin}${cancelPath}`;
 
     const stripeKey = process.env.STRIPE_SECRET_KEY ?? "";
 
     // Placeholder mode — no real Stripe key yet
     if (!stripeKey || stripeKey === "sk_test_placeholder") {
       return NextResponse.json({
-        url: `${origin}/self-mastery-profile/quiz?access=${plan}&session_id=dev_mock`,
+        url: `${origin}${quizPath}?access=${plan}&session_id=dev_mock`,
       });
     }
 
     const Stripe = (await import("stripe")).default;
     const stripe = new Stripe(stripeKey, { apiVersion: "2026-03-25.dahlia" });
 
-    const priceId = plan === "consultation"
-      ? process.env.STRIPE_PRICE_ID_75
-      : process.env.STRIPE_PRICE_ID_25;
+    const priceId = product === "tsdp"
+      ? (plan === "consultation" ? process.env.STRIPE_PRICE_ID_TSDP_CONSULTATION : process.env.STRIPE_PRICE_ID_TSDP_QUIZ)
+      : (plan === "consultation" ? process.env.STRIPE_PRICE_ID_100 : process.env.STRIPE_PRICE_ID_25);
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
