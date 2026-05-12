@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const STATIC_NAV = [
   { label: "Home",            href: "/" },
-  { label: "Shop",             href: "/self-mastery-profile" },
+  { label: "Shop",             href: "/shop" },
   { label: "Thinking Corner", href: "/blog" },
   { label: "About Me",        href: "/about" },
   { label: "Contact",         href: "/contact" },
