@@ -2,6 +2,10 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import {
+  RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  Radar, ResponsiveContainer, Tooltip,
+} from "recharts";
 
 /* ────────────────────────────────────────────────────────────────────
    DATA
@@ -12,6 +16,7 @@ const SECTIONS = [
     id: "uniqueness",
     label: "A",
     title: "Inner Sense of Uniqueness",
+    shortName: "Uniqueness",
     emoji: "🌱",
     questions: [
       "I feel that there is something unique about me, even if I can't fully describe it.",
@@ -25,6 +30,7 @@ const SECTIONS = [
     id: "authentic",
     label: "B",
     title: "Authentic vs Adapted Self",
+    shortName: "Authentic",
     emoji: "🔍",
     questions: [
       "I sometimes adjust who I am to fit in or be accepted.",
@@ -38,6 +44,7 @@ const SECTIONS = [
     id: "expression",
     label: "C",
     title: "Expression & Courage",
+    shortName: "Expression",
     emoji: "🔥",
     questions: [
       "I want to express myself more freely than I currently do.",
@@ -51,6 +58,7 @@ const SECTIONS = [
     id: "innervoice",
     label: "D",
     title: "Inner Voice & Direction",
+    shortName: "Inner Voice",
     emoji: "🧭",
     questions: [
       "I feel that I have an inner voice or intuition guiding me.",
@@ -64,6 +72,7 @@ const SECTIONS = [
     id: "depth",
     label: "E",
     title: "Depth & Meaning",
+    shortName: "Depth",
     emoji: "✨",
     questions: [
       "I am interested in understanding myself at a deeper level.",
@@ -277,6 +286,37 @@ const ResultsScreen = ({
           </div>
           <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, maxWidth: 500, margin: "0 auto" }}>{result.desc}</p>
         </div>
+
+        {/* Radar chart */}
+        {(() => {
+          const chartData = SECTIONS.map((sec, i) => ({
+            subject: sec.shortName,
+            value: Math.round((sectionYes[i] / 5) * 100),
+            fullMark: 100,
+          }));
+          const ChartTooltip = ({ active, payload }: { active?: boolean; payload?: { value: number; payload: { subject: string } }[] }) => {
+            if (!active || !payload?.length) return null;
+            return (
+              <div style={{ background: "#fff", padding: "8px 14px", borderRadius: 10, boxShadow: "0 4px 12px rgba(0,0,0,0.12)", fontSize: 14, color: "#1E293B", fontWeight: 600 }}>
+                {payload[0].payload.subject}: {payload[0].value}%
+              </div>
+            );
+          };
+          return (
+            <div style={{ background: "#fff", borderRadius: 20, padding: "28px 16px 16px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 24 }}>
+              <h3 style={{ fontSize: 16, fontWeight: 600, color: "#475569", textAlign: "center", marginBottom: 8 }}>Profile Dimensions</h3>
+              <ResponsiveContainer width="100%" height={340}>
+                <RadarChart data={chartData} outerRadius="72%">
+                  <PolarGrid stroke="#E2E8F0" />
+                  <PolarAngleAxis dataKey="subject" tick={{ fontSize: 13, fontWeight: 600, fill: "#377A00" }} />
+                  <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 10, fill: "#CBD5E1" }} axisLine={false} />
+                  <Radar name="Score" dataKey="value" stroke="#377A00" fill="#377A00" fillOpacity={0.18} strokeWidth={2} animationDuration={1200} dot={{ r: 5, fill: "#377A00", stroke: "#fff", strokeWidth: 2 }} />
+                  <Tooltip content={<ChartTooltip />} />
+                </RadarChart>
+              </ResponsiveContainer>
+            </div>
+          );
+        })()}
 
         {/* Section breakdown */}
         <div style={{ background: "#fff", borderRadius: 20, padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 24 }}>
