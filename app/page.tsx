@@ -148,7 +148,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
               { icon: "🎾", title: "Coaching Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
-              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/shop" },
+              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
               { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
             ].map(({ icon, title, body, href }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -161,7 +161,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
           </div>
 
           {/* closing statement */}
-          <div style={{
+          {/* <div style={{
             background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
             borderRadius: 16, padding: "2rem 2.5rem", marginTop: "0.5rem",
           }}>
@@ -172,7 +172,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
               color: "#fff", lineHeight: 1.8, margin: 0,
             }}>
               The goal is not only to make better tennis players, but also to help people find inner balance and connect with their True Self. From that place, both sport and everyday life are more effective, harmonious, and joyful. </p>
-          </div>
+          </div> */}
 
         </div>
       </section>
