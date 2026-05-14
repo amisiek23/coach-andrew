@@ -58,7 +58,7 @@ export default function HomePage() {
               fontSize: "1.125rem", color: "rgba(255,255,255,.82)",
               lineHeight: 1.65, marginBottom: "2.25rem", maxWidth: "480px",
             }}>
-              Breath. Act. Grow. An unorthodox approach to tennis, performance, and life in general.
+              Breath. Act. Grow. An unorthodox approach to tennis.
             </p>
 
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -115,7 +115,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
              </p>
 { 
             <p style={{ fontSize: "1.0rem" }}>
-             But when you dare to step forward and bet on yourself, that X transforms…it becomes the IT-Factor!
+             But when you dare to step forward and bet on yourself, that X transforms…it becomes the IT!
              </p> }
 
             {/* pull quote */}
@@ -131,7 +131,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
               color: "#2f6a00",
               lineHeight: 1.6,
             }}>
-            What many people call the “IT factor”, which seems to be something only a very few are endowed with, in reality it is not a mystery. It is something we all have it inside.
+            What many people call the “IT factor”, which seems to be something only a very few are endowed with, in reality it is not a mystery. It is something we all have inside us.
                  </blockquote>
 
             <p style={{ fontSize: "1.0rem" }}>
@@ -148,7 +148,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
               { icon: "🎾", title: "Coaching Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
-              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
+              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/shop" },
               { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
             ].map(({ icon, title, body, href }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -171,8 +171,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
               fontStyle: "italic", textAlign: "center",
               color: "#fff", lineHeight: 1.8, margin: 0,
             }}>
-              The goal is not only to make better tennis players, it is to help people become more conscious, more balanced, and more connected with their True Self. Because when that connection appears, improvement is no longer chased. It takes place naturally and joyfully. And from that place, both sport and life take on a different quality.
-            </p>
+              The goal is not only to make better tennis players, but also to help people find inner balance and connect with their True Self. From that place, both sport and everyday life are more effective, harmonious, and joyful. </p>
           </div>
 
         </div>
