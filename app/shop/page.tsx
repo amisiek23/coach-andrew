@@ -69,8 +69,46 @@ export default function ShopPage() {
         </div>
       </section>
 
+      {/* Foundation & Philosophy */}
+      <section style={{ padding: "3rem 0 0" }}>
+        <div className="container" style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ background: "#fff", borderRadius: 24, boxShadow: "0 4px 32px rgba(55,122,0,0.08)", overflow: "hidden", marginBottom: 40 }}>
+            <div style={{ background: "linear-gradient(135deg, #377A00 0%, #2f6a00 100%)", padding: "2.5rem 2.5rem 2rem" }}>
+              <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", color: "#a8d878", marginBottom: 10 }}>
+                Foundation &amp; Philosophy
+              </p>
+              <h2 style={{ fontSize: 28, fontWeight: 700, color: "#fff", lineHeight: 1.25, margin: 0, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
+                The Work Behind These Tools
+              </h2>
+            </div>
+            <div style={{ padding: "2.5rem" }}>
+              <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                This project sits at the intersection of <strong>performance, psychology, and inner development</strong>.
+                Over the years, many influential figures have explored parts of this path — from the behavioural focus of <strong>Tony Robbins</strong>,
+                to the depth of human emotion described by <strong>Gabor Maté</strong> and <strong>Nathaniel Branden</strong> in his 6 pillars,
+                the unconscious patterns explored by <strong>Carl Jung</strong>, and the awareness-based perspectives brought forward by <strong>Deepak Chopra</strong>.
+              </p>
+              <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+                What you will find here is not a repetition of those ideas — but their{" "}
+                <strong>integration through direct experience, coaching practice, and a long personal journey of inner work</strong>.
+              </p>
+              <blockquote style={{ margin: "0 0 1.5rem", padding: "1.25rem 1.5rem", background: "#EAF7EB", borderLeft: "4px solid #377A00", borderRadius: "0 12px 12px 0" }}>
+                <p style={{ fontSize: 17, fontStyle: "italic", color: "#1e3a1e", lineHeight: 1.75, margin: 0, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
+                  &quot;Real change happens when awareness, responsibility, and attention come together in action.&quot;
+                </p>
+              </blockquote>
+              <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, margin: 0 }}>
+                Through years of coaching, competition, and deeper spiritual exploration, this approach has been refined
+                into <strong>practical tools</strong> — designed not only to understand performance, but to{" "}
+                <strong>transform how you operate under pressure</strong>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Product cards */}
-      <section style={{ padding: "3rem 0 5rem" }}>
+      <section style={{ padding: "0 0 5rem" }}>
         <div className="container" style={{ maxWidth: 860, margin: "0 auto", padding: "0 24px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 28 }}>
             {products.map((p) => (
