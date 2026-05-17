@@ -9,18 +9,6 @@ export const metadata: Metadata = {
 
 const products = [
   {
-    emoji: "🎾",
-    tag: "Tennis Assessment",
-    title: "ITN Assessment",
-    subtitle: "International Tennis Number · Psychological Growth Tool",
-    desc: "The ITN On-Court Assessment rates your game across 5 sections. Used correctly it becomes a psychological framework — shifting players from a result mindset to a growth mindset.",
-    details: ["5-section on-court assessment", "Groundstrokes, volleys, serve & mobility", "Interactive score calculator", "Growth mindset framework by CoachAndrew"],
-    href: "/itn-assessment",
-    accent: "#377A00",
-    accentBg: "#EAF7EB",
-    price: "Free resource",
-  },
-  {
     emoji: "🌿",
     tag: "Performance",
     title: "High Performance Profile",
@@ -43,6 +31,18 @@ const products = [
     accent: "#377A00",
     accentBg: "#EAF7EB",
     price: "from £25",
+  },
+  {
+    emoji: "🎾",
+    tag: "Tennis Assessment",
+    title: "ITN Assessment",
+    subtitle: "International Tennis Number · Psychological Growth Tool",
+    desc: "The ITN On-Court Assessment rates your game across 5 sections. Used correctly it becomes a psychological framework — shifting players from a result mindset to a growth mindset.",
+    details: ["5-section on-court assessment", "Groundstrokes, volleys, serve & mobility", "Interactive score calculator", "Growth mindset framework by CoachAndrew"],
+    href: "/itn-assessment",
+    accent: "#377A00",
+    accentBg: "#EAF7EB",
+    price: "Free resource",
   },
 ];
 
