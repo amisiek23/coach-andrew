@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const STATIC_NAV = [
   { label: "Home",            href: "/" },
@@ -13,6 +14,7 @@ const STATIC_NAV = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header style={{
@@ -35,16 +37,27 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }} className="desktop-nav">
-          {STATIC_NAV.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9375rem", fontWeight: 500, color: "#377A00" }}
-              className="nav-link"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {STATIC_NAV.map((link) => {
+            const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  fontFamily: "var(--font-body), system-ui, sans-serif",
+                  fontSize: ".9375rem",
+                  fontWeight: active ? 700 : 500,
+                  color: active ? "#2f6a00" : "#377A00",
+                  borderBottom: active ? "2px solid #377A00" : "2px solid transparent",
+                  paddingBottom: "2px",
+                  textDecoration: "none",
+                }}
+                className="nav-link"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Hamburger — mobile only */}
@@ -75,22 +88,27 @@ export default function Header() {
           boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
         }}>
           <nav style={{ display: "flex", flexDirection: "column", padding: "0.25rem 1.25rem 0.75rem" }}>
-            {STATIC_NAV.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                style={{
-                  fontFamily: "var(--font-body), system-ui, sans-serif",
-                  fontSize: "1rem", fontWeight: 500, color: "#151716",
-                  padding: "0.85rem 0",
-                  borderBottom: "1px solid #e8f0e8",
-                  display: "block", textDecoration: "none",
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {STATIC_NAV.map((link) => {
+              const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  style={{
+                    fontFamily: "var(--font-body), system-ui, sans-serif",
+                    fontSize: "1rem",
+                    fontWeight: active ? 700 : 500,
+                    color: active ? "#377A00" : "#151716",
+                    padding: "0.85rem 0",
+                    borderBottom: "1px solid #e8f0e8",
+                    display: "block", textDecoration: "none",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

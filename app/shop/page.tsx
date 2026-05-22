@@ -9,18 +9,6 @@ export const metadata: Metadata = {
 
 const products = [
   {
-    emoji: "🌿",
-    tag: "Performance",
-    title: "High Performance Profile",
-    subtitle: "HPP · Advanced Athlete Diagnostic",
-    desc: "Discover your mental performance profile across 7 core dimensions. Rate yourself honestly on 35 qualities to reveal your strengths, growth areas, and unique competitor archetype.",
-    details: ["35 questions across 7 dimensions", "Radar chart & competitor archetype", "Personalised feedback per dimension", "Optional 30-min consultation with Andrew"],
-    href: "/self-mastery-profile",
-    accent: "#2D5A8E",
-    accentBg: "#EEF4FF",
-    price: "from £25",
-  },
-  {
     emoji: "✨",
     tag: "Self-Discovery",
     title: "True Self Discovery Profile",
@@ -30,6 +18,18 @@ const products = [
     href: "/true-self-discovery-profile",
     accent: "#377A00",
     accentBg: "#EAF7EB",
+    price: "from £25",
+  },
+  {
+    emoji: "🌿",
+    tag: "Performance",
+    title: "High Performance Profile",
+    subtitle: "HPP · Advanced Athlete Diagnostic",
+    desc: "Discover your mental performance profile across 7 core dimensions. Rate yourself honestly on 35 qualities to reveal your strengths, growth areas, and unique competitor archetype.",
+    details: ["35 questions across 7 dimensions", "Radar chart & competitor archetype", "Personalised feedback per dimension", "Optional 30-min consultation with Andrew"],
+    href: "/self-mastery-profile",
+    accent: "#2D5A8E",
+    accentBg: "#EEF4FF",
     price: "from £25",
   },
   {
@@ -49,25 +49,6 @@ const products = [
 export default function ShopPage() {
   return (
     <div style={{ background: "#fff" }}>
-
-      {/* Header */}
-      <section style={{ background: "var(--green-pale)", padding: "4rem 0 3rem", borderBottom: "1px solid var(--border)" }}>
-        <div className="container" style={{ textAlign: "center" }}>
-          <p style={{ fontSize: ".75rem", fontWeight: 600, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--green)", marginBottom: ".5rem" }}>
-            Programmes &amp; Products
-          </p>
-          <h1 style={{
-            fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
-            fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
-            fontWeight: 700, color: "var(--text)", marginBottom: ".75rem",
-          }}>
-            Shop
-          </h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "1rem", maxWidth: "460px", margin: "0 auto" }}>
-            Coaching programmes, assessments and tools to help you grow.
-          </p>
-        </div>
-      </section>
 
       {/* Foundation & Philosophy */}
       <section style={{ padding: "3rem 0 0" }}>
