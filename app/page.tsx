@@ -71,7 +71,7 @@ export default function HomePage() {
 
       {/* ── STATS STRIP ──────────────────────────────────────────────────── */}
       <section style={{ background: "#377A00", color: "#fff", padding: "2rem 0" }}>
-        <div className="container stats-strip" style={{ display: "flex", justifyContent: "center", gap: "clamp(1rem, 2.5vw, 3rem)", flexWrap: "nowrap" }}>
+        <div className="container stats-strip" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))", gap: "1.5rem 1rem", justifyItems: "center" }}>
           {[
             { number: "25+",           label: "Years coaching" },
             { number: "5🥇 3🥈 5🥉",   label: "National medals" },

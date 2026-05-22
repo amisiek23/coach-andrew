@@ -112,7 +112,7 @@ export default function AboutPage() {
               </p>
 
               <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
-                <Link href="/self-mastery-profile" className="btn btn-green">Start Your Journey</Link>
+                <Link href="/shop" className="btn btn-green">Start Your Journey</Link>
                 <Link href="/blog"    className="btn btn-outline-green">Read the Blog</Link>
               </div>
             </div>
