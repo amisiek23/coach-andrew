@@ -29,7 +29,7 @@ export default function USAIntroPage() {
           fontSize: 14, color: "#377A00", fontWeight: 600,
           marginBottom: 0, letterSpacing: 1.5, textTransform: "uppercase",
         }}>
-          USA · A Self-Mirror in 25 Questions
+          A Self-Mirror in 25 Questions
         </p>
       </div>
 
@@ -39,30 +39,19 @@ export default function USAIntroPage() {
           background: "#fff",
           borderRadius: 24,
           boxShadow: "0 4px 32px rgba(55,122,0,0.08)",
-          overflow: "hidden",
+          padding: "2.5rem",
         }}>
-          <div style={{
-            background: "linear-gradient(135deg, #377A00 0%, #2f6a00 100%)",
-            padding: "2.5rem 2.5rem 2rem",
-          }}>
-            <p style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: ".18em",
-              textTransform: "uppercase", color: "#a8d878", marginBottom: 10,
-            }}>
-              Before You Begin
-            </p>
             <h2 style={{
-              fontSize: 28, fontWeight: 700, color: "#fff", lineHeight: 1.25, margin: 0,
+              fontSize: 28, fontWeight: 700, color: "#2f6a00", lineHeight: 1.25, margin: "0 0 1.5rem",
               fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
             }}>
               This Questionnaire is a Mirror
             </h2>
-          </div>
 
-          <div style={{ padding: "2.5rem" }}>
+          <div>
             <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, marginBottom: "1.5rem" }}>
               This is not diagnostic in the traditional sense. It is designed to{" "}
-              <strong>feel personal, feel safe, and feel revealing</strong> — without judgment.
+              <strong>feel personal and be revealing</strong> — without judgment.
               Each question invites you to look inward, beyond your roles, your achievements,
               and the expectations placed on you.
             </p>

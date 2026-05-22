@@ -39,15 +39,33 @@ export default function SelfMasteryProfileIntroPage() {
       background: "linear-gradient(135deg, #EAF7EB 0%, #e2ecdf 60%, #EAF7EB 100%)",
     }}>
 
+      {/* ── TITLE ───────────────────────────────────────────────────── */}
+      <div style={{ textAlign: "center", marginBottom: "2rem" }}>
+        <div style={{ fontSize: 56, marginBottom: 12 }}>🌿</div>
+        <p style={{
+          fontSize: 13, color: "#377A00", fontWeight: 700,
+          letterSpacing: ".16em", textTransform: "uppercase", marginBottom: 6,
+        }}>
+          Performance
+        </p>
+        <h1 style={{
+          fontSize: 36, fontWeight: 700, color: "#151716",
+          lineHeight: 1.2, marginBottom: 4,
+          fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
+        }}>
+          Elite Tennis Profile
+        </h1>
+      </div>
+
       {/* ── ARTICLE CONTENT ─────────────────────────────────────────── */}
-      <section style={{ width: "100%", maxWidth: 760, marginBottom: "2rem", marginTop: "4rem" }}>
+      <section style={{ width: "100%", maxWidth: 760, marginBottom: "2rem", marginTop: "0" }}>
       <div style={{ background: "#fff", borderRadius: 24, boxShadow: "0 4px 32px rgba(55,122,0,0.08)", padding: "2.5rem 2.5rem" }}>
       <article style={{
         fontFamily: "var(--font-body), 'Open Sans', system-ui, sans-serif",
         color: "#2a3a2a", lineHeight: 1.8,
       }}>
         <h2 style={styles.h2}>The Elite Mind Is Not a Checklist.</h2>
-        <p style={styles.lead}>
+        <p style={styles.body}>
           Advanced athletes operate beyond simple &lsquo;agree or disagree.&rsquo; Your mental game
           is a complex, dynamic system. Why are the tools used to measure it so often shallow and
           imprecise? Standard assessments fail to capture the subtle gradations of mastery.
