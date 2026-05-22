@@ -4,7 +4,10 @@
       "WebFetch(domain:wpstrona.wpmudev.host)",
       "Bash(cd:*)",
       "Bash(npx tsc:*)",
-      "Bash(brew install:*)"
+      "Bash(brew install:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

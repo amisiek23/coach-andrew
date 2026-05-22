@@ -46,7 +46,7 @@ export async function POST(req: Request) {
   };
 
   const result     = RESULTS.find((r) => totalYes >= r.min && totalYes <= r.max) ?? RESULTS[RESULTS.length - 1];
-  const participantId = `TSDP-${Date.now().toString(36).toUpperCase()}`;
+  const participantId = `USA-${Date.now().toString(36).toUpperCase()}`;
 
   /* ── Section breakdown cards ─────────────────────────────────────── */
   const sectionCards = SECTIONS.map((sec, i) => {
@@ -93,7 +93,7 @@ export async function POST(req: Request) {
         <!-- Header -->
         <div style="background:linear-gradient(135deg,#377A00,#2f6a00);padding:36px 32px;text-align:center;">
           <p style="font-size:12px;color:#a8d878;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your Results</p>
-          <h1 style="font-size:26px;font-weight:700;color:#fff;margin:0;font-family:Georgia,serif;">The Unique Self Assessment</h1>
+          <h1 style="font-size:26px;font-weight:700;color:#fff;margin:0;font-family:Georgia,serif;">Unique Self Assessment</h1>
         </div>
 
         <div style="padding:32px;">
@@ -143,9 +143,9 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: "TSDP Results <onboarding@resend.dev>",
+      from: "USA Results <onboarding@resend.dev>",
       to: "a.misiek23@gmail.com",
-      subject: `New TSDP Submission — ${totalYes}/25 YES · ${result.label} [${participantId}]`,
+      subject: `New USA Submission — ${totalYes}/25 YES · ${result.label} [${participantId}]`,
       html,
     });
   } catch (err) {

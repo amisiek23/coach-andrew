@@ -462,7 +462,7 @@ const ProfileFormScreen = ({
     if (!form.consent) { setError("Please confirm informed consent to proceed."); return; }
     setSubmitting(true);
     setError("");
-    const participantId = `HPP-${Date.now().toString(36).toUpperCase()}`;
+    const participantId = `ETP-${Date.now().toString(36).toUpperCase()}`;
     const payload = { profile: { ...form, participantId }, sectionResults, overall, accessType };
     try {
       await fetch("/api/save-results", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -609,7 +609,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
       <div style={{ maxWidth: 720, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 40 }}>
           <p style={{ fontSize: 14, color: "#2D5A8E", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
-          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>High Performance Profile</h1>
+          <h1 style={{ fontSize: 32, fontWeight: 700, color: "#1E293B", marginBottom: 4 }}>Elite Tennis Profile</h1>
         </div>
 
         <div className="print-card" style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginBottom: 32 }}>
@@ -716,7 +716,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
           <button
             onClick={() => {
               const prev = document.title;
-              document.title = "High Performance Profile";
+              document.title = "Elite Tennis Profile";
               window.print();
               document.title = prev;
             }}
@@ -818,7 +818,7 @@ function SelfMasteryProfileQuizInner() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         profile: {
-          participantId: `HPP-${Date.now()}`,
+          participantId: `ETP-${Date.now()}`,
           name: "", email: "", age: "", genderIdentity: "", genderSelfDescribe: "",
           nationality: "", educationLevel: "", sport: "", sportType: "",
           competitiveLevel: "", yearsExperience: "", weeklyTrainingHours: "",

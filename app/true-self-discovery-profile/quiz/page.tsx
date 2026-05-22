@@ -260,7 +260,7 @@ const ResultsScreen = ({
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <p style={{ fontSize: 14, color: "#377A00", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
           <h1 style={{ fontSize: 30, fontWeight: 700, color: "#151716", marginBottom: 4, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
-            The Unique Self Assessment
+            Unique Self Assessment
           </h1>
         </div>
 
@@ -396,7 +396,7 @@ const ResultsScreen = ({
           <button
             onClick={() => {
               const prev = document.title;
-              document.title = "The Unique Self Assessment";
+              document.title = "Unique Self Assessment";
               window.print();
               document.title = prev;
             }}
@@ -420,7 +420,7 @@ const ResultsScreen = ({
    MAIN
    ──────────────────────────────────────────────────────────────────── */
 
-function TSDPQuizInner() {
+function USAQuizInner() {
   const router       = useRouter();
   const searchParams = useSearchParams();
   const [phase, setPhase]           = useState<"loading" | "quiz" | "results">("loading");
@@ -508,14 +508,14 @@ function TSDPQuizInner() {
   );
 }
 
-export default function TSDPQuizPage() {
+export default function USAQuizPage() {
   return (
     <Suspense fallback={
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#EAF7EB" }}>
         <span style={{ color: "#377A00", fontSize: 18 }}>Loading…</span>
       </div>
     }>
-      <TSDPQuizInner />
+      <USAQuizInner />
     </Suspense>
   );
 }

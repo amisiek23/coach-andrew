@@ -60,7 +60,7 @@ function buildNarrative(sectionResults: { title: string; avg: number }[], overal
   const top2 = sorted.slice(0, 2);
   const bot2 = sorted.slice(-2).reverse();
   const range = sorted[0].avg - sorted[sorted.length - 1].avg;
-  let text = `Your overall High Performance Profile score is ${Math.round(overall)}%, placing you in the "${getArchetype(overall).title}" archetype. `;
+  let text = `Your overall Elite Tennis Profile score is ${Math.round(overall)}%, placing you in the "${getArchetype(overall).title}" archetype. `;
   text += `Your greatest strengths are ${top2[0].title} (${Math.round(top2[0].avg)}%) and ${top2[1].title} (${Math.round(top2[1].avg)}%), which form the core of your competitive mental game. `;
   text += `Your most impactful growth opportunities lie in ${bot2[0].title} (${Math.round(bot2[0].avg)}%) and ${bot2[1].title} (${Math.round(bot2[1].avg)}%). Focusing here will unlock the most significant gains in your overall performance.`;
   if (range <= 15) text += " Your profile shows excellent balance across all dimensions — no single area is dramatically different from the others, suggesting a well-rounded approach to mental training.";
@@ -202,7 +202,7 @@ export async function POST(req: Request) {
         <!-- Header -->
         <div style="background:linear-gradient(135deg,#1E3D6B,#2D5A8E);padding:36px 32px;text-align:center;">
           <p style="font-size:12px;color:#93C5FD;letter-spacing:2px;text-transform:uppercase;margin:0 0 8px;">Your Results</p>
-          <h1 style="font-size:26px;font-weight:700;color:#fff;margin:0;">High Performance Profile</h1>
+          <h1 style="font-size:26px;font-weight:700;color:#fff;margin:0;">Elite Tennis Profile</h1>
         </div>
 
         <div style="padding:32px;">
@@ -235,9 +235,9 @@ export async function POST(req: Request) {
 
   try {
     await resend.emails.send({
-      from: "HPP Results <onboarding@resend.dev>",
+      from: "ETP Results <onboarding@resend.dev>",
       to: "a.misiek23@gmail.com",
-      subject: `New HPP Submission — ${Math.round(overall)}% · ${archetype.title} [${p.participantId}]`,
+      subject: `New ETP Submission — ${Math.round(overall)}% · ${archetype.title} [${p.participantId}]`,
       html,
     });
   } catch (err) {

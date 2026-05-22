@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "The Unique Self Assessment | CoachAndrew",
+  title: "Unique Self Assessment | CoachAndrew",
   description: "A self-mirror in 25 questions. Discover who you are beyond roles, expectations, and external validation.",
 };
 
-export default function TSDPIntroPage() {
+export default function USAIntroPage() {
   return (
     <div style={{
       minHeight: "100vh", display: "flex", flexDirection: "column",
@@ -23,13 +23,13 @@ export default function TSDPIntroPage() {
           lineHeight: 1.2, marginBottom: 4,
           fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
         }}>
-          The Unique Self Assessment
+          Unique Self Assessment
         </h1>
         <p style={{
           fontSize: 14, color: "#377A00", fontWeight: 600,
           marginBottom: 0, letterSpacing: 1.5, textTransform: "uppercase",
         }}>
-          TSDP · A Self-Mirror in 25 Questions
+          USA · A Self-Mirror in 25 Questions
         </p>
       </div>
 

@@ -11,8 +11,8 @@ const products = [
   {
     emoji: "✨",
     tag: "Self-Discovery",
-    title: "The Unique Self Assessment",
-    subtitle: "TSDP · A Self-Mirror in 25 Questions",
+    title: "Unique Self Assessment",
+    subtitle: "USA · A Self-Mirror in 25 Questions",
     desc: "Explore who you are beyond roles, expectations, and external validation. 25 YES/NO questions across five dimensions of inner self-discovery.",
     details: ["25 YES/NO questions across 5 dimensions", "Section-by-section breakdown", "4-tier self-discovery activation result", "Optional 30-min consultation with Andrew"],
     href: "/true-self-discovery-profile",
@@ -23,8 +23,8 @@ const products = [
   {
     emoji: "🌿",
     tag: "Performance",
-    title: "High Performance Profile",
-    subtitle: "HPP · Advanced Athlete Diagnostic",
+    title: "Elite Tennis Profile",
+    subtitle: "ETP · Advanced Athlete Diagnostic",
     desc: "Discover your mental performance profile across 7 core dimensions. Rate yourself honestly on 35 qualities to reveal your strengths, growth areas, and unique competitor archetype.",
     details: ["35 questions across 7 dimensions", "Radar chart & competitor archetype", "Personalised feedback per dimension", "Optional 30-min consultation with Andrew"],
     href: "/self-mastery-profile",
