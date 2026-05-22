@@ -260,7 +260,7 @@ const ResultsScreen = ({
         <div style={{ textAlign: "center", marginBottom: 32 }}>
           <p style={{ fontSize: 14, color: "#377A00", fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>Your Results</p>
           <h1 style={{ fontSize: 30, fontWeight: 700, color: "#151716", marginBottom: 4, fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif" }}>
-            True Self Discovery Profile
+            The Unique Self Assessment
           </h1>
         </div>
 
@@ -396,7 +396,7 @@ const ResultsScreen = ({
           <button
             onClick={() => {
               const prev = document.title;
-              document.title = "True Self Discovery Profile";
+              document.title = "The Unique Self Assessment";
               window.print();
               document.title = prev;
             }}

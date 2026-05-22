@@ -105,19 +105,19 @@ export default function TSDPCheckoutPage() {
         </h1>
 
         <p style={{ fontSize: 16, color: "#3a4a3a", marginBottom: 36, lineHeight: 1.6 }}>
-          Select the option that fits you best to begin your True Self Discovery Profile.
+          Select the option that fits you best to begin your The Unique Self Assessment.
         </p>
 
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
           {card("consultation", "£100", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
-            "Complete True Self Discovery Profile (25 questions)",
+            "Complete The Unique Self Assessment (25 questions)",
             "Personalised results across 5 dimensions",
             "30-min 1-on-1 consultation with Andrew",
             "Personalised reflection and next steps",
           ])}
           {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised results", [
-            "Complete True Self Discovery Profile (25 questions)",
+            "Complete The Unique Self Assessment (25 questions)",
             "Personalised results across 5 dimensions",
             "Section-by-section breakdown",
           ])}

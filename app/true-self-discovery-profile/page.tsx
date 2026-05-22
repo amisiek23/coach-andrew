@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "True Self Discovery Profile | CoachAndrew",
+  title: "The Unique Self Assessment | CoachAndrew",
   description: "A self-mirror in 25 questions. Discover who you are beyond roles, expectations, and external validation.",
 };
 
@@ -23,7 +23,7 @@ export default function TSDPIntroPage() {
           lineHeight: 1.2, marginBottom: 4,
           fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
         }}>
-          True Self Discovery Profile
+          The Unique Self Assessment
         </h1>
         <p style={{
           fontSize: 14, color: "#377A00", fontWeight: 600,

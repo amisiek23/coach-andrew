@@ -11,7 +11,7 @@ const products = [
   {
     emoji: "✨",
     tag: "Self-Discovery",
-    title: "True Self Discovery Profile",
+    title: "The Unique Self Assessment",
     subtitle: "TSDP · A Self-Mirror in 25 Questions",
     desc: "Explore who you are beyond roles, expectations, and external validation. 25 YES/NO questions across five dimensions of inner self-discovery.",
     details: ["25 YES/NO questions across 5 dimensions", "Section-by-section breakdown", "4-tier self-discovery activation result", "Optional 30-min consultation with Andrew"],
