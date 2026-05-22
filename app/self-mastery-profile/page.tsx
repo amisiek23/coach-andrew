@@ -40,9 +40,9 @@ export default function SelfMasteryProfileIntroPage() {
     }}>
 
       {/* ── ARTICLE CONTENT ─────────────────────────────────────────── */}
+      <section style={{ width: "100%", maxWidth: 760, marginBottom: "2rem", marginTop: "4rem" }}>
+      <div style={{ background: "#fff", borderRadius: 24, boxShadow: "0 4px 32px rgba(55,122,0,0.08)", padding: "2.5rem 2.5rem" }}>
       <article style={{
-        width: "100%", maxWidth: 760, marginBottom: "2rem",
-        marginTop: "2rem",
         fontFamily: "var(--font-body), 'Open Sans', system-ui, sans-serif",
         color: "#2a3a2a", lineHeight: 1.8,
       }}>
@@ -133,6 +133,8 @@ export default function SelfMasteryProfileIntroPage() {
           Every percentage is an invitation. Not a verdict.
         </blockquote>
       </article>
+      </div>
+      </section>
 
       {/* ── DIAGNOSTIC INTRO ────────────────────────────────────────── */}
       <div style={{ textAlign: "center", maxWidth: 760 }}>

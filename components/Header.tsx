@@ -12,6 +12,14 @@ const STATIC_NAV = [
   { label: "Contact",         href: "/contact" },
 ];
 
+const SHOP_ROUTES = [
+  "/shop",
+  "/self-mastery-profile",
+  "/true-self-discovery-profile",
+  "/itn-assessment",
+  "/measuring-elite-performance",
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -38,7 +46,7 @@ export default function Header() {
         {/* Desktop nav */}
         <nav aria-label="Main navigation" style={{ display: "flex", alignItems: "center", gap: "2.25rem" }} className="desktop-nav">
           {STATIC_NAV.map((link) => {
-            const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            const active = link.href === "/" ? pathname === "/" : link.href === "/shop" ? SHOP_ROUTES.some(r => pathname.startsWith(r)) : pathname.startsWith(link.href);
             return (
               <Link
                 key={link.href}
@@ -89,7 +97,7 @@ export default function Header() {
         }}>
           <nav style={{ display: "flex", flexDirection: "column", padding: "0.25rem 1.25rem 0.75rem" }}>
             {STATIC_NAV.map((link) => {
-              const active = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              const active = link.href === "/" ? pathname === "/" : link.href === "/shop" ? SHOP_ROUTES.some(r => pathname.startsWith(r)) : pathname.startsWith(link.href);
               return (
                 <Link
                   key={link.href}
