@@ -43,7 +43,7 @@ export default function BlogPage() {
           </p>
 
           <p style={{ fontSize: "1.0625rem", color: "var(--text)", lineHeight: 1.75, marginBottom: "1.25rem" }}>
-            Coaching isn&apos;t about giving you a script to follow. It&apos;s about helping you see your own patterns more clearly, so you can choose differently when it matters most.
+            My coaching isn&apos;t about giving you a script to follow. It&apos;s about helping you see your own patterns more clearly, so you can choose differently when it matters most.
           </p>
 
           <h2 style={{ fontFamily: "var(--font-heading), serif", fontSize: "1.125rem", fontWeight: 700, color: "var(--text)", marginBottom: ".75rem" }}>
