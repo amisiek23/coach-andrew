@@ -100,7 +100,7 @@ export default function HomePage() {
             fontWeight: 700, lineHeight: 1.2,
             color: "var(--text)", marginBottom: "2.5rem", textAlign: "center",
           }}>
-            The Idea Behind the Project
+            The Idea Behind it
           </h2>
 
           <div style={{
