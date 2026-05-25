@@ -135,7 +135,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
                  </blockquote>
 
             <p style={{ fontSize: "1.0rem" }}>
-              Today my coaching and The Project are built around igniting this fire within. Tennis has become a laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of our reality.
+              Today my coaching and THE Project are built around igniting this fire within. Tennis has become a laboratory for understanding this process, but the same principle applies far beyond sport. It is universal to any area of our reality.
             </p>
           </div>
 
