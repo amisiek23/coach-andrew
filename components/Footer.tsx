@@ -27,7 +27,7 @@ export default function Footer() {
               Breath. Act. Grow.
             </p>
             <p style={{ fontSize: ".875rem", color: "#888", lineHeight: 1.65 }}>
-              First Principle Coaching for meaning, performance and lasting personal growth.
+              First Principles Coaching for meaning, performance and lasting personal growth.
             </p>
           </div>
 

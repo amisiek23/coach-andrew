@@ -99,7 +99,7 @@ export default function ITNIntroPage() {
               Most players unconsciously develop a <strong>result-oriented mindset</strong> — judging themselves mainly through winning or losing, rankings, comparison with others, and short-term outcomes.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: "1.5rem" }}>
-              {["Anxiety", "Frustration", "Fear of mistakes", "Emotional instability", "Inconsistent confidence"].map((item) => (
+              {["Anxiety", "Frustration", "Fear of losing", "Emotional instability", "Inconsistent confidence"].map((item) => (
                 <div key={item} style={{ background: "#FEF2F2", borderRadius: 10, padding: "10px 14px", display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ color: "#EF4444", fontWeight: 700 }}>·</span>
                   <span style={{ fontSize: 14, color: "#334155" }}>{item}</span>
