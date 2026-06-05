@@ -183,20 +183,6 @@ export default function SelfMasteryProfileIntroPage() {
           >
             Begin Assessment
           </Link>
-          <Link
-            href="/measuring-elite-performance"
-            style={{
-              display: "inline-block",
-              padding: "16px 40px", fontSize: 17, fontWeight: 600,
-              color: "#377A00",
-              background: "#fff",
-              border: "2px solid #377A00",
-              borderRadius: 50,
-              textDecoration: "none",
-            }}
-          >
-            Learn More →
-          </Link>
         </div>
       </div>
     </div>
