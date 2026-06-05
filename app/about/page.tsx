@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 const PHOTO = "/IMG_3273-1-717x1024.jpg";
 
+
 const MEDALS = [
   { medal: "🥇", count: 5, label: "Gold" },
   { medal: "🥈", count: 3, label: "Silver" },
@@ -112,7 +113,7 @@ export default function AboutPage() {
               </p>
 
               <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
-                <Link href="/shop" className="btn btn-green">Start Your Journey</Link>
+                <Link href="/self-mastery-profile" className="btn btn-green">Start Your Journey</Link>
                 <Link href="/blog"    className="btn btn-outline-green">Read the Blog</Link>
               </div>
             </div>
@@ -192,7 +193,7 @@ export default function AboutPage() {
             fontSize: "clamp(1.6rem, 3.5vw, 2.25rem)",
             fontWeight: 700, color: "var(--text)", marginBottom: "1.5rem",
           }}>
-            First principles, Mindfulness &amp; Tennis Excellence
+            First Principles, Mindfulness &amp; Tennis Excellence
           </h2>
           <p style={{ fontSize: "1.0625rem", color: "#555", lineHeight: 1.8, marginBottom: "1rem" }}>
             We prioritise oneness with Nature and animal welfare in our coaching approach, believing that a harmonious relationship with the environment builds strong and respectful individuals.
