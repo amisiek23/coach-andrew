@@ -191,12 +191,6 @@ X is potential,  something real, but often untrained or simply missed and unreco
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
             {[
               {
-                quote: "Andrzej is very ambitious coach with great theoretical knowledge and practical experience. As his professor, I will remember him being a diligent student with outstanding communication skills and very good manners.",
-                name: "Piotr Unierzyski",
-                role: "Lecturer, University School of Physical Education · Coach & Speaker, International Tennis Federation",
-                region: "🇵🇱 Poland",
-              },
-              {
                 quote: "His will to fight, discipline, willingness to improve and above all ability of coping various, complex group dynamics are remarkable.",
                 name: "Pawel Geldner",
                 role: "Davis Cup Captain 2003–2005 · Best Club Coach in Germany 1999",
@@ -231,6 +225,12 @@ X is potential,  something real, but often untrained or simply missed and unreco
                 name: "Baez Nielsen",
                 role: "Competitive Tennis Player",
                 region: "🇦🇺 Australia",
+              },
+              {
+                quote: "Andrzej is very ambitious coach with great theoretical knowledge and practical experience. As his professor, I will remember him being a diligent student with outstanding communication skills and very good manners.",
+                name: "Piotr Unierzyski",
+                role: "Lecturer, University School of Physical Education · Coach & Speaker, International Tennis Federation",
+                region: "🇵🇱 Poland",
               },
             ].map(({ quote, name, role, region }) => (
               <ReviewCard key={name} quote={quote} name={name} role={role} region={region} />
