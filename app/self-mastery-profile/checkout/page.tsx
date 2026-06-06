@@ -155,15 +155,6 @@ export default function CheckoutPage() {
           )}
         </div>
 
-        <p style={{ marginTop: 24, fontSize: 14, color: "#6b7280" }}>
-          Want to know more about the ETP and how it was created?{" "}
-          <a
-            href="/measuring-elite-performance"
-            style={{ color: "#377A00", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3 }}
-          >
-            Learn more →
-          </a>
-        </p>
       </div>
     </div>
   );

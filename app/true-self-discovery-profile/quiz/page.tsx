@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
@@ -423,7 +424,8 @@ const ResultsScreen = ({
 function USAQuizInner() {
   const router       = useRouter();
   const searchParams = useSearchParams();
-  const [phase, setPhase]           = useState<"loading" | "quiz" | "results">("loading");
+  const [phase, setPhase]           = useState<"loading" | "quiz" | "email" | "results">("loading");
+  const [emailPayload, setEmailPayload] = useState<{ totalYes: number; sectionYes: number[] } | null>(null);
   const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers]       = useState<Record<string, boolean | null>>({});
@@ -473,7 +475,8 @@ function USAQuizInner() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ totalYes, sectionYes, accessType }),
     }).catch(console.error);
-    transition(() => setPhase("results"));
+    setEmailPayload({ totalYes, sectionYes });
+    transition(() => setPhase("email"));
   };
 
   const handleAnswer = (key: string, val: boolean) =>
@@ -499,6 +502,13 @@ function USAQuizInner() {
           onNext={handleNext}
           onPrev={handlePrev}
           onFinish={handleFinish}
+        />
+      )}
+      {phase === "email" && emailPayload && (
+        <EmailCaptureModal
+          quizType="tsdp"
+          resultsPayload={{ ...emailPayload, accessType }}
+          onDone={() => transition(() => setPhase("results"))}
         />
       )}
       {phase === "results" && (

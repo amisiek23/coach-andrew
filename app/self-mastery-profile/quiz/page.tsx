@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import EmailCaptureModal from "@/components/EmailCaptureModal";
 import {
   RadarChart,
   PolarGrid,
@@ -749,7 +750,7 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
 function SelfMasteryProfileQuizInner() {
   const router      = useRouter();
   const searchParams = useSearchParams();
-  const [phase, setPhase]           = useState<"loading" | "quiz" | "profile" | "results">("loading");
+  const [phase, setPhase]           = useState<"loading" | "quiz" | "profile" | "email" | "results">("loading");
   const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers]       = useState<Record<number, number>>(() =>
@@ -831,7 +832,7 @@ function SelfMasteryProfileQuizInner() {
         accessType,
       }),
     }).catch(console.error);
-    transition(() => setPhase("results"));
+    transition(() => setPhase("email"));
   };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
@@ -845,6 +846,13 @@ function SelfMasteryProfileQuizInner() {
         <QuizScreen
           section={SECTIONS[sectionIdx]} sectionIndex={sectionIdx} totalSections={SECTIONS.length}
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
+        />
+      )}
+{phase === "email" && (
+        <EmailCaptureModal
+          quizType="etp"
+          resultsPayload={{ sectionResults, overall, accessType }}
+          onDone={() => transition(() => setPhase("results"))}
         />
       )}
 {phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
