@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/content";
 import PostCard from "@/components/PostCard";
+import ReviewCard from "@/components/ReviewCard";
 
 const HERO_IMAGE = "/hero.webp";
 const HERO_BLUR = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQABLAEsAAD/4QNiRXhpZgAATU0AKgAAAAgADAEOAAIAAAA2AAAAngEPAAIAAAAGAAAA1AEQAAIAAAAVAAAA2gESAAMAAAABAAEAAAEaAAUAAAABAAAA8AEbAAUAAAABAAAA+AEoAAMAAAABAAIAAAExAAIAAAAgAAABAAEyAAIAAAAUAAABIAE7AAIAAAAIAAABNIKYAAIAAAAIAAABPIdpAAQAAAABAAABRAAAAABUZW5uaXMgcGxheWVyIHN3aW5naW5nIGhpcyByYWNxdWV0IGZyb20gYmFja2hhbmQgc2lkZQBDYW5vbgBDYW5vbiBFT1MgNUQgTWFyayBJSQAAAAABLAAAAAEAAAEsAAAAAVAAAAEAAAAAAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wgARCAAKAA8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAwIEAQUABgcICQoL/8QAwxAAAQMDAgQDBAYEBwYECAZzAQIAAxEEEiEFMRMiEAZBUTIUYXEjB4EgkUIVoVIzsSRiMBbBctFDkjSCCOFTQCVjFzXwk3OiUESyg/EmVDZklHTCYNKEoxhw4idFN2WzVXWklcOF8tNGdoDjR1ZmtAkKGRooKSo4OTpISUpXWFlaZ2hpand4eXqGh4iJipCWl5iZmqClpqeoqaqwtba3uLm6wMTFxsfIycrQ1NXW19jZ2uDk5ebn6Onq8/T19vf4+fr/xAAfAQADAQEBAQEBAQEBAAAAAAABAgADBAUGBwgJCgv/xADDEQACAgEDAwMCAwUCBQIEBIcBAAIRAxASIQQgMUETBTAiMlEUQAYzI2FCFXFSNIFQJJGhQ7EWB2I1U/DRJWDBROFy8ReCYzZwJkVUkiei0ggJChgZGigpKjc4OTpGR0hJSlVWV1hZWmRlZmdoaWpzdHV2d3h5eoCDhIWGh4iJipCTlJWWl5iZmqCjpKWmp6ipqrCys7S1tre4ubrAwsPExcbHyMnK0NPU1dbX2Nna4OLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgICBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/aAAwDAQACEQMRAAAB4nfNJg//2gAIAQEAAQUC2ff9vhn3DxLbyyMP/9oACAEDEQE/ARm+3btD/9oACAECEQE/AT0n8zfuP+vw/wD/2gAIAQEABj8CHviU8vzeVgiNKfjXv//EADMQAQADAAICAgICAwEBAAACCwERACExQVFhcYGRobHB8NEQ4fEgMEBQYHCAkKCwwNDg/9oACAEBAAE/IZbSfNylugwSss3kX//aAAwDAQACEQMRAAAQT//EADMRAQEBAAMAAQIFBQEBAAEBCQEAESExEEFRYSBx8JGBobHRweHxMEBQYHCAkKCwwNDg/9oACAEDEQE/EBMvzMNv/9oACAECEQE/ENtevM1/LPrf/9oACAEBAAE/EEEDDBjuh5K8JnstmfbUsLWgD1f/2Q==";
@@ -183,7 +184,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <div style={{ width: 56, height: 4, background: "#377A00", borderRadius: 2, margin: "0 auto 1.5rem" }} />
             <h2 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "clamp(1.75rem, 4vw, 2.4rem)", fontWeight: 700, color: "var(--text)" }}>
-              What People Say
+              Through the Eyes of Others
             </h2>
           </div>
 
@@ -232,17 +233,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
                 region: "🇦🇺 Australia",
               },
             ].map(({ quote, name, role, region }) => (
-              <div key={name} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
-                <span style={{ fontSize: "2rem", lineHeight: 1, color: "#377A00", fontFamily: "Georgia, serif", marginBottom: "-0.5rem" }}>&ldquo;</span>
-                <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9375rem", color: "#3a4a3a", lineHeight: 1.75, margin: 0, flex: 1 }}>
-                  {quote}
-                </p>
-                <div style={{ borderTop: "1px solid #d4e8d4", paddingTop: "1rem" }}>
-                  <p style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontWeight: 700, fontSize: ".9375rem", color: "#1e2e1e", margin: "0 0 .25rem" }}>{name}</p>
-                  <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".8rem", color: "#5a7a5a", lineHeight: 1.5, margin: "0 0 .35rem" }}>{role}</p>
-                  <span style={{ fontSize: ".75rem", fontWeight: 600, color: "#377A00", letterSpacing: ".06em", textTransform: "uppercase" }}>{region}</span>
-                </div>
-              </div>
+              <ReviewCard key={name} quote={quote} name={name} role={role} region={region} />
             ))}
           </div>
         </div>
@@ -261,7 +252,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
             Explore the programmes, take the questionnaire, and find out which coaching path is right for you.
           </p> }
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/self-mastery-profile" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>Take the questionnaire</Link>
+            <Link href="/shop" className="btn" style={{ background: "#fff", color: "#377A00", borderColor: "#fff" }}>Start Your Journey</Link>
           </div>
         </div>
       </section>

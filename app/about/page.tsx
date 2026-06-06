@@ -24,7 +24,7 @@ const MILESTONES = [
   },
   {
     title: "Leadership in Action",
-    body:  "Head Coach and Training Coordinator at AZS Poznań, awarded the Polish Tennis Federation's Silver Badge of Merit for his contributions to national sport. He founded and ran his own tennis school in Poland for nearly a decade before taking his methods international — serving as Tennis Director at Johnson Ranch Sports Club Tennis Academy (California), Head Coach at Paddington Recreation Ground (London), and currently Performance Manager at Highgate Cricket and Lawn Tennis Club (London).",
+    body:  "Head Coach and Training Coordinator at AZS Poznań, awarded the Polish Tennis Federation's Silver Badge of Merit for his contributions to national sport. He founded and ran his own tennis school in Poland for nearly a decade before taking his methods internationally, serving as Tennis Director at Johnson Ranch Sports Club Tennis Academy (California), Head Coach at Paddington Recreation Ground (London), and currently Performance Manager at Highgate Cricket and Lawn Tennis Club (London).",
   },
   {
     title: "Psychological Foundations",
@@ -113,7 +113,7 @@ export default function AboutPage() {
               </p>
 
               <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap" }}>
-                <Link href="/self-mastery-profile" className="btn btn-green">Start Your Journey</Link>
+                <Link href="/shop" className="btn btn-green">Start Your Journey</Link>
                 <Link href="/blog"    className="btn btn-outline-green">Read the Blog</Link>
               </div>
             </div>
@@ -183,11 +183,12 @@ export default function AboutPage() {
       </section>
 
       {/* ── VALUES ── */}
-      <section style={{ padding: "5rem 0" }}>
+      <section style={{ padding: "2.5rem 0" }}>
         <div className="container" style={{ maxWidth: "760px", textAlign: "center" }}>
           <p style={{ fontSize: ".8125rem", fontWeight: 600, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--green)", marginBottom: ".5rem" }}>
             Philosophy
           </p>
+
           <h2 style={{
             fontFamily: "var(--font-heading), serif",
             fontSize: "clamp(1.6rem, 3.5vw, 2.25rem)",
@@ -201,27 +202,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
-      <section style={{
-        background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
-        padding: "5rem 0", textAlign: "center",
-      }}>
-        {/* <div className="container" style={{ maxWidth: "560px" }}>
-          <h2 style={{
-            fontFamily: "var(--font-heading), serif",
-            fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)",
-            fontWeight: 700, color: "#fff", marginBottom: "1rem",
-          }}>
-            Start Your Journey to Excellence Today
-          </h2>
-          <p style={{ color: "rgba(255,255,255,.85)", fontSize: "1.0625rem", lineHeight: 1.7, marginBottom: "2rem" }}>
-            Ready to unlock your full potential? Let&apos;s begin.
-          </p>
-          <Link href="/self-mastery-profile" className="btn btn-outline-white">Get in Touch</Link>
-        </div> */}
-      </section>
 
-      {/* Responsive grid styles */}
+{/* Responsive grid styles */}
       <style>{`
         @media (max-width: 480px) {
           .about-grid > div:first-child { max-width: 260px; margin: 0 auto; }

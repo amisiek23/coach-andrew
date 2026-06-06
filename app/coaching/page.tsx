@@ -122,26 +122,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── CTA banner ── */}
-      <section style={{
-        background: "linear-gradient(135deg, #2c6300 0%, #377A00 60%, #4a9900 100%)",
-        padding: "5rem 0", textAlign: "center", marginTop: "4rem",
-      }}>
-        <div className="container" style={{ maxWidth: "560px" }}>
-          <h2 style={{
-            fontFamily: "var(--font-heading), serif",
-            fontSize: "clamp(1.5rem, 3.5vw, 2.2rem)",
-            fontWeight: 700, color: "#fff", marginBottom: "2rem",
-          }}>
-            Start Your Journey to Excellence Today!
-          </h2>
-          <Link href="/contact" className="btn btn-outline-white">
-            Start Now
-          </Link>
-        </div>
-      </section>
-
-      <style>{`
+<style>{`
         @media (max-width: 680px) {
           .offering-row {
             grid-template-columns: 1fr !important;
