@@ -750,7 +750,8 @@ const ResultsScreen = ({ sectionResults, overall, accessType }: { sectionResults
 function SelfMasteryProfileQuizInner() {
   const router      = useRouter();
   const searchParams = useSearchParams();
-  const [phase, setPhase]           = useState<"loading" | "quiz" | "profile" | "email" | "results">("loading");
+  const [phase, setPhase]           = useState<"loading" | "quiz" | "profile" | "results">("loading");
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
   const [answers, setAnswers]       = useState<Record<number, number>>(() =>
@@ -832,7 +833,8 @@ function SelfMasteryProfileQuizInner() {
         accessType,
       }),
     }).catch(console.error);
-    transition(() => setPhase("email"));
+    setShowEmailModal(true);
+    transition(() => setPhase("results"));
   };
   const handleAnswer = (idx: number, val: number) => setAnswers((prev) => ({ ...prev, [idx]: val }));
 
@@ -848,14 +850,14 @@ function SelfMasteryProfileQuizInner() {
           answers={answers} onAnswer={handleAnswer} onNext={handleNext} onPrev={handlePrev} onFinish={handleFinish}
         />
       )}
-{phase === "email" && (
+{phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
+      {phase === "results" && showEmailModal && (
         <EmailCaptureModal
           quizType="etp"
           resultsPayload={{ sectionResults, overall, accessType }}
-          onDone={() => transition(() => setPhase("results"))}
+          onDone={() => setShowEmailModal(false)}
         />
       )}
-{phase === "results" && <ResultsScreen sectionResults={sectionResults} overall={overall} accessType={accessType} />}
     </div>
   );
 }

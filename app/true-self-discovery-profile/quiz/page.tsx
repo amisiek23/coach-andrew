@@ -424,7 +424,8 @@ const ResultsScreen = ({
 function USAQuizInner() {
   const router       = useRouter();
   const searchParams = useSearchParams();
-  const [phase, setPhase]           = useState<"loading" | "quiz" | "email" | "results">("loading");
+  const [phase, setPhase]           = useState<"loading" | "quiz" | "results">("loading");
+  const [showEmailModal, setShowEmailModal] = useState(false);
   const [emailPayload, setEmailPayload] = useState<{ totalYes: number; sectionYes: number[] } | null>(null);
   const [accessType, setAccessType] = useState<"quiz" | "consultation">("quiz");
   const [sectionIdx, setSectionIdx] = useState(0);
@@ -476,7 +477,8 @@ function USAQuizInner() {
       body: JSON.stringify({ totalYes, sectionYes, accessType }),
     }).catch(console.error);
     setEmailPayload({ totalYes, sectionYes });
-    transition(() => setPhase("email"));
+    setShowEmailModal(true);
+    transition(() => setPhase("results"));
   };
 
   const handleAnswer = (key: string, val: boolean) =>
@@ -504,15 +506,15 @@ function USAQuizInner() {
           onFinish={handleFinish}
         />
       )}
-      {phase === "email" && emailPayload && (
+      {phase === "results" && (
+        <ResultsScreen answers={answers} accessType={accessType} />
+      )}
+      {phase === "results" && showEmailModal && emailPayload && (
         <EmailCaptureModal
           quizType="tsdp"
           resultsPayload={{ ...emailPayload, accessType }}
-          onDone={() => transition(() => setPhase("results"))}
+          onDone={() => setShowEmailModal(false)}
         />
-      )}
-      {phase === "results" && (
-        <ResultsScreen answers={answers} accessType={accessType} />
       )}
     </div>
   );
