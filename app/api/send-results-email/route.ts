@@ -123,9 +123,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing email or quizType" }, { status: 400 });
     }
 
-    const subject = quizType === "etp"
-      ? "Your Elite Tennis Profile Results"
-      : "Your Unique Self Assessment Results";
+    const quizName = quizType === "etp" ? "Elite Tennis Profile" : "Unique Self Assessment";
+    const subject = `${quizName} results — ${email}`;
 
     const html = quizType === "etp"
       ? etpHtml(results as Parameters<typeof etpHtml>[0])
@@ -133,7 +132,8 @@ export async function POST(req: NextRequest) {
 
     await resend.emails.send({
       from: "CoachAndrew <onboarding@resend.dev>",
-      to: email,
+      to: "a.misiek23@gmail.com",
+      replyTo: email,
       subject,
       html,
     });
