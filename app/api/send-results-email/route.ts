@@ -1,7 +1,13 @@
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "a.misiek23@gmail.com",
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 /* ── ETP helpers ─────────────────────────────────────────────────── */
 
@@ -130,10 +136,9 @@ export async function POST(req: NextRequest) {
       ? etpHtml(results as Parameters<typeof etpHtml>[0])
       : tsdpHtml(results as Parameters<typeof tsdpHtml>[0]);
 
-    await resend.emails.send({
-      from: "CoachAndrew <onboarding@resend.dev>",
-      to: "a.misiek23@gmail.com",
-      replyTo: email,
+    await transporter.sendMail({
+      from: "CoachAndrew <a.misiek23@gmail.com>",
+      to: email,
       subject,
       html,
     });
