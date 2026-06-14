@@ -30,10 +30,10 @@ const getLevelColor = (score: number) => {
 /* ── TSDP helpers ────────────────────────────────────────────────── */
 
 const TSDP_RESULTS = [
-  { min: 20, max: 25, label: "Deep Inner Calling",           icon: "🌿", color: "#377A00" },
-  { min: 14, max: 19, label: "Active Search",                icon: "🔍", color: "#2D5A8E" },
-  { min: 8,  max: 13, label: "Emerging Awareness",           icon: "🌅", color: "#D97706" },
-  { min: 0,  max: 7,  label: "External Identity Orientation",icon: "🔲", color: "#64748B" },
+  { min: 20, max: 25, label: "Deep Inner Calling",            icon: "🌿", color: "#377A00", desc: "You strongly feel that there is a deeper self within you waiting to be expressed. This is not confusion — it is awakening. The inner calling you sense is real, and it is asking to be honoured." },
+  { min: 14, max: 19, label: "Active Search",                 icon: "🔍", color: "#2D5A8E", desc: "You are aware that there is more to you than your current expression. You are in the process of discovery — actively searching, questioning, and beginning to listen more deeply to what is true for you." },
+  { min: 8,  max: 13, label: "Emerging Awareness",            icon: "🌅", color: "#D97706", desc: "You occasionally feel this inner layer, but it is not yet stable. Life may still be guided more by external structures. The awareness is emerging — and that is where every meaningful journey begins." },
+  { min: 0,  max: 7,  label: "External Identity Orientation", icon: "🔲", color: "#64748B", desc: "Your identity is currently shaped more by roles, expectations, and environment. The inner layer may not yet be a central focus — and that is okay. Asking the question at all is the first step." },
 ];
 
 const TSDP_SECTIONS = ["Uniqueness", "Authentic", "Expression", "Inner Voice", "Depth"];
