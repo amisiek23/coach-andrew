@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
-import { renderToBuffer } from "@react-pdf/renderer";
-import { createElement } from "react";
+import { renderToBuffer, type DocumentProps } from "@react-pdf/renderer";
+import { createElement, type ReactElement } from "react";
 import { TsdpPdfDocument } from "@/lib/tsdp-pdf";
 
 const transporter = nodemailer.createTransport({
@@ -160,11 +160,11 @@ export async function POST(req: NextRequest) {
       const r = results as { totalYes: number; sectionYes: number[]; accessType: "quiz" | "consultation" };
       const pdfBuffer = await renderToBuffer(
         createElement(TsdpPdfDocument, {
-          totalYes:   r.totalYes,
-          sectionYes: r.sectionYes,
-          accessType: r.accessType,
+          totalYes:    r.totalYes,
+          sectionYes:  r.sectionYes,
+          accessType:  r.accessType,
           calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL,
-        })
+        }) as ReactElement<DocumentProps>
       );
       await transporter.sendMail({
         from:    "CoachAndrew <a.misiek23@gmail.com>",
