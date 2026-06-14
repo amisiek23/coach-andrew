@@ -1,5 +1,8 @@
 import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
+import { renderToBuffer } from "@react-pdf/renderer";
+import { createElement } from "react";
+import { TsdpPdfDocument } from "@/lib/tsdp-pdf";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -130,18 +133,59 @@ export async function POST(req: NextRequest) {
     }
 
     const quizName = quizType === "etp" ? "Elite Tennis Profile" : "Unique Self Assessment";
-    const subject = `${quizName} results — ${email}`;
+    const subject  = `Your ${quizName} Results — CoachAndrew`;
 
-    const html = quizType === "etp"
-      ? etpHtml(results as Parameters<typeof etpHtml>[0])
-      : tsdpHtml(results as Parameters<typeof tsdpHtml>[0]);
+    const bodyHtml = `
+      <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#151716">
+        <div style="background:linear-gradient(135deg,#2c6300,#377A00);padding:32px;border-radius:12px 12px 0 0;text-align:center">
+          <p style="margin:0 0 4px;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.14em;text-transform:uppercase">CoachAndrew</p>
+          <h1 style="margin:0;font-size:24px;color:#fff;font-weight:700">${quizName}</h1>
+        </div>
+        <div style="background:#fff;padding:32px;border-radius:0 0 12px 12px;box-shadow:0 4px 20px rgba(0,0,0,0.08)">
+          <p style="font-size:16px;line-height:1.7;margin:0 0 16px">Thank you for completing the <strong>${quizName}</strong>.</p>
+          <p style="font-size:15px;line-height:1.7;margin:0 0 16px;color:#3a4a3a">
+            Your personalised results are attached to this email as a PDF. Take your time to read through them — they are a reflection of where you are right now, and a map for what is possible.
+          </p>
+          <p style="font-size:15px;line-height:1.7;margin:0 0 24px;color:#3a4a3a">
+            If you have any questions or would like to explore your results further, feel free to reply to this email.
+          </p>
+          <p style="font-size:14px;color:#888;border-top:1px solid #eee;padding-top:20px;margin:0">
+            Breath. Move. Grow.<br/>
+            <strong style="color:#377A00">Andrew</strong>
+          </p>
+        </div>
+      </div>`;
 
-    await transporter.sendMail({
-      from: "CoachAndrew <a.misiek23@gmail.com>",
-      to: email,
-      subject,
-      html,
-    });
+    if (quizType === "tsdp") {
+      const r = results as { totalYes: number; sectionYes: number[]; accessType: "quiz" | "consultation" };
+      const pdfBuffer = await renderToBuffer(
+        createElement(TsdpPdfDocument, {
+          totalYes:   r.totalYes,
+          sectionYes: r.sectionYes,
+          accessType: r.accessType,
+          calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL,
+        })
+      );
+      await transporter.sendMail({
+        from:    "CoachAndrew <a.misiek23@gmail.com>",
+        to:      email,
+        subject,
+        html:    bodyHtml,
+        attachments: [{
+          filename:    "Unique-Self-Assessment-Results.pdf",
+          content:     pdfBuffer,
+          contentType: "application/pdf",
+        }],
+      });
+    } else {
+      const html = etpHtml(results as Parameters<typeof etpHtml>[0]);
+      await transporter.sendMail({
+        from: "CoachAndrew <a.misiek23@gmail.com>",
+        to:   email,
+        subject,
+        html,
+      });
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {

@@ -265,8 +265,8 @@ const ResultsScreen = ({
           </h1>
         </div>
 
-        {/* Score card */}
-        <div style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", textAlign: "center", marginBottom: 24 }}>
+        {/* Score card — PAGE 1 */}
+        <div className="tsdp-page-1" style={{ background: "#fff", borderRadius: 24, padding: "36px 32px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", textAlign: "center", marginBottom: 24 }}>
           <div style={{
             display: "inline-flex", alignItems: "center", justifyContent: "center",
             width: 120, height: 120, borderRadius: "50%",
@@ -319,8 +319,8 @@ const ResultsScreen = ({
           );
         })()}
 
-        {/* Section breakdown */}
-        <div style={{ background: "#fff", borderRadius: 20, padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 24 }}>
+        {/* Section breakdown — end of PAGE 2 */}
+        <div className="tsdp-page-2" style={{ background: "#fff", borderRadius: 20, padding: "28px", boxShadow: "0 4px 20px rgba(0,0,0,0.06)", marginBottom: 24 }}>
           <h3 style={{ fontSize: 16, fontWeight: 600, color: "#475569", marginBottom: 20 }}>Section Breakdown</h3>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {SECTIONS.map((sec, si) => {
@@ -391,6 +391,8 @@ const ResultsScreen = ({
           @media print {
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .tsdp-no-print { display: none !important; }
+            .tsdp-page-1 { break-after: page; }
+            .tsdp-page-2 { break-after: page; }
           }
         `}</style>
         <div className="tsdp-no-print" style={{ textAlign: "center" }}>
