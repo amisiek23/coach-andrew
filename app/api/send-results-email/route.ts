@@ -142,11 +142,6 @@ function tsdpHtml(data: { totalYes: number; sectionYes: number[]; accessType: st
     </div>
 
     <div style="background:#fff;border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06)">
-      <h3 style="font-size:15px;font-weight:600;color:#475569;margin:0 0 16px">Profile Dimensions</h3>
-      <table style="width:100%;border-collapse:collapse">${sectionRows}</table>
-    </div>
-
-    <div style="background:#fff;border-radius:20px;padding:28px;margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,0.06)">
       <h3 style="font-size:15px;font-weight:600;color:#475569;margin:0 0 16px">Section Breakdown</h3>
       <table style="width:100%;border-collapse:collapse">${sectionRows}</table>
     </div>
