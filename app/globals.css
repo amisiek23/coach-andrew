@@ -37,8 +37,15 @@ body {
   overflow-x: hidden;
 }
 
-@media (max-width: 680px) {
-  .stats-strip { flex-wrap: wrap !important; justify-content: center !important; }
+/* Hero needs a defined height so the fill image renders correctly */
+.hero-section { min-height: 560px; }
+@media (max-width: 900px)  { .hero-section { min-height: 480px; } }
+@media (max-width: 600px)  { .hero-section { min-height: 400px; } }
+
+/* Stats strip: wrap + shrink at tablet and below */
+@media (max-width: 960px) {
+  .stats-strip { flex-wrap: wrap !important; gap: 1.25rem 2rem !important; }
+  .stats-strip > div { flex-shrink: 1 !important; }
 }
 
 h1, h2, h3, h4, h5, h6 {

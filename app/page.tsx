@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{ position: "relative", width: "100%", minHeight: "auto", display: "flex", alignItems: "center", overflow: "hidden" }}>
+      <section className="hero-section" style={{ position: "relative", width: "100%", display: "flex", alignItems: "center", overflow: "hidden" }}>
         <Image
           src={HERO_IMAGE}
           alt="Tennis player at sunset"
@@ -80,7 +80,7 @@ export default function HomePage() {
             { number: "4",             label: "Generations of players coached" },
              { number: "3",         label: " years academic teaching " }
           ].map(stat => (
-            <div key={stat.label} style={{ textAlign: "center", flexShrink: 0 }}>
+            <div key={stat.label} style={{ textAlign: "center" }}>
               <div style={{ fontFamily: "var(--font-heading), serif", fontSize: "clamp(1rem, 2vw, 1.75rem)", fontWeight: 700, whiteSpace: "nowrap" }}>{stat.number}</div>
               <div style={{ fontFamily: "var(--font-body), system-ui", fontSize: ".8125rem", opacity: .85, letterSpacing: ".06em", textTransform: "uppercase" }}>{stat.label}</div>
             </div>
