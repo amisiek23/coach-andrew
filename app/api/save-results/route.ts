@@ -63,9 +63,11 @@ function buildNarrative(sectionResults: { title: string; avg: number }[], overal
   let text = `Your overall Elite Tennis Profile score is ${Math.round(overall)}%, placing you in the "${getArchetype(overall).title}" archetype. `;
   text += `Your greatest strengths are ${top2[0].title} (${Math.round(top2[0].avg)}%) and ${top2[1].title} (${Math.round(top2[1].avg)}%), which form the core of your competitive mental game. `;
   text += `Your most impactful growth opportunities lie in ${bot2[0].title} (${Math.round(bot2[0].avg)}%) and ${bot2[1].title} (${Math.round(bot2[1].avg)}%). Focusing here will unlock the most significant gains in your overall performance.`;
-  if (range <= 15) text += " Your profile shows excellent balance across all dimensions — no single area is dramatically different from the others, suggesting a well-rounded approach to mental training.";
-  else if (range <= 30) text += " Your profile shows moderate variation between areas, which is typical. Continue building on your strengths while giving focused attention to your development areas.";
-  else text += " Your profile shows significant variation between your strongest and weakest areas. This gap represents a powerful opportunity: targeted work on your lower-scoring dimensions will create a more integrated and resilient competitive mindset.";
+  if (sorted[sorted.length - 1].avg >= 60) {
+    if (range <= 15) text += " Your profile shows excellent balance across all dimensions — no single area is dramatically different from the others, suggesting a well-rounded approach to mental training.";
+    else if (range <= 30) text += " Your profile shows moderate variation between areas, which is typical. Continue building on your strengths while giving focused attention to your development areas.";
+    else text += " Your profile shows significant variation between your strongest and weakest areas. This gap represents a powerful opportunity: targeted work on your lower-scoring dimensions will create a more integrated and resilient competitive mindset.";
+  }
   return text;
 }
 
