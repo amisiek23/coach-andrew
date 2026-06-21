@@ -25,7 +25,9 @@ export async function POST(req: NextRequest) {
     const stripe = new Stripe(stripeKey, { apiVersion: "2026-03-25.dahlia" });
 
     const priceId = plan === "consultation"
-      ? process.env.STRIPE_PRICE_ID_100
+      ? product === "tsdp"
+        ? process.env.STRIPE_PRICE_ID_85
+        : process.env.STRIPE_PRICE_ID_100
       : product === "tsdp"
         ? process.env.STRIPE_PRICE_ID_10
         : process.env.STRIPE_PRICE_ID_25;

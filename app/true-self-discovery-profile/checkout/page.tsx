@@ -110,10 +110,10 @@ export default function USACheckoutPage() {
 
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
-          {card("consultation", "£100", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
+          {card("consultation", "£85", "Full Experience", "Questionnaire + consultation call with Andrew", [
             "Complete Unique Self Assessment (25 questions)",
             "Personalised results across 5 dimensions",
-            "30-min 1-on-1 consultation with Andrew",
+            "1-on-1 consultation with Andrew",
             "Personalised reflection and next steps",
           ])}
           {card("quiz", "£10", "Assessment Only", "Questionnaire & full personalised results", [

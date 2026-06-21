@@ -105,10 +105,10 @@ export default function CheckoutPage() {
 
         {/* Cards */}
         <div style={{ display: "flex", gap: 20, marginBottom: 28, flexWrap: "wrap" }}>
-          {card("consultation", "£100", "Full Experience", "Questionnaire + 30-min consultation call with Andrew", [
+          {card("consultation", "£100", "Full Experience", "Questionnaire + consultation call with Andrew", [
             "Complete Elite Tennis Profile (35 questions)",
             "Personal radar chart & archetype",
-            "30-min 1-on-1 consultation with Andrew",
+            "1-on-1 consultation with Andrew",
             "Personalised action plan",
           ])}
           {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised report", [
