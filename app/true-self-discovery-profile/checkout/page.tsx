@@ -116,7 +116,7 @@ export default function USACheckoutPage() {
             "30-min 1-on-1 consultation with Andrew",
             "Personalised reflection and next steps",
           ])}
-          {card("quiz", "£25", "Assessment Only", "Questionnaire & full personalised results", [
+          {card("quiz", "£10", "Assessment Only", "Questionnaire & full personalised results", [
             "Complete Unique Self Assessment (25 questions)",
             "Personalised results across 5 dimensions",
             "Section-by-section breakdown",

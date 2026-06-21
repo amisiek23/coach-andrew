@@ -26,7 +26,9 @@ export async function POST(req: NextRequest) {
 
     const priceId = plan === "consultation"
       ? process.env.STRIPE_PRICE_ID_100
-      : process.env.STRIPE_PRICE_ID_25;
+      : product === "tsdp"
+        ? process.env.STRIPE_PRICE_ID_10
+        : process.env.STRIPE_PRICE_ID_25;
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
