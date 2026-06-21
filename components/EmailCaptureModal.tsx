@@ -32,7 +32,7 @@ export default function EmailCaptureModal({ quizType, resultsPayload, onDone }: 
     <div style={{ textAlign: "center", padding: "1rem 0" }}>
       <div style={{ fontSize: 40, marginBottom: 12 }}>✅</div>
       <p style={{ fontSize: 16, fontWeight: 600, color: "#151716", marginBottom: 6 }}>Results sent!</p>
-      <p style={{ fontSize: 14, color: "#555", marginBottom: 24 }}>We will send your results to <strong>{email}</strong> shortly.</p>
+      <p style={{ fontSize: 14, color: "#555", marginBottom: 24 }}>You will receive your results to <strong>{email}</strong> shortly.</p>
       <button onClick={onDone} style={btnPrimary}>View my results</button>
     </div>
   ) : (
@@ -44,7 +44,7 @@ export default function EmailCaptureModal({ quizType, resultsPayload, onDone }: 
         Want a copy of your results?
       </h2>
       <p style={{ fontSize: 14, color: "#555", lineHeight: 1.65, marginBottom: 24 }}>
-        Leave your email and Andrew will send you a summary of your results. This is optional — you can skip and view them now.
+        Leave your email and we will send you a summary of your results. This is optional — you can skip and view/download them now.
       </p>
 
       <input
