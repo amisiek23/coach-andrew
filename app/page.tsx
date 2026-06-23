@@ -148,13 +148,13 @@ X is potential,  something real, but often untrained or simply missed and unreco
           {/* 3-card row */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
-              { icon: "🎾", title: "The Self² Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
+              { icon: "🎾", titleHtml: "The Self<sup style='font-size:.75em;vertical-align:0.15em;margin-left:0.1em;'>2</sup> Method", title: "The Self2 Method", body: "Developed through years of competitive and coaching experience, connecting technic, mobility, & awareness.", href: "/coaching" },
               { icon: "📋", title: "Self-Development Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
-              { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
-            ].map(({ icon, title, body, href }) => (
+              { icon: "🌱", title: "Materials/Resources", body: "Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
+            ].map(({ icon, title, titleHtml, body, href }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <span style={{ fontSize: 32 }}>{icon}</span>
-                <h3 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.05rem", fontWeight: 700, color: "#1e2e1e", margin: 0 }}>{title}</h3>
+                <h3 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.05rem", fontWeight: 700, color: "#1e2e1e", margin: 0 }} {...(titleHtml ? { dangerouslySetInnerHTML: { __html: titleHtml } } : {})}>{titleHtml ? null : title}</h3>
                 <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9rem", color: "#4a5a4a", lineHeight: 1.7, margin: 0 }}>{body}</p>
                 {href && <Link href={href} style={{ fontSize: ".85rem", fontWeight: 600, color: "#377A00", textDecoration: "none", marginTop: ".25rem" }}>Learn more →</Link>}
               </div>
