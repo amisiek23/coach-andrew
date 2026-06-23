@@ -152,7 +152,7 @@ X is potential,  something real, but often untrained or simply missed and unreco
               { icon: "📋", title: "Self-Development Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
               { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
             ].map(({ icon, title, body, href }) => (
-              <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 <span style={{ fontSize: 32 }}>{icon}</span>
                 <h3 style={{ fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif", fontSize: "1.05rem", fontWeight: 700, color: "#1e2e1e", margin: 0 }}>{title}</h3>
                 <p style={{ fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: ".9rem", color: "#4a5a4a", lineHeight: 1.7, margin: 0 }}>{body}</p>
