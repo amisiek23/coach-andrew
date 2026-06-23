@@ -148,8 +148,8 @@ X is potential,  something real, but often untrained or simply missed and unreco
           {/* 3-card row */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", margin: "2rem 0" }}>
             {[
-              { icon: "🎾", title: "Coaching Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
-              { icon: "📋", title: "Self-Discovery Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
+              { icon: "🎾", title: "The Self² Method", body: "Developed through years of competitive and professional experience, connecting technical mobility with awareness.", href: "/coaching" },
+              { icon: "📋", title: "Self-Development Tools", body: "Designed to help you unlock potential you never thought possible.", href: "/self-mastery-profile" },
               { icon: "🌱", title: "Materials/Resources", body: " Applicable both in sport and across all areas of life, inspiring you to see things from an unconventional perspective.", href: "/blog" },
             ].map(({ icon, title, body, href }) => (
               <div key={title} style={{ background: "#F8FAF8", border: "1px solid #d4e8d4", borderRadius: 16, padding: "1.5rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
