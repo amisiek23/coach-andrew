@@ -77,7 +77,7 @@ export default function ServicesPage() {
       <section style={{ background: "var(--green-pale)", padding: "4rem 0", borderBottom: "1px solid var(--border)" }}>
         <div className="container" style={{ maxWidth: 760 }}>
           <p style={{ fontSize: "1.0625rem", color: "#3a4a3a", lineHeight: 1.9, marginBottom: "1.25rem" }}>
-            <strong>True confidence is built through action, not instruction.</strong> Coaching on 2 selfs (The Inner Game of Tennis) develops responsibility, awareness, and self-reliance by creating situations where players learn to think, adapt, and solve problems.
+            <strong>True confidence is built through action, not instruction.</strong> Coaching on 2 selfs develops responsibility, awareness, and self-reliance by creating situations where players learn to think, adapt, and solve problems.
           </p>
           <p style={{ fontSize: "1.0625rem", color: "#3a4a3a", lineHeight: 1.9, marginBottom: "1.25rem" }}>
             Tennis becomes more than a sport — it becomes a training ground for character. Particularly in the early stages of a tennis development, the wall is the focal point of each session. It is the best teacher players could possibly have (pure mirror), while giving the coaches one of the most effective tools available. The wall works as our assistant and a sparring partner, allowing coaches to step aside and help players refine and perfect all the necessary technical aspects of their game.
