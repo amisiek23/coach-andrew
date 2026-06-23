@@ -39,11 +39,11 @@ export default function ServicesPage() {
     <div style={{ background: "#fff" }}>
 
       {/* ── Hero ── */}
-      <section style={{ background: "#fff", padding: "4rem 0 0", borderBottom: "1px solid var(--border)" }}>
+      <section style={{ background: "#fff", padding: "0.75rem 0 0.5rem", borderBottom: "1px solid var(--border)" }}>
         <div className="container" style={{ textAlign: "center" }}>
 
           {/* Logo */}
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.5rem" }}>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.75rem" }}>
             <Image
               src="/self2-method-logo.png"
               alt="The Self² Method logo"
@@ -64,7 +64,7 @@ export default function ServicesPage() {
             fontFamily: "var(--font-heading), 'Libre Baskerville', Georgia, serif",
             fontSize: "clamp(2rem, 4vw, 3rem)",
             fontWeight: 700, color: "var(--text)",
-            marginBottom: "3rem",
+            marginBottom: "1rem",
             letterSpacing: ".04em",
           }}>
             THE SELF<sup style={{ fontSize: "0.55em", verticalAlign: "super" }}>2</sup> METHOD
