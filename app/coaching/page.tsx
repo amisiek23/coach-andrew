@@ -56,7 +56,7 @@ export default function ServicesPage() {
 
           {/* Subtitle */}
           <p style={{ fontSize: ".8125rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "var(--green)", marginBottom: ".75rem" }}>
-            Method behind the logic of True Self vs Ego Self
+            Method behind the logic of True Self
           </p>
 
           {/* Headline */}

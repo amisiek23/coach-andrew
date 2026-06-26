@@ -66,7 +66,7 @@ export default function ShopPage() {
               <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, marginBottom: "1.5rem" }}>
                 This project sits at the intersection of <strong>performance, psychology, and inner development</strong>.
                 Over the years, many influential figures have explored parts of this path — from the behavioural focus of <strong>Tony Robbins</strong>,
-                to the depth of human emotion described by <strong>Gabor Maté</strong> and <strong>Nathaniel Branden</strong> in his 6 pillars,
+                to the depth of human emotion described by <strong>Gabor Maté</strong>, <strong> Gad Saad</strong>, and <strong>Nathaniel Branden</strong> in his Six Pillars of Self-Esteem,
                 the unconscious patterns explored by <strong>Carl Jung</strong>, and the awareness-based perspectives brought forward by <strong>Deepak Chopra</strong>.
               </p>
               <p style={{ fontSize: 16, color: "#3a4a3a", lineHeight: 1.8, marginBottom: "1.5rem" }}>

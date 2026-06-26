@@ -91,7 +91,7 @@ const RESULTS = [
     label: "Deep Inner Calling",
     color: "#377A00", bg: "#EAF7EB",
     icon: "🌿",
-    desc: "You strongly feel that there is a deeper self within you waiting to be expressed. This is not confusion — it is awakening. The inner calling you sense is real, and it is asking to be honoured.",
+      desc: "You strongly feel that there is a deeper self within you waiting to be expressed. This is not confusion — it is awakening. The inner calling you sense is real, and it is asking to be honoured.",
   },
   {
     min: 14, max: 19,
